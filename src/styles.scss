@@ -1,0 +1,10 @@
+@import "./assets/styles/common.scss";
+@import "./assets/styles/variables.scss";
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import "fonts.scss";
+
+body {
+  font-family: $circular-book;
+  background-color: #F2F2F2;
+  color: $main-text-color;
+}

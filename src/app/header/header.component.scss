@@ -1,0 +1,75 @@
+@import "../../assets/styles/variables";
+
+.header-wrapper {
+  padding: 42px 33px 0 33px;
+  background-color: #fff;
+
+  .header {
+    padding-bottom: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: solid 1px #e9e9f0;
+
+    .left-block {
+      display: flex;
+      justify-content: space-between;
+      width: 72%;
+      align-items: baseline;
+
+      .company-name {
+        font-family: $circular-std;
+        font-weight: bold;
+        font-size: 24px;
+
+        .first-letter {
+          color: $main-red-color;
+        }
+      }
+
+      .nav-wrapper {
+        display: flex;
+
+        .nav {
+          color: #AEAEBC;
+          cursor: pointer;
+          margin-right: 64px;
+
+          &:last-child {
+            margin-right: 0;
+          }
+
+          &:hover {
+            color: $main-text-color;
+            text-decoration: none;
+          }
+        }
+      }
+
+      .not-verified-account {
+        cursor: pointer;
+        color: $main-red-color;
+        text-align: center;
+
+        .attention-icon {
+          margin-right: 8px;
+        }
+      }
+    }
+
+    .right-block {
+      .account-info {
+        display: flex;
+
+        .balance {
+          color: #aeaebc;
+        }
+
+        .notification-icon,
+        .balance {
+          margin-right: 35px;
+        }
+      }
+    }
+  }
+}

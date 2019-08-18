@@ -1,0 +1,77 @@
+{
+  "name": "demo-app",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "jest --testPathPattern=test\\\\.ts",
+    "lint": "ng lint --fix",
+    "e2e": "jest --testPathPattern=e2e.spec\\\\.ts",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "jest": {
+    "preset": "jest-preset-angular",
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/setupJest.ts"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "<rootDir>/tsconfig.spec.json"
+      }
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn run lint && yarn run test"
+    }
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~8.1.3",
+    "@angular/common": "~8.1.3",
+    "@angular/compiler": "~8.1.3",
+    "@angular/core": "~8.1.3",
+    "@angular/forms": "~8.1.3",
+    "@angular/platform-browser": "~8.1.3",
+    "@angular/platform-browser-dynamic": "~8.1.3",
+    "@angular/router": "~8.1.3",
+    "@ng-bootstrap/ng-bootstrap": "^5.1.0",
+    "@ngstack/translate": "^2.0.1",
+    "axios": "^0.19.0",
+    "bootstrap": "^4.3.1",
+    "core-js": "^3.1.4",
+    "joi-browser": "^13.4.0",
+    "jquery": "^3.4.1",
+    "ngx-captcha": "^7.0.0",
+    "ngx-toggle-switch": "^2.0.5",
+    "popper.js": "^1.15.0",
+    "rxjs": "~6.5.2",
+    "tslib": "^1.10.0",
+    "zone.js": "~0.9.1"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~0.801.3",
+    "@angular/cli": "~8.1.3",
+    "@angular/compiler-cli": "~8.1.3",
+    "@angular/language-service": "~8.1.3",
+    "@babel/core": "^7.5.5",
+    "@storybook/addon-actions": "^5.1.10",
+    "@storybook/addon-links": "^5.1.10",
+    "@storybook/addon-notes": "^5.1.10",
+    "@storybook/angular": "^5.1.9",
+    "@types/jest": "^24.0.16",
+    "@types/node": "~12.6.8",
+    "autoprefixer": "^8.1.0",
+    "babel-loader": "^8.0.6",
+    "codelyzer": "^5.1.0",
+    "husky": "^3.0.3",
+    "jest": "^24.8.0",
+    "jest-preset-angular": "^7.1.1",
+    "ts-node": "~8.3.0",
+    "tslint": "~5.18.0",
+    "typescript": "~3.4.5",
+    "webpack": "4.35.2"
+  }
+}
