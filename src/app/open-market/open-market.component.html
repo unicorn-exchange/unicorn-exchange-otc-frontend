@@ -1,0 +1,20 @@
+<div class="open-market">
+  <span class="open-market-heading">
+    {{ "OPEN_MARKET.HEADING" | translate }}
+  </span>
+  <div class="cards-wrapper">
+    <app-card-component class="card-wrapper" [isDarkCard]="true"></app-card-component>
+    <app-card-component class="card-wrapper" [isLightCard]="true"></app-card-component>
+    <app-card-component class="card-wrapper" [isLightCard]="true"></app-card-component>
+    <app-card-component class="card-wrapper" [isDarkCard]="true"></app-card-component>
+    <app-card-component class="card-wrapper" [isLightCard]="true"></app-card-component>
+  </div>
+  <div class="reroll-wrapper">
+    <div class="reroll-icon-wrapper">
+      <img src="../../assets/icons/repeat.svg" alt="reroll-icon">
+    </div>
+    <span>
+      {{ "OPEN_MARKET.REROLL" | translate:{deals_count: 5} }}
+    </span>
+  </div>
+</div>

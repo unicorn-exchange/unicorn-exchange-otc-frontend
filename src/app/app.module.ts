@@ -14,6 +14,9 @@ import {ProfileComponent} from "./profile/profile.component";
 import {ProfileInformationComponent} from "./profile/profile-information/profile-information.component";
 import {ProfilePasswordComponent} from "./profile/profile-password/profile-password.component";
 import {ProfileFormComponent} from "./profile-form/profile-form.component";
+import {CardComponent} from "./card/card.component";
+import {OpenMarketComponent} from "./open-market/open-market.component";
+import {RatingComponent} from "./rating/rating.component";
 // Other Components
 import {NgbRatingModule} from "@ng-bootstrap/ng-bootstrap";
 import {UiSwitchModule} from "ngx-toggle-switch";
@@ -41,7 +44,10 @@ export const baseModule: NgModule = {
     ProfileComponent,
     ProfileInformationComponent,
     ProfilePasswordComponent,
-    ProfileFormComponent
+    ProfileFormComponent,
+    CardComponent,
+    OpenMarketComponent,
+    RatingComponent
   ],
   providers: [
     TranslateService,

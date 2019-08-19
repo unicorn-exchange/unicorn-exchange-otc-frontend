@@ -4,7 +4,7 @@ export const ROUTES = {
   SIGN_UP: "sign-up",
   FULL_REGISTRATION: "full-registration",
   CHOOSE_ROLE: "choose-role",
-  OPEN_MARKET: "open-market",
+  OPEN_MARKET: "market",
   PROFILE: {
     PROFILE: "profile",
     NOTIFICATIONS: "notifications",

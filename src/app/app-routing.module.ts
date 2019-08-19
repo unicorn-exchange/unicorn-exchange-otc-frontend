@@ -5,6 +5,7 @@ import {SignUpComponent} from "./sign-up/sign-up.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {ProfileInformationComponent} from "./profile/profile-information/profile-information.component";
 import {ProfilePasswordComponent} from "./profile/profile-password/profile-password.component";
+import {OpenMarketComponent} from "./open-market/open-market.component";
 import {ROUTES} from "../config";
 
 const routes: Routes = [
@@ -16,6 +17,11 @@ const routes: Routes = [
   {
     path: ROUTES.SIGN_UP,
     component: SignUpComponent,
+    pathMatch: "full"
+  },
+  {
+    path: ROUTES.OPEN_MARKET,
+    component: OpenMarketComponent,
     pathMatch: "full"
   },
   {

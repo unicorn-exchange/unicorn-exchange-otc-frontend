@@ -19,7 +19,7 @@
     "NOT_CLIENT": "I do not have a client"
   },
   "OPEN_MARKET": {
-    "HEADING": "Select interesting cards for you and roll others",
+    "HEADING": "Market",
     "REROLL": "Reroll {deals_count} deals"
   },
   "HEADER": {
