@@ -1,0 +1,56 @@
+<div class="create-deal-wrapper">
+  <span class="heading">
+    {{ "CREATE_DEAL.HEADING" | translate }}
+  </span>
+  <div class="market-card-wrapper light-card">
+    <div class="market-card-header">
+      <app-rating-component
+        [cardRate]="0"
+        [maxRate]="3"
+        [isReadOnly]="false"
+        [color]="'#e9e9f0'"></app-rating-component>
+      <div class="seller">
+        <div class="main-seller-info">
+          <img class="user-img" alt="user" src="../../assets/images/user.png">
+          <span class="seller-name">John Meller</span>
+        </div>
+      </div>
+    </div>
+    <form (ngSubmit)="onClickSubmit($event, form.value)" [formGroup]="form" class="market-card-body">
+      <div class="market-card-name-wrapper">
+        <div class="market-card-icon"></div>
+        <label>
+          Category/Name:
+          <input [placeholder]="'FORMS.PLACEHOLDER.EXAMPLE_CATEGORY' | translate"
+                 class="form-control default-input"
+                 formControlName="category"
+                 id="category"
+                 type="text">
+        </label>
+      </div>
+      <div class="market-card-price">
+        <label>
+          Price:
+          <input placeholder="ex. 1 100€"
+                 class="form-control default-input"
+                 formControlName="price"
+                 id="price"
+                 type="number">
+        </label>
+        <label>
+          Country:
+          <input placeholder="ex. Russian Federation"
+                 class="form-control default-input"
+                 formControlName="country"
+                 id="country"
+                 type="text">
+        </label>
+      </div>
+    </form>
+    <div class="market-card-footer">
+      <button type="submit" class="buy-btn">
+        create
+      </button>
+    </div>
+  </div>
+</div>

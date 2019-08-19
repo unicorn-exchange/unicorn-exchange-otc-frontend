@@ -1,0 +1,18 @@
+@import "../../assets/styles/variables";
+.create-deal-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  .heading {
+    font-size: 35px;
+    font-family: $circular-std;
+    font-weight: bold;
+    margin-bottom: 50px;
+  }
+
+  .market-card-body {
+    border: none !important;
+  }
+}
