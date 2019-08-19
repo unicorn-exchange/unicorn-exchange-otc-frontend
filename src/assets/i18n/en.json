@@ -23,7 +23,7 @@
     "REROLL": "Reroll {deals_count} deals"
   },
   "HEADER": {
-    "OPEN_MARKET": "Open market",
+    "OPEN_MARKET": "Market",
     "ORDERS": "Orders",
     "OTHER": "Other",
     "NOT_VERIFIED_ACCOUNT": "Your account is not verified",
