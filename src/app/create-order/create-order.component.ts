@@ -2,14 +2,17 @@ import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
-  selector: "app-create-deal-component",
-  templateUrl: "./create-deal.component.html",
-  styleUrls: ["./create-deal.component.scss", "../card/card.component.scss"]
+  selector: "app-create-order-component",
+  templateUrl: "./create-order.component.html",
+  styleUrls: ["./create-order.component.scss", "../card/card.component.scss"]
 })
-export class CreateDealComponent implements OnInit {
+export class CreateOrderComponent implements OnInit {
 
   form: FormGroup;
   submitted = false;
+  cryptoCurrencies = [{
+    title: "R"
+  }];
 
   constructor(private fb: FormBuilder) {
   }
@@ -34,7 +37,6 @@ export class CreateDealComponent implements OnInit {
       return;
     }
 
-    // console.log("Your Email is : " + formData.email);
-    // console.log("Your Password is : " + formData.password);
+    console.log(formData);
   }
 }

@@ -1,4 +1,4 @@
-<div class="create-deal-wrapper">
+<div class="create-order-wrapper">
   <span class="heading">
     {{ "CREATE_DEAL.HEADING" | translate }}
   </span>
@@ -18,6 +18,15 @@
     </div>
     <form (ngSubmit)="onClickSubmit($event, form.value)" [formGroup]="form" class="market-card-body">
       <div class="market-card-name-wrapper">
+        <label>
+          Crypto currency:
+          <select formControlName="state">
+            <option *ngFor="let cryptoCurrency of cryptoCurrencies" [ngValue]="cryptoCurrency">
+              {{ cryptoCurrency.title }}
+            </option>
+          </select>
+        </label>
+
         <div class="market-card-icon"></div>
         <label>
           Category/Name:
