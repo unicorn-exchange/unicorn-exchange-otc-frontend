@@ -22,6 +22,8 @@ import {CreateOrderComponent} from "./create-order/create-order.component";
 import {NgbRatingModule} from "@ng-bootstrap/ng-bootstrap";
 import {UiSwitchModule} from "ngx-toggle-switch";
 import {NgxCaptchaModule} from "ngx-captcha";
+import {BackendService} from "../services/api/backend.service";
+import {Stores} from "../stores/stores";
 
 // tslint:disable-next-line:ban-types
 export function setupTranslateFactory(service: TranslateService): Function {
@@ -52,6 +54,8 @@ export const baseModule: NgModule = {
     CreateOrderComponent
   ],
   providers: [
+    BackendService,
+    Stores,
     TranslateService,
     {
       provide: APP_INITIALIZER,

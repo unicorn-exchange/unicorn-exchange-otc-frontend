@@ -1,7 +1,7 @@
-import {APIV1Real} from "../src/services/api/api_v1_real";
+import {APIV1} from "../src/services/api/api_v1";
 import {Headers} from "../src/types/enums/enums";
 
-const api = new APIV1Real("https://some-api.com", {
+const api = new APIV1("https://some-api.com", {
   [Headers.TestEnv]: true,
   [Headers.TestEnvPassword]: `password`,
 });

@@ -1,20 +1,17 @@
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Stores} from "../../stores/stores";
 
 @Component({
   selector: "app-create-order-component",
   templateUrl: "./create-order.component.html",
-  styleUrls: ["./create-order.component.scss", "../card/card.component.scss"]
+  styleUrls: ["./create-order.component.scss", "../card/card.component.scss"],
 })
 export class CreateOrderComponent implements OnInit {
-
   form: FormGroup;
   submitted = false;
-  cryptoCurrencies = [{
-    title: "R"
-  }];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private stores: Stores) {
   }
 
   get f() {
@@ -23,6 +20,7 @@ export class CreateOrderComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
+      cryptoCurrency: ["", [Validators.required]],
       category: ["", [Validators.required, Validators.minLength(2)]],
       price: ["", [Validators.required]],
       country: ["", Validators.required]

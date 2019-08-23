@@ -8,6 +8,8 @@ import {ProfilePasswordComponent} from "./profile/profile-password/profile-passw
 import {OpenMarketComponent} from "./open-market/open-market.component";
 import {CreateOrderComponent} from "./create-order/create-order.component";
 import {ROUTES} from "../config";
+import {Stores} from "../stores/stores";
+import {BackendService} from "../services/api/backend.service";
 
 const routes: Routes = [
   {
@@ -51,4 +53,11 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {
+  constructor(private backend: BackendService, private stores: Stores) {
+    this.backend.apiV1
+      .get("/global-settings")
+      .then(res => {
+        stores.common.settings = res.data;
+      })
+  }
 }

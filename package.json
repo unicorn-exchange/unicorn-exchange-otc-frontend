@@ -47,8 +47,10 @@
     "ngx-captcha": "^7.0.0",
     "ngx-toggle-switch": "^2.0.5",
     "popper.js": "^1.15.0",
+    "restyped-axios": "^2.0.0",
     "rxjs": "~6.5.2",
     "tslib": "^1.10.0",
+    "unicorn-types": "https://github.com/unicorn-exchange/unicorn-exchange-types",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
@@ -64,6 +66,7 @@
     "@types/jest": "^24.0.16",
     "@types/node": "~12.6.8",
     "autoprefixer": "^8.1.0",
+    "axios-mock-adapter": "^1.17.0",
     "babel-loader": "^8.0.6",
     "codelyzer": "^5.1.0",
     "husky": "^3.0.3",

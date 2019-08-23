@@ -20,8 +20,8 @@
       <div class="market-card-name-wrapper">
         <label>
           Crypto currency:
-          <select formControlName="state">
-            <option *ngFor="let cryptoCurrency of cryptoCurrencies" [ngValue]="cryptoCurrency">
+          <select formControlName="cryptoCurrency">
+            <option *ngFor="let cryptoCurrency of stores.common.settings.cryptoCurrencies" [ngValue]="cryptoCurrency">
               {{ cryptoCurrency.title }}
             </option>
           </select>

@@ -1,5 +1,5 @@
 import {IProfile} from "../../../types/api/interfaces";
-import {defaultResponse} from "./default_response";
+import {defaultResponse} from "./default-response";
 
 export const profile: IProfile = {
   RUICode: 0,
