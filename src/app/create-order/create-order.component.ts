@@ -5,7 +5,7 @@ import {Stores} from "../../stores/stores";
 @Component({
   selector: "app-create-order-component",
   templateUrl: "./create-order.component.html",
-  styleUrls: ["./create-order.component.scss", "../card/card.component.scss"],
+  styleUrls: ["./create-order.component.scss"],
 })
 export class CreateOrderComponent implements OnInit {
   form: FormGroup;
@@ -13,6 +13,11 @@ export class CreateOrderComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private stores: Stores) {
   }
+
+  moneyCurrencies: [{
+    id: 1,
+    title: "Rubles"
+  }];
 
   get f() {
     return this.form.controls;
@@ -23,7 +28,9 @@ export class CreateOrderComponent implements OnInit {
       cryptoCurrency: ["", [Validators.required]],
       category: ["", [Validators.required, Validators.minLength(2)]],
       price: ["", [Validators.required]],
-      country: ["", Validators.required]
+      givePrice: ["", [Validators.required]],
+      moneyCurrency: ["", [Validators.required]],
+      getPrice: ["", [Validators.required]],
     });
   }
 

@@ -19,7 +19,11 @@
     "NOT_CLIENT": "I do not have a client"
   },
   "CREATE_DEAL": {
-    "HEADING": "Create your own deal"
+    "HEADING": "Create your own deal",
+    "CRYPTO_CURRENCY": "Crypto currency",
+    "CURRENCY": "Currency",
+    "GIVE": "Give",
+    "GET": "Get"
   },
   "OPEN_MARKET": {
     "HEADING": "Market",
@@ -78,10 +82,11 @@
     "NEXT": "Next",
     "ACCEPT": "Accept",
     "SELECT": "Select",
+    "CREATE": "Create",
     "SELECTED": "Selected",
     "AGREE_WITH_TERMS": "Press button you agree with terms and conditions",
     "PLACEHOLDER": {
-      "EXAMPLE_CATEGORY": "ex. Trading"
+      "EXAMPLE_CRYPTO": "ex. 0,45"
     }
   }
 }

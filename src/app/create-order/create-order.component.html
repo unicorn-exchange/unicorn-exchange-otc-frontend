@@ -2,64 +2,47 @@
   <span class="heading">
     {{ "CREATE_DEAL.HEADING" | translate }}
   </span>
-  <div class="market-card-wrapper light-card">
-    <div class="market-card-header">
-      <app-rating-component
-        [cardRate]="0"
-        [maxRate]="3"
-        [isReadOnly]="false"
-        [color]="'#e9e9f0'"></app-rating-component>
-      <div class="seller">
-        <div class="main-seller-info">
-          <img class="user-img" alt="user" src="../../assets/images/user.png">
-          <span class="seller-name">John Meller</span>
-        </div>
-      </div>
-    </div>
-    <form (ngSubmit)="onClickSubmit($event, form.value)" [formGroup]="form" class="market-card-body">
-      <div class="market-card-name-wrapper">
-        <label>
-          Crypto currency:
-          <select formControlName="cryptoCurrency">
+  <div class="deal-wrapper">
+    <form (ngSubmit)="onClickSubmit($event, form.value)" [formGroup]="form" class="deal-form">
+      <div class="left-block">
+        <label class="currency-label">
+          {{ "CREATE_DEAL.CRYPTO_CURRENCY" | translate }}
+          <select class="currency-select" formControlName="cryptoCurrency">
             <option *ngFor="let cryptoCurrency of stores.common.settings.cryptoCurrencies" [ngValue]="cryptoCurrency">
               {{ cryptoCurrency.title }}
             </option>
           </select>
         </label>
-
-        <div class="market-card-icon"></div>
         <label>
-          Category/Name:
-          <input [placeholder]="'FORMS.PLACEHOLDER.EXAMPLE_CATEGORY' | translate"
+          {{ "CREATE_DEAL.GIVE" | translate }}:
+          <input [placeholder]="'FORMS.PLACEHOLDER.EXAMPLE_CRYPTO' | translate"
                  class="form-control default-input"
-                 formControlName="category"
-                 id="category"
-                 type="text">
-        </label>
-      </div>
-      <div class="market-card-price">
-        <label>
-          Price:
-          <input placeholder="ex. 1 100€"
-                 class="form-control default-input"
-                 formControlName="price"
-                 id="price"
+                 formControlName="givePrice"
+                 id="givePrice"
                  type="number">
         </label>
+      </div>
+      <span class="equally">=</span>
+      <div class="right-block">
+        <label class="currency-label">
+          {{ "CREATE_DEAL.CURRENCY" | translate }}
+          <select class="currency-select" formControlName="moneyCurrency">
+            <option *ngFor="let moneyCurrency of moneyCurrencies" [ngValue]="moneyCurrency">
+              {{ moneyCurrency.title }}
+            </option>
+          </select>
+        </label>
         <label>
-          Country:
-          <input placeholder="ex. Russian Federation"
-                 class="form-control default-input"
-                 formControlName="country"
-                 id="country"
-                 type="text">
+          {{ "CREATE_DEAL.GET" | translate }}:
+          <input class="form-control default-input"
+                 formControlName="getPrice"
+                 id="getPrice"
+                 type="number">
         </label>
       </div>
     </form>
-    <div class="market-card-footer">
-      <button type="submit" class="buy-btn">
-        create
-      </button>
-    </div>
+    <button type="submit" class="red-button create-order-btn">
+      {{ "FORMS.CREATE" | translate }}
+    </button>
   </div>
 </div>
