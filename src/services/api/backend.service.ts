@@ -1,11 +1,11 @@
 import {TypedAxiosInstance} from "restyped-axios";
-import {APIV1Doc} from "unicorn-types/types/api/api-v1-doc"
+import {APIV1Doc} from "unicorn-types/types/api/api-v1-doc";
 import {Headers} from "../../types/enums/enums";
 import {Injectable} from "@angular/core";
 import {APIV1} from "./api_v1";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class BackendService {
   apiV1: TypedAxiosInstance<APIV1Doc>;

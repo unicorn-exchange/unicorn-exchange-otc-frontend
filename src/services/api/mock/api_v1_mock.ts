@@ -1,6 +1,6 @@
 import MockAdapter from "axios-mock-adapter";
 import {AxiosInstance} from "axios";
-import {AUTH_SIGN_IN, AUTH_SIGN_UP, GLOBAL_SETTINGS} from "unicorn-types/types/api/api-v1-doc"
+import {AUTH_SIGN_IN, AUTH_SIGN_UP, GLOBAL_SETTINGS} from "unicorn-types/types/api/api-v1-doc";
 import {globalSettings} from "./global-settings";
 
 export function mockAPIV1Requests(api: AxiosInstance) {

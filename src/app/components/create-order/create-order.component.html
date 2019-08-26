@@ -1,0 +1,51 @@
+<div class="create-order-wrapper">
+  <span class="heading">
+    {{ "CREATE_DEAL.HEADING" | translate }}
+  </span>
+  <div class="deal-wrapper">
+    <form (ngSubmit)="onClickSubmit($event, form.value)" [formGroup]="form" class="deal-form">
+      <div class="left-block">
+        <label class="currency-label">
+          {{ "CREATE_DEAL.CRYPTO_CURRENCY" | translate }}
+          <select (ngModelChange)="onCryptoCurrenctChanged(form)" class="currency-select"
+                  formControlName="cryptoCurrencyInput">
+            <option *ngFor="let cryptoCurrency of settings.cryptoCurrencies | async" [ngValue]="cryptoCurrency">
+              {{ cryptoCurrency.title }}
+            </option>
+          </select>
+        </label>
+        <label>
+          {{ "CREATE_DEAL.GIVE" | translate }}:
+          <input [placeholder]="'FORMS.PLACEHOLDER.EXAMPLE_CRYPTO' | translate"
+                 class="form-control default-input"
+                 formControlName="givePrice"
+                 id="givePrice"
+                 type="number">
+        </label>
+      </div>
+      <span class="equally">=</span>
+      <div class="right-block">
+        <label class="currency-label">
+          {{ "CREATE_DEAL.CRYPTO_CURRENCY" | translate }}
+          <select class="currency-select" formControlName="cryptoCurrencyOutput">
+            <option *ngFor="let cryptoCurrency of settings.cryptoCurrencies" [ngValue]="cryptoCurrency">
+              {{ cryptoCurrency.title }}
+            </option>
+          </select>
+        </label>
+        <label>
+          {{ "CREATE_DEAL.GET" | translate }}:
+          <input class="form-control default-input"
+                 formControlName="getPrice"
+                 [value]="123"
+                 disabled
+                 id="getPrice"
+                 type="number">
+        </label>
+      </div>
+    </form>
+    <button type="submit" class="red-button create-order-btn">
+      {{ "FORMS.CREATE" | translate }}
+    </button>
+  </div>
+</div>

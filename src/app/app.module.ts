@@ -7,23 +7,28 @@ import {TranslateModule, TranslateService} from "@ngstack/translate";
 // Components
 import {AppRoutingModule} from "./app-routing.module";
 import {AppComponent} from "./app.component";
-import {SignInComponent} from "./sign-in/sign-in.component";
-import {SignUpComponent} from "./sign-up/sign-up.component";
-import {HeaderComponent} from "./header/header.component";
-import {ProfileComponent} from "./profile/profile.component";
-import {ProfileInformationComponent} from "./profile/profile-information/profile-information.component";
-import {ProfilePasswordComponent} from "./profile/profile-password/profile-password.component";
-import {ProfileFormComponent} from "./profile-form/profile-form.component";
-import {CardComponent} from "./card/card.component";
-import {OpenMarketComponent} from "./open-market/open-market.component";
-import {RatingComponent} from "./rating/rating.component";
-import {CreateOrderComponent} from "./create-order/create-order.component";
+import {SignInComponent} from "./components/sign-in/sign-in.component";
+import {SignUpComponent} from "./components/sign-up/sign-up.component";
+import {HeaderComponent} from "./components/header/header.component";
+import {ProfileComponent} from "./components/profile/profile.component";
+import {ProfileInformationComponent} from "./components/profile/profile-information/profile-information.component";
+import {ProfilePasswordComponent} from "./components/profile/profile-password/profile-password.component";
+import {ProfileFormComponent} from "./components/profile-form/profile-form.component";
+import {CardComponent} from "./components/card/card.component";
+import {OpenMarketComponent} from "./components/open-market/open-market.component";
+import {RatingComponent} from "./components/rating/rating.component";
+import {CreateOrderComponent} from "./components/create-order/create-order.component";
 // Other Components
 import {NgbRatingModule} from "@ng-bootstrap/ng-bootstrap";
 import {UiSwitchModule} from "ngx-toggle-switch";
 import {NgxCaptchaModule} from "ngx-captcha";
 import {BackendService} from "../services/api/backend.service";
-import {Stores} from "../stores/stores";
+import {EffectsModule} from "@ngrx/effects";
+import {AppEffects} from "./app.effects";
+import {StoreModule} from "@ngrx/store";
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
+import {settingsReducer} from "./reducers/settings.reducer";
+import {SettingsEffects} from "./effects/settings.effects";
 
 // tslint:disable-next-line:ban-types
 export function setupTranslateFactory(service: TranslateService): Function {
@@ -38,7 +43,15 @@ export const baseModule: NgModule = {
     NgbRatingModule,
     TranslateModule.forRoot(),
     UiSwitchModule,
-    NgxCaptchaModule
+    NgxCaptchaModule,
+    EffectsModule.forRoot([
+      AppEffects,
+      SettingsEffects,
+    ]),
+    StoreModule.forRoot({
+      settings: settingsReducer
+    }),
+    StoreDevtoolsModule.instrument(),
   ],
   declarations: [
     SignInComponent,
@@ -55,7 +68,6 @@ export const baseModule: NgModule = {
   ],
   providers: [
     BackendService,
-    Stores,
     TranslateService,
     {
       provide: APP_INITIALIZER,

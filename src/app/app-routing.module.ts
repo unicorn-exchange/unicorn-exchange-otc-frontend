@@ -1,15 +1,15 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
-import {SignInComponent} from "./sign-in/sign-in.component";
-import {SignUpComponent} from "./sign-up/sign-up.component";
-import {ProfileComponent} from "./profile/profile.component";
-import {ProfileInformationComponent} from "./profile/profile-information/profile-information.component";
-import {ProfilePasswordComponent} from "./profile/profile-password/profile-password.component";
-import {OpenMarketComponent} from "./open-market/open-market.component";
-import {CreateOrderComponent} from "./create-order/create-order.component";
+import {SignInComponent} from "./components/sign-in/sign-in.component";
+import {SignUpComponent} from "./components/sign-up/sign-up.component";
+import {ProfileComponent} from "./components/profile/profile.component";
+import {ProfileInformationComponent} from "./components/profile/profile-information/profile-information.component";
+import {ProfilePasswordComponent} from "./components/profile/profile-password/profile-password.component";
+import {OpenMarketComponent} from "./components/open-market/open-market.component";
+import {CreateOrderComponent} from "./components/create-order/create-order.component";
 import {ROUTES} from "../config";
-import {Stores} from "../stores/stores";
 import {BackendService} from "../services/api/backend.service";
+import {Store} from "@ngrx/store";
 
 const routes: Routes = [
   {
@@ -53,11 +53,9 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {
-  constructor(private backend: BackendService, private stores: Stores) {
-    this.backend.apiV1
-      .get("/global-settings")
-      .then(res => {
-        stores.common.settings = res.data;
-      })
+  constructor(private backend: BackendService, private store: Store<{ s: string }>) {
+    this.backend.apiV1.get("/global-settings").then(res => {
+      res.data.cryptoCurrencies;
+    });
   }
 }

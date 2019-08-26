@@ -1,6 +1,6 @@
 import {storiesOf} from '@storybook/angular';
 import {defaultDecorator} from './storybook-decorator';
-import {ProfileComponent} from '../src/app/profile/profile.component';
+import {ProfileComponent} from '../src/app/components/profile/profile.component';
 import {ROUTES} from '../src/config';
 
 storiesOf("Profile", module)
