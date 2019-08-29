@@ -21,7 +21,7 @@ import {CreateOrderComponent} from "./components/create-order/create-order.compo
 // Other Components
 import {NgbRatingModule} from "@ng-bootstrap/ng-bootstrap";
 import {UiSwitchModule} from "ngx-toggle-switch";
-import {NgxCaptchaModule} from "ngx-captcha";
+import {NgxCaptchaModule} from "ngx-captcha"; // TODO: Don't use google captcha due to Chine limitations
 import {BackendService} from "../services/api/backend.service";
 import {EffectsModule} from "@ngrx/effects";
 import {AppEffects} from "./app.effects";

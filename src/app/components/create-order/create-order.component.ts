@@ -1,21 +1,22 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Store} from "@ngrx/store";
 import {globalSettings} from "../../../services/api/mock/global-settings";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Subscription} from "rxjs";
 
 @Component({
   selector: "app-create-order-component",
   templateUrl: "./create-order.component.html",
   styleUrls: ["./create-order.component.scss"],
 })
-export class CreateOrderComponent implements OnInit {
+export class CreateOrderComponent implements OnInit, OnDestroy {
   form: FormGroup;
   submitted = false;
   // settings = globalSettings;
   settings: {
     cryptoCurrencies: any,
   };
+  private formChanged: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -37,7 +38,13 @@ export class CreateOrderComponent implements OnInit {
       cryptoCurrencyOutput: ["", [Validators.required]],
       getPrice: ["", [Validators.required]],
     });
+    this.formChanged = this.form.valueChanges.subscribe(console.log);
   }
+
+  ngOnDestroy() {
+    this.formChanged.unsubscribe();
+  }
+
 
   onClickSubmit(event, formData) {
     event.preventDefault();
