@@ -1,8 +1,9 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Store} from "@ngrx/store";
-import {globalSettings} from "../../../services/api/mock/global-settings";
-import {BehaviorSubject, Subscription} from "rxjs";
+import {Subscription} from "rxjs";
+import {BackendService} from "../../../services/api/backend.service";
+import {ICryptoCurrencyRes} from "unicorn-types/types/api/responses";
 
 @Component({
   selector: "app-create-order-component",
@@ -12,15 +13,15 @@ import {BehaviorSubject, Subscription} from "rxjs";
 export class CreateOrderComponent implements OnInit, OnDestroy {
   form: FormGroup;
   submitted = false;
-  // settings = globalSettings;
   settings: {
-    cryptoCurrencies: any,
+    cryptoCurrencies: ICryptoCurrencyRes[],
   };
   private formChanged: Subscription;
 
   constructor(
     private fb: FormBuilder,
-    private store: Store<any>
+    private store: Store<any>,
+    private backend: BackendService,
   ) {
   }
 
@@ -29,7 +30,9 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.settings = {cryptoCurrencies: new BehaviorSubject(globalSettings.cryptoCurrencies).asObservable()};
+    this.settings = {
+      cryptoCurrencies: []
+    };
     this.form = this.fb.group({
       cryptoCurrencyInput: ["", [Validators.required]],
       category: ["", [Validators.required, Validators.minLength(2)]],
@@ -39,6 +42,9 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
       getPrice: ["", [Validators.required]],
     });
     this.formChanged = this.form.valueChanges.subscribe(console.log);
+    this.backend.apiV1.get("/global-settings").then(res => {
+      this.settings.cryptoCurrencies = res.data.cryptoCurrencies;
+    })
   }
 
   ngOnDestroy() {
