@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Store} from "@ngrx/store";
 import {Subscription} from "rxjs";
 import {BackendService} from "../../../services/api/backend.service";
-import {ICryptoCurrencyRes} from "unicorn-types/types/api/responses";
+import {IGlobalSettingsRes} from "unicorn-types/types/api/responses";
 
 @Component({
   selector: "app-create-order-component",
@@ -11,12 +11,18 @@ import {ICryptoCurrencyRes} from "unicorn-types/types/api/responses";
   styleUrls: ["./create-order.component.scss"],
 })
 export class CreateOrderComponent implements OnInit, OnDestroy {
-  form: FormGroup;
-  submitted = false;
-  settings: {
-    cryptoCurrencies: ICryptoCurrencyRes[],
+  form: FormGroup = this.fb.group({
+    cryptoCurrencyInput: ["", [Validators.required]],
+    category: ["", [Validators.required, Validators.minLength(2)]],
+    price: ["", [Validators.required]],
+    givePrice: ["", [Validators.required]],
+    cryptoCurrencyOutput: ["", [Validators.required]],
+    getPrice: ["", [Validators.required]],
+  });
+  settings: IGlobalSettingsRes = {
+    cryptoCurrencies: []
   };
-  private formChanged: Subscription;
+  private formSubscription: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -25,37 +31,20 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
   ) {
   }
 
-  onCryptoCurrenctChanged(formData) {
-    console.log(formData);
-  }
-
   ngOnInit() {
-    this.settings = {
-      cryptoCurrencies: []
-    };
-    this.form = this.fb.group({
-      cryptoCurrencyInput: ["", [Validators.required]],
-      category: ["", [Validators.required, Validators.minLength(2)]],
-      price: ["", [Validators.required]],
-      givePrice: ["", [Validators.required]],
-      cryptoCurrencyOutput: ["", [Validators.required]],
-      getPrice: ["", [Validators.required]],
-    });
-    this.formChanged = this.form.valueChanges.subscribe(console.log);
+    this.formSubscription = this.form.valueChanges.subscribe(console.log);
     this.backend.apiV1.get("/global-settings").then(res => {
       this.settings.cryptoCurrencies = res.data.cryptoCurrencies;
     })
   }
 
   ngOnDestroy() {
-    this.formChanged.unsubscribe();
+    this.formSubscription.unsubscribe();
   }
 
 
-  onClickSubmit(event, formData) {
+  onSubmit(event, formData) {
     event.preventDefault();
-    this.submitted = true;
-
     if (this.form.invalid) {
       return;
     }

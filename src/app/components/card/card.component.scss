@@ -50,7 +50,7 @@
 
       .market-card-name {
         font-size: 15px;
-        font-family: $circular-std;
+        font-family: $circular_std;
         font-weight: bold;
       }
     }
@@ -61,7 +61,7 @@
 
       .main-price {
         font-size: 50px;
-        font-family: $circular-std;
+        font-family: $circular_std;
         font-weight: bold;
       }
 
@@ -84,7 +84,7 @@
       border: none;
       height: 30px;
       text-transform: uppercase;
-      background-color: $main-red-color;
+      background-color: $main_red_color;
       color: #fff;
       display: flex;
       justify-content: center;
@@ -98,12 +98,12 @@
 
   .market-card-body {
     .market-card-name-wrapper {
-      color: $main-text-color;
+      color: $main_text_color;
     }
 
     .market-card-price {
       .main-price {
-        color: $main-text-color;
+        color: $main_text_color;
       }
     }
   }

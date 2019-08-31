@@ -8,12 +8,11 @@
         {{i.title}}
       </li>
     </ul>
-    <form (ngSubmit)="onClickSubmit($event, form.value)" [formGroup]="form" class="deal-form">
+    <form (ngSubmit)="onSubmit($event, form.value)" [formGroup]="form" class="deal-form">
       <div class="left-block">
         <label class="currency-label">
           {{ "CREATE_DEAL.CRYPTO_CURRENCY" | translate }}
-          <select (ngModelChange)="onCryptoCurrenctChanged(form)" class="currency-select"
-                  formControlName="cryptoCurrencyInput">
+          <select class="currency-select" formControlName="cryptoCurrencyInput">
             <option *ngFor="let cryptoCurrency of settings.cryptoCurrencies" [ngValue]="cryptoCurrency">
               {{ cryptoCurrency.title }}
             </option>

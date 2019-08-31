@@ -18,12 +18,12 @@
       align-items: baseline;
 
       .company-name {
-        font-family: $circular-std;
+        font-family: $circular_std;
         font-weight: bold;
         font-size: 24px;
 
         .first-letter {
-          color: $main-red-color;
+          color: $main_red_color;
         }
       }
 
@@ -40,7 +40,7 @@
           }
 
           &:hover {
-            color: $main-text-color;
+            color: $main_text_color;
             text-decoration: none;
           }
         }
@@ -48,7 +48,7 @@
 
       .not-verified-account {
         cursor: pointer;
-        color: $main-red-color;
+        color: $main_red_color;
         text-align: center;
 
         .attention-icon {

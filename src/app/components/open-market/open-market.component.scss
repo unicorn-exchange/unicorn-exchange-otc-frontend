@@ -2,7 +2,7 @@
 
 .open-market {
   .open-market-heading {
-    font-family: $circular-std;
+    font-family: $circular_std;
     font-weight: bold;
     font-size: 24px;
     display: flex;
@@ -32,7 +32,7 @@
       border-radius: 50%;
       width: 70px;
       height: 70px;
-      background-color: $main-red-color;
+      background-color: $main_red_color;
       display: flex;
       justify-content: center;
       align-items: center;
