@@ -3,49 +3,163 @@
     {{ "CREATE_DEAL.HEADING" | translate }}
   </span>
   <div class="deal-wrapper">
-    <ul>
-      <li *ngFor="let i of settings.cryptoCurrencies">
-        {{i.title}}
-      </li>
-    </ul>
     <form (ngSubmit)="onSubmit($event, form.value)" [formGroup]="form" class="deal-form">
-      <div class="left-block">
-        <label class="currency-label">
-          {{ "CREATE_DEAL.CRYPTO_CURRENCY" | translate }}
-          <select class="currency-select" formControlName="cryptoCurrencyInput">
-            <option *ngFor="let cryptoCurrency of settings.cryptoCurrencies" [ngValue]="cryptoCurrency">
-              {{ cryptoCurrency.title }}
-            </option>
-          </select>
-        </label>
-        <label>
-          {{ "CREATE_DEAL.GIVE" | translate }}:
-          <input [placeholder]="'FORMS.PLACEHOLDER.EXAMPLE_CRYPTO' | translate"
-                 class="form-control default-input"
-                 formControlName="givePrice"
-                 id="givePrice"
-                 type="number">
-        </label>
-      </div>
-      <span class="equally">=</span>
-      <div class="right-block">
-        <label class="currency-label">
-          {{ "CREATE_DEAL.CRYPTO_CURRENCY" | translate }}
-          <select class="currency-select" formControlName="cryptoCurrencyOutput">
-            <option *ngFor="let cryptoCurrency of settings.cryptoCurrencies" [ngValue]="cryptoCurrency">
-              {{ cryptoCurrency.title }}
-            </option>
-          </select>
-        </label>
-        <label>
-          {{ "CREATE_DEAL.GET" | translate }}:
-          <input class="form-control default-input"
-                 formControlName="getPrice"
-                 [value]="123"
-                 id="getPrice"
-                 type="number">
-        </label>
-      </div>
+      <label>
+        Country
+        <ng-select
+          [formControlName]="formInputs.country"
+          [items]="settings.countries"
+          autofocus
+          bindLabel="title"
+          bindValue="id"
+        >
+        </ng-select>
+      </label>
+
+      <label>
+        Crypto currency for sell
+        <ng-select
+          [formControlName]="formInputs.cryptoCurrencySell"
+          [items]="settings.cryptoCurrencies"
+          autofocus
+          bindLabel="title"
+          bindValue="id"
+        >
+        </ng-select>
+      </label>
+
+      <label>
+        Sell price
+        <input
+          [formControlName]="formInputs.cryptoCurrencySellPrice"
+          class="form-control default-input"
+          type="number">
+      </label>
+
+      <label>
+        Crypto currency for buy
+        <ng-select
+          [items]="settings.cryptoCurrencies"
+          autofocus
+          bindLabel="title"
+          bindValue="id"
+          formControlName="{{formInputs.cryptoCurrencyBuy}}">
+        </ng-select>
+      </label>
+
+      <label>
+        Buy price
+        <input
+          [formControlName]="formInputs.cryptoCurrencySellPrice"
+          class="form-control default-input"
+          type="number">
+      </label>
+
+      <label>
+        Payment methods
+        <ng-select
+          [items]="settings.paymentMethods"
+          autofocus
+          bindLabel="title"
+          bindValue="id"
+          formControlName="{{formInputs.paymentMethod}}">
+        </ng-select>
+      </label>
+
+      <label>
+        Bank name
+        <input
+          [formControlName]="formInputs.bankName"
+          class="form-control default-input"
+          type="text">
+      </label>
+
+      <label>
+        Margin % (profit)
+        <input
+          [formControlName]="formInputs.marginProfit"
+          class="form-control default-input"
+          type="text">
+      </label>
+
+      <label>
+        Auto-adjust transaction limit according to price of cryptocurrency
+        <input
+          [formControlName]="formInputs.isAutoAdjustTransactionLimit"
+          class="form-control default-input"
+          type="checkbox">
+      </label>
+
+      <label>
+        Terms of trade
+        <input
+          [formControlName]="formInputs.termsOfTrade"
+          class="form-control default-input"
+          type="text">
+      </label>
+
+      <label>
+        Verified users only
+        <input
+          [formControlName]="formInputs.isVerifiedUsersOnly"
+          class="form-control default-input"
+          type="checkbox">
+      </label>
+
+      <label>
+        Trusted users only
+        <input
+          [formControlName]="formInputs.isTrustedUsersOnly"
+          class="form-control default-input"
+          type="checkbox">
+      </label>
+
+      <label>
+        Identify user before continue trade
+        <input
+          [formControlName]="formInputs.isIdentifyUsersBeforeContinueTrade"
+          class="form-control default-input"
+          type="checkbox">
+      </label>
+
+
+      <!--      <div class="left-block">-->
+      <!--        <label class="currency-label">-->
+      <!--          {{ "CREATE_DEAL.CRYPTO_CURRENCY" | translate }}-->
+      <!--          <select class="currency-select" formControlName="{{formInputs.country}}">-->
+      <!--            <option *ngFor="let cryptoCurrency of settings.cryptoCurrencies" [ngValue]="cryptoCurrency">-->
+      <!--              {{ cryptoCurrency.title }}-->
+      <!--            </option>-->
+      <!--          </select>-->
+      <!--        </label>-->
+      <!--        <label>-->
+      <!--          {{ "CREATE_DEAL.GIVE" | translate }}:-->
+      <!--          <input [placeholder]="'FORMS.PLACEHOLDER.EXAMPLE_CRYPTO' | translate"-->
+      <!--                 class="form-control default-input"-->
+      <!--                 formControlName="givePrice"-->
+      <!--                 id="givePrice"-->
+      <!--                 type="number">-->
+      <!--        </label>-->
+      <!--      </div>-->
+      <!--      <span class="equally">=</span>-->
+      <!--      <div class="right-block">-->
+      <!--        <label class="currency-label">-->
+      <!--          {{ "CREATE_DEAL.CRYPTO_CURRENCY" | translate }}-->
+      <!--          <select class="currency-select" formControlName="cryptoCurrencyOutput">-->
+      <!--            <option *ngFor="let cryptoCurrency of settings.cryptoCurrencies" [ngValue]="cryptoCurrency">-->
+      <!--              {{ cryptoCurrency.title }}-->
+      <!--            </option>-->
+      <!--          </select>-->
+      <!--        </label>-->
+      <!--        <label>-->
+      <!--          {{ "CREATE_DEAL.GET" | translate }}:-->
+      <!--          <input class="form-control default-input"-->
+      <!--                 formControlName="getPrice"-->
+      <!--                 [value]="123"-->
+      <!--                 id="getPrice"-->
+      <!--                 type="number">-->
+      <!--        </label>-->
+      <!--      </div>-->
     </form>
     <button type="submit" class="red-button create-order-btn">
       {{ "FORMS.CREATE" | translate }}

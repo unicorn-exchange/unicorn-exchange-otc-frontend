@@ -35,20 +35,6 @@
       <div *ngIf="f.password.errors.required">{{ "FORMS.PASSWORD_REQUIRED" | translate }}</div>
       <div *ngIf="f.password.errors.minlength">{{ "FORMS.PASSWORD_ERROR" | translate }}</div>
     </div>
-    <ngx-recaptcha2 #captchaElem
-                    [hl]="'en'"
-                    [siteKey]="'6Ld5CrMUAAAAAGbCN94FlNvZajJs4Ocu1aF8gfG7'"
-                    [size]="'normal'"
-                    [theme]="'light'"
-                    [useGlobalDomain]="false"
-                    class="captcha"
-                    formControlName="recaptcha">
-    </ngx-recaptcha2>
-    <!--    <div class="form-check-conditions">-->
-    <!--      <input type="checkbox" class="form-check-input default-checkbox" id="conditionCheck">-->
-    <!--      <label class="form-check-label"-->
-    <!--             for="conditionCheck">{{ "AUTHORIZATION.SIGN_UP.AGREE_WITH_CONDITIONS" | translate }}</label>-->
-    <!--    </div>-->
     <div class="btn-wrapper">
       <button class="red-button" routerLink="/choose-role" type="submit">{{ "FORMS.NEXT" | translate }}</button>
     </div>

@@ -7,5 +7,19 @@ export const globalSettings: IGlobalSettingsRes = {
   }, {
     id: 2,
     title: "Ethereum"
-  }]
+  }],
+  countries: [{
+    id: 1,
+    title: "USA"
+  }, {
+    id: 2,
+    title: "Russia"
+  }],
+  paymentMethods: [{
+    id: 1,
+    title: "PayPal"
+  }, {
+    id: 2,
+    title: "Card"
+  }],
 };

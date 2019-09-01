@@ -21,8 +21,7 @@ import {CreateOrderComponent} from "./components/create-order/create-order.compo
 // Other Components
 import {NgbRatingModule} from "@ng-bootstrap/ng-bootstrap";
 import {UiSwitchModule} from "ngx-toggle-switch";
-import {NgxCaptchaModule} from "ngx-captcha";
-import {StoreService} from "./stores/store.service"; // TODO: Don't use google captcha due to Chine limitations
+import {NgSelectConfig, NgSelectModule} from "@ng-select/ng-select";
 
 // tslint:disable-next-line:ban-types
 export function setupTranslateFactory(service: TranslateService): Function {
@@ -37,7 +36,7 @@ export const baseModule: NgModule = {
     NgbRatingModule,
     TranslateModule.forRoot(),
     UiSwitchModule,
-    NgxCaptchaModule,
+    NgSelectModule,
   ],
   declarations: [
     SignInComponent,
@@ -53,7 +52,6 @@ export const baseModule: NgModule = {
     CreateOrderComponent
   ],
   providers: [
-    StoreService,
     TranslateService,
     {
       provide: APP_INITIALIZER,
@@ -82,4 +80,7 @@ export const baseModule: NgModule = {
   ]
 })
 export class AppModule {
+  constructor(private config: NgSelectConfig) {
+    this.config.notFoundText = "Custom not found";
+  }
 }

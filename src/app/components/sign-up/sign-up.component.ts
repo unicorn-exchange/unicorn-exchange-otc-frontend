@@ -24,7 +24,6 @@ export class SignUpComponent implements OnInit {
     this.login = this.formBuilder.group({
       email: ["", [Validators.required, Validators.email]],
       password: ["", [Validators.required, Validators.minLength(6)]],
-      recaptcha: ["", Validators.required]
     });
   }
 

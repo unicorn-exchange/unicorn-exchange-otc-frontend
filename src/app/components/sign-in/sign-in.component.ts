@@ -36,7 +36,6 @@ export class SignInComponent implements OnInit {
     this.form = this.fb.group({
       email: ["", [validateEmail]],
       password: ["", [Validators.required, Validators.minLength(6)]],
-      recaptcha: ["", Validators.required]
     });
   }
 
