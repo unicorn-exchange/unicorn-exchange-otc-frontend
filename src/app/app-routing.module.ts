@@ -8,8 +8,6 @@ import {ProfilePasswordComponent} from "./components/profile/profile-password/pr
 import {OpenMarketComponent} from "./components/open-market/open-market.component";
 import {CreateOrderComponent} from "./components/create-order/create-order.component";
 import {ROUTES} from "../config";
-import {BackendService} from "../services/api/backend.service";
-import {Store} from "@ngrx/store";
 
 const routes: Routes = [
   {
@@ -53,9 +51,6 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {
-  constructor(private backend: BackendService, private store: Store<{ s: string }>) {
-    this.backend.apiV1.get("/global-settings").then(res => {
-      res.data.cryptoCurrencies;
-    });
+  constructor() {
   }
 }

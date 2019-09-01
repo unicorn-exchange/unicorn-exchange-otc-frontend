@@ -21,14 +21,8 @@ import {CreateOrderComponent} from "./components/create-order/create-order.compo
 // Other Components
 import {NgbRatingModule} from "@ng-bootstrap/ng-bootstrap";
 import {UiSwitchModule} from "ngx-toggle-switch";
-import {NgxCaptchaModule} from "ngx-captcha"; // TODO: Don't use google captcha due to Chine limitations
-import {EffectsModule} from "@ngrx/effects";
-import {AppEffects} from "./app.effects";
-import {StoreModule} from "@ngrx/store";
-import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store';
-import {StoreDevtoolsModule} from "@ngrx/store-devtools";
-import {settingsReducer} from "./reducers/settings.reducer";
-import {SettingsEffects} from "./effects/settings.effects";
+import {NgxCaptchaModule} from "ngx-captcha";
+import {StoreService} from "./stores/store.service"; // TODO: Don't use google captcha due to Chine limitations
 
 // tslint:disable-next-line:ban-types
 export function setupTranslateFactory(service: TranslateService): Function {
@@ -44,16 +38,6 @@ export const baseModule: NgModule = {
     TranslateModule.forRoot(),
     UiSwitchModule,
     NgxCaptchaModule,
-    EffectsModule.forRoot([
-      AppEffects,
-      SettingsEffects,
-    ]),
-    StoreModule.forRoot({
-      settings: settingsReducer,
-      router: routerReducer,
-    }),
-    StoreRouterConnectingModule.forRoot(),
-    StoreDevtoolsModule.instrument(),
   ],
   declarations: [
     SignInComponent,
@@ -69,6 +53,7 @@ export const baseModule: NgModule = {
     CreateOrderComponent
   ],
   providers: [
+    StoreService,
     TranslateService,
     {
       provide: APP_INITIALIZER,
