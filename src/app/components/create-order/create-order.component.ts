@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
-import {IGlobalSettingsRes} from "unicorn-types/types/api/responses";
+import {ISettingsCommonRes} from "unicorn-types/types/api/responses";
 import {CommonStore} from "../../stores/common-store.service";
 
 enum formInputs {
@@ -42,7 +42,7 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
     [formInputs.isIdentifyUsersBeforeContinueTrade]: [null, [Validators.required]],
   });
   formInputs = formInputs;
-  settings: IGlobalSettingsRes;
+  settings: ISettingsCommonRes;
   private formSubscription: Subscription;
 
   constructor(
