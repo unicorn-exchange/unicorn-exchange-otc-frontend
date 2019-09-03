@@ -19,7 +19,7 @@ import {OpenMarketComponent} from "./components/open-market/open-market.componen
 import {RatingComponent} from "./components/rating/rating.component";
 import {CreateOrderComponent} from "./components/create-order/create-order.component";
 // Other Components
-import {NgbRatingModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbRatingModule, NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
 import {UiSwitchModule} from "ngx-toggle-switch";
 import {NgSelectConfig, NgSelectModule} from "@ng-select/ng-select";
 
@@ -34,6 +34,7 @@ export const baseModule: NgModule = {
     ReactiveFormsModule,
     HttpClientModule,
     NgbRatingModule,
+    NgbTooltipModule,
     TranslateModule.forRoot(),
     UiSwitchModule,
     NgSelectModule,

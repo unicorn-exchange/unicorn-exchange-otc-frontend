@@ -84,6 +84,11 @@
 
         <label>
           Margin % (profit)
+          <img alt="info"
+               class="info-icon"
+               src="../../../assets/icons/info.svg"
+               placement="top"
+               ngbTooltip="Profit Margin you want over the bitcoin market price. Use a negative value for buying or selling under the market price to attract more contacts. For more complex pricing edit the price equation directly."/>
           <input
             [formControlName]="formInputs.marginProfit"
             class="form-control default-input default-field"
@@ -93,25 +98,39 @@
 
       <div class="checkbox-block">
         <label class="checkbox-label">
-        <span class="limit-text">
-          Auto-adjust transaction limit according to price of cryptocurrency
-        </span>
+          <span class="limit-text">
+            Auto-adjust transaction limit according to price of cryptocurrency
+            <img alt="info"
+                 class="info-icon"
+                 src="../../../assets/icons/info.svg"
+                 placement="top"
+                 ngbTooltip="When cryptocurrency price changes, your maximum limit will be auto-adjusted according to the price (to be able to carry out the trade with one transaction when price fluctuates)"/>
+          </span>
           <input
             [formControlName]="formInputs.isAutoAdjustTransactionLimit"
             class="form-control default-input default-checkbox"
             type="checkbox">
         </label>
 
-        <label class="checkbox-label">
+        <label class="d-flex align-items-center">
           Terms of trade
-          <input
-            [formControlName]="formInputs.termsOfTrade"
-            class="form-control default-input default-checkbox"
-            type="checkbox">
+          <img alt="info"
+               class="info-icon"
+               src="../../../assets/icons/info.svg"
+               placement="top"
+               ngbTooltip="Other information you wish to tell about your trade. Example 1: This advertisement is only for cash trades. Example 2: Please make request only when you can complete the payment with cash within 12 hours."/>
+          <textarea class="form-control default-textarea"
+                    [formControlName]="formInputs.termsOfTrade"
+                    rows="2" cols="3"></textarea>
         </label>
 
         <label class="checkbox-label">
           Verified users only
+          <img alt="info"
+               class="info-icon"
+               src="../../../assets/icons/info.svg"
+               placement="top"
+               ngbTooltip="To contact your advertisement, users need to verify their identity by sending IDs, driver's licence or passport."/>
           <input
             [formControlName]="formInputs.isVerifiedUsersOnly"
             class="form-control default-input default-checkbox"
@@ -120,6 +139,11 @@
 
         <label class="checkbox-label">
           Trusted users only
+          <img alt="info"
+               class="info-icon"
+               src="../../../assets/icons/info.svg"
+               placement="top"
+               ngbTooltip="Restrict your advertisement to be shown only to users that you have marked as Trusted. Learn how to mark users as trusted."/>
           <input
             [formControlName]="formInputs.isTrustedUsersOnly"
             class="form-control default-input default-checkbox"

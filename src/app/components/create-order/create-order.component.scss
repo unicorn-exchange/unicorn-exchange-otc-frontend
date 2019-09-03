@@ -26,6 +26,11 @@
       align-items: center;
       width: 100%;
       padding: 0 30px;
+      .info-icon {
+        width: 9px;
+        height: 9px;
+        margin-top: -13px;
+      }
       .default-field {
         width: 140px;
       }
