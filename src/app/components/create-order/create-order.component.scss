@@ -22,33 +22,60 @@
     padding: 50px 60px;
     .deal-form {
       display: flex;
-      justify-content: space-between;
       flex-direction: column;
       align-items: center;
       width: 100%;
-      .equally {
-        font-size: 60px;
+      padding: 0 30px;
+      .default-field {
+        width: 140px;
+      }
+      .checkbox-block {
         display: flex;
-        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        .checkbox-label {
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+          .limit-text {
+            max-width: 186px;
+          }
+          .default-checkbox {
+            margin-left: 15px;
+            width: fit-content;
+          }
+        }
       }
       .left-block,
       .right-block {
         display: flex;
+        width: 100%;
         align-items: center;
+        justify-content: space-around;
         padding-left: 15px;
+
         .currency-label {
           display: flex;
           flex-direction: column;
-          margin-right: 35px;
-          width: 140px;
+          margin-left: 20px;
           .currency-select {
             margin-top: 11px;
-            border: 1px solid #E9E9F0;
-            background-color: #fff;
-            outline: none;
-            box-shadow: none;
           }
         }
+      }
+      .left-block {
+        margin-top: 10px;
+      }
+      .other-info-block {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+      .equally {
+        font-size: 60px;
+        margin: -18px 0 -5px;
       }
     }
     .create-order-btn {

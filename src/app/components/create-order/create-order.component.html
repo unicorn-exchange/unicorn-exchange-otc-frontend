@@ -12,154 +12,128 @@
           autofocus
           bindLabel="title"
           bindValue="id"
+          class="default-field"
         >
         </ng-select>
       </label>
 
-      <label>
-        Crypto currency for sell
-        <ng-select
-          [formControlName]="formInputs.cryptoCurrencySell"
-          [items]="settings.cryptoCurrencies"
-          autofocus
-          bindLabel="title"
-          bindValue="id"
-        >
-        </ng-select>
-      </label>
+      <div class="left-block">
+        <label class="currency-label">
+          Crypto currency for sell
+          <ng-select
+            [formControlName]="formInputs.cryptoCurrencySell"
+            [items]="settings.cryptoCurrencies"
+            autofocus
+            bindLabel="title"
+            bindValue="id"
+            class="default-field currency-select"
+          >
+          </ng-select>
+        </label>
+        <label class="currency-label">
+          Crypto currency for buy
+          <ng-select
+            [items]="settings.cryptoCurrencies"
+            autofocus
+            bindLabel="title"
+            bindValue="id"
+            class="default-field currency-select"
+            formControlName="{{formInputs.cryptoCurrencyBuy}}">
+          </ng-select>
+        </label>
+      </div>
+      <span class="equally">=</span>
+      <div class="right-block">
+        <label>
+          Sell price
+          <input
+            [formControlName]="formInputs.cryptoCurrencySellPrice"
+            class="form-control default-input default-field"
+            type="number">
+        </label>
 
-      <label>
-        Sell price
-        <input
-          [formControlName]="formInputs.cryptoCurrencySellPrice"
-          class="form-control default-input"
-          type="number">
-      </label>
+        <label>
+          Buy price
+          <input
+            [formControlName]="formInputs.cryptoCurrencySellPrice"
+            class="form-control default-input default-field"
+            type="number">
+        </label>
+      </div>
 
-      <label>
-        Crypto currency for buy
-        <ng-select
-          [items]="settings.cryptoCurrencies"
-          autofocus
-          bindLabel="title"
-          bindValue="id"
-          formControlName="{{formInputs.cryptoCurrencyBuy}}">
-        </ng-select>
-      </label>
+      <div class="other-info-block">
+        <label>
+          Payment methods
+          <ng-select
+            [items]="settings.paymentMethods"
+            autofocus
+            bindLabel="title"
+            bindValue="id"
+            class="default-field"
+            formControlName="{{formInputs.paymentMethod}}">
+          </ng-select>
+        </label>
 
-      <label>
-        Buy price
-        <input
-          [formControlName]="formInputs.cryptoCurrencySellPrice"
-          class="form-control default-input"
-          type="number">
-      </label>
+        <label>
+          Bank name
+          <input
+            [formControlName]="formInputs.bankName"
+            class="form-control default-input default-field"
+            type="text">
+        </label>
 
-      <label>
-        Payment methods
-        <ng-select
-          [items]="settings.paymentMethods"
-          autofocus
-          bindLabel="title"
-          bindValue="id"
-          formControlName="{{formInputs.paymentMethod}}">
-        </ng-select>
-      </label>
+        <label>
+          Margin % (profit)
+          <input
+            [formControlName]="formInputs.marginProfit"
+            class="form-control default-input default-field"
+            type="text">
+        </label>
+      </div>
 
-      <label>
-        Bank name
-        <input
-          [formControlName]="formInputs.bankName"
-          class="form-control default-input"
-          type="text">
-      </label>
+      <div class="checkbox-block">
+        <label class="checkbox-label">
+        <span class="limit-text">
+          Auto-adjust transaction limit according to price of cryptocurrency
+        </span>
+          <input
+            [formControlName]="formInputs.isAutoAdjustTransactionLimit"
+            class="form-control default-input default-checkbox"
+            type="checkbox">
+        </label>
 
-      <label>
-        Margin % (profit)
-        <input
-          [formControlName]="formInputs.marginProfit"
-          class="form-control default-input"
-          type="text">
-      </label>
+        <label class="checkbox-label">
+          Terms of trade
+          <input
+            [formControlName]="formInputs.termsOfTrade"
+            class="form-control default-input default-checkbox"
+            type="checkbox">
+        </label>
 
-      <label>
-        Auto-adjust transaction limit according to price of cryptocurrency
-        <input
-          [formControlName]="formInputs.isAutoAdjustTransactionLimit"
-          class="form-control default-input"
-          type="checkbox">
-      </label>
+        <label class="checkbox-label">
+          Verified users only
+          <input
+            [formControlName]="formInputs.isVerifiedUsersOnly"
+            class="form-control default-input default-checkbox"
+            type="checkbox">
+        </label>
 
-      <label>
-        Terms of trade
-        <input
-          [formControlName]="formInputs.termsOfTrade"
-          class="form-control default-input"
-          type="text">
-      </label>
+        <label class="checkbox-label">
+          Trusted users only
+          <input
+            [formControlName]="formInputs.isTrustedUsersOnly"
+            class="form-control default-input default-checkbox"
+            type="checkbox">
+        </label>
 
-      <label>
-        Verified users only
-        <input
-          [formControlName]="formInputs.isVerifiedUsersOnly"
-          class="form-control default-input"
-          type="checkbox">
-      </label>
-
-      <label>
-        Trusted users only
-        <input
-          [formControlName]="formInputs.isTrustedUsersOnly"
-          class="form-control default-input"
-          type="checkbox">
-      </label>
-
-      <label>
-        Identify user before continue trade
-        <input
-          [formControlName]="formInputs.isIdentifyUsersBeforeContinueTrade"
-          class="form-control default-input"
-          type="checkbox">
-      </label>
-
-
-      <!--      <div class="left-block">-->
-      <!--        <label class="currency-label">-->
-      <!--          {{ "CREATE_DEAL.CRYPTO_CURRENCY" | translate }}-->
-      <!--          <select class="currency-select" formControlName="{{formInputs.country}}">-->
-      <!--            <option *ngFor="let cryptoCurrency of settings.cryptoCurrencies" [ngValue]="cryptoCurrency">-->
-      <!--              {{ cryptoCurrency.title }}-->
-      <!--            </option>-->
-      <!--          </select>-->
-      <!--        </label>-->
-      <!--        <label>-->
-      <!--          {{ "CREATE_DEAL.GIVE" | translate }}:-->
-      <!--          <input [placeholder]="'FORMS.PLACEHOLDER.EXAMPLE_CRYPTO' | translate"-->
-      <!--                 class="form-control default-input"-->
-      <!--                 formControlName="givePrice"-->
-      <!--                 id="givePrice"-->
-      <!--                 type="number">-->
-      <!--        </label>-->
-      <!--      </div>-->
-      <!--      <span class="equally">=</span>-->
-      <!--      <div class="right-block">-->
-      <!--        <label class="currency-label">-->
-      <!--          {{ "CREATE_DEAL.CRYPTO_CURRENCY" | translate }}-->
-      <!--          <select class="currency-select" formControlName="cryptoCurrencyOutput">-->
-      <!--            <option *ngFor="let cryptoCurrency of settings.cryptoCurrencies" [ngValue]="cryptoCurrency">-->
-      <!--              {{ cryptoCurrency.title }}-->
-      <!--            </option>-->
-      <!--          </select>-->
-      <!--        </label>-->
-      <!--        <label>-->
-      <!--          {{ "CREATE_DEAL.GET" | translate }}:-->
-      <!--          <input class="form-control default-input"-->
-      <!--                 formControlName="getPrice"-->
-      <!--                 [value]="123"-->
-      <!--                 id="getPrice"-->
-      <!--                 type="number">-->
-      <!--        </label>-->
-      <!--      </div>-->
+        <label class="checkbox-label">
+          Identify user before continue trade
+          <input
+            [formControlName]="formInputs.isIdentifyUsersBeforeContinueTrade"
+            class="form-control default-input default-checkbox"
+            type="checkbox">
+        </label>
+      </div>
     </form>
     <button type="submit" class="red-button create-order-btn">
       {{ "FORMS.CREATE" | translate }}
