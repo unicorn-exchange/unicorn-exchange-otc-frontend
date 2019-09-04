@@ -4,7 +4,7 @@ import {Subscription} from "rxjs";
 import {ISettingsCommonRes} from "unicorn-types/types/api/responses";
 import {CommonStore} from "../../stores/common-store.service";
 
-enum formInputs {
+enum OrdersCreateFields {
   country = "country",
   cryptoCurrencySell = "cryptoCurrencySell",
   cryptoCurrencySellPrice = "cryptoCurrencySellPrice",
@@ -27,21 +27,21 @@ enum formInputs {
 })
 export class CreateOrderComponent implements OnInit, OnDestroy {
   form: FormGroup = this.fb.group({
-    [formInputs.country]: [null, [Validators.required]],
-    [formInputs.cryptoCurrencySell]: [null, [Validators.required]],
-    [formInputs.cryptoCurrencySellPrice]: [null, [Validators.required]],
-    [formInputs.cryptoCurrencyBuy]: [null, [Validators.required]],
-    [formInputs.cryptoCurrencyBuyPrice]: [null, [Validators.required]],
-    [formInputs.paymentMethod]: [null, [Validators.required]],
-    [formInputs.bankName]: [null, [Validators.required]],
-    [formInputs.marginProfit]: [null, [Validators.required]],
-    [formInputs.isAutoAdjustTransactionLimit]: [null, [Validators.required]],
-    [formInputs.termsOfTrade]: [null, [Validators.required]],
-    [formInputs.isVerifiedUsersOnly]: [null, [Validators.required]],
-    [formInputs.isTrustedUsersOnly]: [null, [Validators.required]],
-    [formInputs.isIdentifyUsersBeforeContinueTrade]: [null, [Validators.required]],
+    [OrdersCreateFields.country]: [null, [Validators.required]],
+    [OrdersCreateFields.cryptoCurrencySell]: [null, [Validators.required]],
+    [OrdersCreateFields.cryptoCurrencySellPrice]: [null, [Validators.required]],
+    [OrdersCreateFields.cryptoCurrencyBuy]: [null, [Validators.required]],
+    [OrdersCreateFields.cryptoCurrencyBuyPrice]: [null, [Validators.required]],
+    [OrdersCreateFields.paymentMethod]: [null, [Validators.required]],
+    [OrdersCreateFields.bankName]: [null, [Validators.required]],
+    [OrdersCreateFields.marginProfit]: [null, [Validators.required]],
+    [OrdersCreateFields.isAutoAdjustTransactionLimit]: [null, [Validators.required]],
+    [OrdersCreateFields.termsOfTrade]: [null, [Validators.required]],
+    [OrdersCreateFields.isVerifiedUsersOnly]: [null, [Validators.required]],
+    [OrdersCreateFields.isTrustedUsersOnly]: [null, [Validators.required]],
+    [OrdersCreateFields.isIdentifyUsersBeforeContinueTrade]: [null, [Validators.required]],
   });
-  formInputs = formInputs;
+  formInputs = OrdersCreateFields;
   settings: ISettingsCommonRes;
   private formSubscription: Subscription;
 
