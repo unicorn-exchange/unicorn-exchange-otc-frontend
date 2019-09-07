@@ -1,24 +1,11 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {ISettingsCommonRes} from "unicorn-types/types/api/responses";
 import {CommonStore} from "../../stores/common-store.service";
-
-enum OrdersCreateFields {
-  country = "country",
-  cryptoCurrencySell = "cryptoCurrencySell",
-  cryptoCurrencySellPrice = "cryptoCurrencySellPrice",
-  cryptoCurrencyBuy = "cryptoCurrencyBuy",
-  cryptoCurrencyBuyPrice = "cryptoCurrencyBuyPrice",
-  paymentMethod = "paymentMethod",
-  bankName = "bankName",
-  marginProfit = "marginProfit",
-  isAutoAdjustTransactionLimit = "isAutoAdjustTransactionLimit",
-  termsOfTrade = "termsOfTrade",
-  isVerifiedUsersOnly = "isVerifiedUsersOnly",
-  isTrustedUsersOnly = "isTrustedUsersOnly",
-  isIdentifyUsersBeforeContinueTrade = "isIdentifyUsersBeforeContinueTrade",
-}
+import {ordersCreateValidationScheme as scheme} from "unicorn-types/types/validators/orders-create-validator";
+import {OrdersCreateFields} from "unicorn-types/types/enums/forms/orders-create";
+import {generateControl} from "../../../services/utils";
 
 @Component({
   selector: "app-create-order-component",
@@ -27,21 +14,22 @@ enum OrdersCreateFields {
 })
 export class CreateOrderComponent implements OnInit, OnDestroy {
   form: FormGroup = this.fb.group({
-    [OrdersCreateFields.country]: [null, [Validators.required]],
-    [OrdersCreateFields.cryptoCurrencySell]: [null, [Validators.required]],
-    [OrdersCreateFields.cryptoCurrencySellPrice]: [null, [Validators.required]],
-    [OrdersCreateFields.cryptoCurrencyBuy]: [null, [Validators.required]],
-    [OrdersCreateFields.cryptoCurrencyBuyPrice]: [null, [Validators.required]],
-    [OrdersCreateFields.paymentMethod]: [null, [Validators.required]],
-    [OrdersCreateFields.bankName]: [null, [Validators.required]],
-    [OrdersCreateFields.marginProfit]: [null, [Validators.required]],
-    [OrdersCreateFields.isAutoAdjustTransactionLimit]: [null, [Validators.required]],
-    [OrdersCreateFields.termsOfTrade]: [null, [Validators.required]],
-    [OrdersCreateFields.isVerifiedUsersOnly]: [null, [Validators.required]],
-    [OrdersCreateFields.isTrustedUsersOnly]: [null, [Validators.required]],
-    [OrdersCreateFields.isIdentifyUsersBeforeContinueTrade]: [null, [Validators.required]],
+    ...[generateControl(OrdersCreateFields.countryId, scheme),
+      generateControl(OrdersCreateFields.cryptoCurrencySellId, scheme),
+      generateControl(OrdersCreateFields.cryptoCurrencySellPrice, scheme),
+      generateControl(OrdersCreateFields.cryptoCurrencyBuyId, scheme),
+      generateControl(OrdersCreateFields.cryptoCurrencyBuyPrice, scheme),
+      generateControl(OrdersCreateFields.paymentMethodId, scheme),
+      generateControl(OrdersCreateFields.bankName, scheme),
+      generateControl(OrdersCreateFields.bankName, scheme),
+      generateControl(OrdersCreateFields.marginProfit, scheme),
+      generateControl(OrdersCreateFields.isAutoAdjustTransactionLimit, scheme),
+      generateControl(OrdersCreateFields.termsOfTrade, scheme),
+      generateControl(OrdersCreateFields.isVerifiedUsersOnly, scheme),
+      generateControl(OrdersCreateFields.isTrustedUsersOnly, scheme),
+      generateControl(OrdersCreateFields.isIdentifyUsersBeforeContinueTrade, scheme),]
   });
-  formInputs = OrdersCreateFields;
+  formFields = OrdersCreateFields;
   settings: ISettingsCommonRes;
   private formSubscription: Subscription;
 
@@ -52,7 +40,9 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.formSubscription = this.form.valueChanges.subscribe(console.log);
+    this.formSubscription = this.form.valueChanges.subscribe(v => {
+      console.log(v);
+    });
     this.settings = this.commonStore.settings;
   }
 

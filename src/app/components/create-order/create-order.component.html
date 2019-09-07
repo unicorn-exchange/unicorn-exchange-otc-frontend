@@ -9,7 +9,7 @@
           <label>
             Country
             <ng-select
-              [formControlName]="formInputs.country"
+              [formControlName]="formFields.countryId"
               [items]="settings.countries"
               autofocus
               bindLabel="title"
@@ -27,77 +27,19 @@
               bindLabel="title"
               bindValue="id"
               class="default-field"
-              formControlName="{{formInputs.paymentMethod}}">
+              formControlName="{{formFields.paymentMethodId}}">
             </ng-select>
           </label>
 
           <label>
             Bank name
             <input
-              [formControlName]="formInputs.bankName"
+              [formControlName]="formFields.bankName"
               class="form-control default-input default-field"
               type="text">
           </label>
-
-          <label>
-            Margin % (profit)
-            <img alt="info"
-                 class="info-icon"
-                 src="../../../assets/icons/info.svg"
-                 placement="top"
-                 ngbTooltip="Profit Margin you want over the bitcoin market price. Use a negative value for buying or selling under the market price to attract more contacts. For more complex pricing edit the price equation directly."/>
-            <input
-              [formControlName]="formInputs.marginProfit"
-              class="form-control default-input default-field"
-              type="text">
-          </label>
-        </div>
-        <div class="exchange-block">
-          <div class="left-block">
-            <label class="currency-label">
-              Crypto currency for sell
-              <ng-select
-                [formControlName]="formInputs.cryptoCurrencySell"
-                [items]="settings.cryptoCurrencies"
-                autofocus
-                bindLabel="title"
-                bindValue="id"
-                class="default-field currency-select"
-              >
-              </ng-select>
-            </label>
-
-            <label>
-              Sell price
-              <input
-                [formControlName]="formInputs.cryptoCurrencySellPrice"
-                class="form-control default-input default-field"
-                type="number">
-            </label>
-          </div>
-          <div class="change">
-            <img class="change-icon" alt="change" src="../../../assets/icons/repeat.svg"/>
-          </div>
-          <div class="right-block">
-            <label class="currency-label">
-              Crypto currency for buy
-              <ng-select
-                [items]="settings.cryptoCurrencies"
-                autofocus
-                bindLabel="title"
-                bindValue="id"
-                class="default-field currency-select"
-                formControlName="{{formInputs.cryptoCurrencyBuy}}">
-              </ng-select>
-            </label>
-
-            <label>
-              Buy price
-              <input
-                [formControlName]="formInputs.cryptoCurrencySellPrice"
-                class="form-control default-input default-field"
-                type="number">
-            </label>
+          <div *ngIf="form.get(formFields.bankName).errors">
+            <sup>*</sup>Some error description
           </div>
         </div>
       </div>
@@ -113,7 +55,7 @@
                  ngbTooltip="When cryptocurrency price changes, your maximum limit will be auto-adjusted according to the price (to be able to carry out the trade with one transaction when price fluctuates)"/>
           </span>
           <input
-            [formControlName]="formInputs.isAutoAdjustTransactionLimit"
+            [formControlName]="formFields.isAutoAdjustTransactionLimit"
             class="form-control default-input default-checkbox"
             type="checkbox">
         </label>
@@ -126,7 +68,7 @@
                placement="top"
                ngbTooltip="Other information you wish to tell about your trade. Example 1: This advertisement is only for cash trades. Example 2: Please make request only when you can complete the payment with cash within 12 hours."/>
           <textarea class="form-control default-textarea"
-                    [formControlName]="formInputs.termsOfTrade"
+                    [formControlName]="formFields.termsOfTrade"
                     rows="2" cols="3"></textarea>
         </label>
 
@@ -138,7 +80,7 @@
                placement="top"
                ngbTooltip="To contact your advertisement, users need to verify their identity by sending IDs, driver's licence or passport."/>
           <input
-            [formControlName]="formInputs.isVerifiedUsersOnly"
+            [formControlName]="formFields.isVerifiedUsersOnly"
             class="form-control default-input default-checkbox"
             type="checkbox">
         </label>
@@ -151,7 +93,7 @@
                placement="top"
                ngbTooltip="Restrict your advertisement to be shown only to users that you have marked as Trusted. Learn how to mark users as trusted."/>
           <input
-            [formControlName]="formInputs.isTrustedUsersOnly"
+            [formControlName]="formFields.isTrustedUsersOnly"
             class="form-control default-input default-checkbox"
             type="checkbox">
         </label>
@@ -159,7 +101,7 @@
         <label class="checkbox-label">
           Identify user before continue trade
           <input
-            [formControlName]="formInputs.isIdentifyUsersBeforeContinueTrade"
+            [formControlName]="formFields.isIdentifyUsersBeforeContinueTrade"
             class="form-control default-input default-checkbox"
             type="checkbox">
         </label>
