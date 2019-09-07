@@ -4,96 +4,102 @@
   </span>
   <div class="deal-wrapper">
     <form (ngSubmit)="onSubmit($event, form.value)" [formGroup]="form" class="deal-form">
-      <label>
-        Country
-        <ng-select
-          [formControlName]="formInputs.country"
-          [items]="settings.countries"
-          autofocus
-          bindLabel="title"
-          bindValue="id"
-          class="default-field"
-        >
-        </ng-select>
-      </label>
+      <div class="main-blocks-wrapper">
+        <div class="dependencies-block">
+          <label>
+            Country
+            <ng-select
+              [formControlName]="formInputs.country"
+              [items]="settings.countries"
+              autofocus
+              bindLabel="title"
+              bindValue="id"
+              class="default-field"
+            >
+            </ng-select>
+          </label>
 
-      <div class="left-block">
-        <label class="currency-label">
-          Crypto currency for sell
-          <ng-select
-            [formControlName]="formInputs.cryptoCurrencySell"
-            [items]="settings.cryptoCurrencies"
-            autofocus
-            bindLabel="title"
-            bindValue="id"
-            class="default-field currency-select"
-          >
-          </ng-select>
-        </label>
-        <label class="currency-label">
-          Crypto currency for buy
-          <ng-select
-            [items]="settings.cryptoCurrencies"
-            autofocus
-            bindLabel="title"
-            bindValue="id"
-            class="default-field currency-select"
-            formControlName="{{formInputs.cryptoCurrencyBuy}}">
-          </ng-select>
-        </label>
-      </div>
-      <span class="equally">=</span>
-      <div class="right-block">
-        <label>
-          Sell price
-          <input
-            [formControlName]="formInputs.cryptoCurrencySellPrice"
-            class="form-control default-input default-field"
-            type="number">
-        </label>
+          <label>
+            Payment methods
+            <ng-select
+              [items]="settings.paymentMethods"
+              autofocus
+              bindLabel="title"
+              bindValue="id"
+              class="default-field"
+              formControlName="{{formInputs.paymentMethod}}">
+            </ng-select>
+          </label>
 
-        <label>
-          Buy price
-          <input
-            [formControlName]="formInputs.cryptoCurrencySellPrice"
-            class="form-control default-input default-field"
-            type="number">
-        </label>
-      </div>
+          <label>
+            Bank name
+            <input
+              [formControlName]="formInputs.bankName"
+              class="form-control default-input default-field"
+              type="text">
+          </label>
 
-      <div class="other-info-block">
-        <label>
-          Payment methods
-          <ng-select
-            [items]="settings.paymentMethods"
-            autofocus
-            bindLabel="title"
-            bindValue="id"
-            class="default-field"
-            formControlName="{{formInputs.paymentMethod}}">
-          </ng-select>
-        </label>
+          <label>
+            Margin % (profit)
+            <img alt="info"
+                 class="info-icon"
+                 src="../../../assets/icons/info.svg"
+                 placement="top"
+                 ngbTooltip="Profit Margin you want over the bitcoin market price. Use a negative value for buying or selling under the market price to attract more contacts. For more complex pricing edit the price equation directly."/>
+            <input
+              [formControlName]="formInputs.marginProfit"
+              class="form-control default-input default-field"
+              type="text">
+          </label>
+        </div>
+        <div class="exchange-block">
+          <div class="left-block">
+            <label class="currency-label">
+              Crypto currency for sell
+              <ng-select
+                [formControlName]="formInputs.cryptoCurrencySell"
+                [items]="settings.cryptoCurrencies"
+                autofocus
+                bindLabel="title"
+                bindValue="id"
+                class="default-field currency-select"
+              >
+              </ng-select>
+            </label>
 
-        <label>
-          Bank name
-          <input
-            [formControlName]="formInputs.bankName"
-            class="form-control default-input default-field"
-            type="text">
-        </label>
+            <label>
+              Sell price
+              <input
+                [formControlName]="formInputs.cryptoCurrencySellPrice"
+                class="form-control default-input default-field"
+                type="number">
+            </label>
+          </div>
+          <div class="change">
+            <img class="change-icon" alt="change" src="../../../assets/icons/repeat.svg"/>
+          </div>
+          <div class="right-block">
+            <label class="currency-label">
+              Crypto currency for buy
+              <ng-select
+                [items]="settings.cryptoCurrencies"
+                autofocus
+                bindLabel="title"
+                bindValue="id"
+                class="default-field currency-select"
+                formControlName="{{formInputs.cryptoCurrencyBuy}}">
+              </ng-select>
+            </label>
 
-        <label>
-          Margin % (profit)
-          <img alt="info"
-               class="info-icon"
-               src="../../../assets/icons/info.svg"
-               placement="top"
-               ngbTooltip="Profit Margin you want over the bitcoin market price. Use a negative value for buying or selling under the market price to attract more contacts. For more complex pricing edit the price equation directly."/>
-          <input
-            [formControlName]="formInputs.marginProfit"
-            class="form-control default-input default-field"
-            type="text">
-        </label>
+            <label>
+              Buy price
+              <input
+                [formControlName]="formInputs.cryptoCurrencySellPrice"
+                class="form-control default-input default-field"
+                type="number">
+            </label>
+          </div>
+        </div>
       </div>
 
       <div class="checkbox-block">
