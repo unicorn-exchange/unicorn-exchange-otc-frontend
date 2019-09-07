@@ -18,6 +18,7 @@ import {CardComponent} from "./components/card/card.component";
 import {OpenMarketComponent} from "./components/open-market/open-market.component";
 import {RatingComponent} from "./components/rating/rating.component";
 import {CreateOrderComponent} from "./components/create-order/create-order.component";
+import {DashboardComponent} from "./components/dashboard/dashboard.component";
 // Other Components
 import {NgbRatingModule, NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
 import {UiSwitchModule} from "ngx-toggle-switch";
@@ -50,7 +51,8 @@ export const baseModule: NgModule = {
     CardComponent,
     OpenMarketComponent,
     RatingComponent,
-    CreateOrderComponent
+    CreateOrderComponent,
+    DashboardComponent
   ],
   providers: [
     TranslateService,

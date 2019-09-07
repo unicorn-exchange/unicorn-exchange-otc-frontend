@@ -15,5 +15,6 @@ export const ROUTES = {
     INVOICES: "invoices",
     CHANGE_PASSWORD: "change-password"
   },
-  CREATE_DEAL: "create-deal"
+  CREATE_DEAL: "create-deal",
+  DASHBOARD: "dashboard"
 };
