@@ -20,5 +20,5 @@ export function yupValidate<T>(schema: Schema<T>) {
 export function generateControl(key, scheme, defaultValue = null) {
   return {
     [key]: [defaultValue, yupValidate(scheme[key])],
-  }
+  };
 }

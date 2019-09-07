@@ -27,7 +27,7 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
       generateControl(OrdersCreateFields.termsOfTrade, scheme),
       generateControl(OrdersCreateFields.isVerifiedUsersOnly, scheme),
       generateControl(OrdersCreateFields.isTrustedUsersOnly, scheme),
-      generateControl(OrdersCreateFields.isIdentifyUsersBeforeContinueTrade, scheme),]
+      generateControl(OrdersCreateFields.isIdentifyUsersBeforeContinueTrade, scheme), ]
   });
   formFields = OrdersCreateFields;
   settings: ISettingsCommonRes;

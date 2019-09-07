@@ -172,6 +172,9 @@ input[type=number]::-webkit-outer-spin-button {
   td, th {
     text-align: center;
   }
+  th {
+    border-top: none;
+  }
 }
 
 // Common classes
