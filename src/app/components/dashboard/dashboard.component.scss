@@ -1,0 +1,30 @@
+.dashboard-wrapper {
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+
+  .dashboard {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 80%;
+
+    .filters-wrapper {
+      padding: 20px 30px;
+      display: flex;
+      justify-content: center;
+      background-color: #fff;
+      margin-bottom: 40px;
+      align-items: center;
+
+      .filter-label {
+        margin-right: 20px;
+        min-width: 150px;
+      }
+    }
+
+    .table-wrapper {
+      background-color: #fff;
+    }
+  }
+}

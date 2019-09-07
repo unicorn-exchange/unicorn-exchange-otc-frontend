@@ -1,0 +1,81 @@
+<div class="dashboard-wrapper">
+  <div class="dashboard">
+    <form class="filters-wrapper" [formGroup]="form">
+      <label class="filter-label">
+        Crypto currency for sell
+        <ng-select
+          [formControlName]="formInputs.cryptoCurrencySell"
+          [items]="settings.cryptoCurrencies"
+          autofocus
+          bindLabel="title"
+          bindValue="id"
+          class="default-field currency-select"
+        >
+        </ng-select>
+      </label>
+      <label class="filter-label">
+        Crypto currency for buy
+        <ng-select
+          [items]="settings.cryptoCurrencies"
+          autofocus
+          bindLabel="title"
+          bindValue="id"
+          class="default-field currency-select"
+          formControlName="{{formInputs.cryptoCurrencyBuy}}">
+        </ng-select>
+      </label>
+      <label class="filter-label">
+        Country
+        <ng-select
+          [formControlName]="formInputs.country"
+          [items]="settings.countries"
+          autofocus
+          bindLabel="title"
+          bindValue="id"
+          class="default-field"
+        >
+        </ng-select>
+      </label>
+      <label class="filter-label">
+        Payment methods
+        <ng-select
+          [items]="settings.paymentMethods"
+          autofocus
+          bindLabel="title"
+          bindValue="id"
+          class="default-field"
+          formControlName="{{formInputs.paymentMethod}}">
+        </ng-select>
+      </label>
+      <button type="submit" class="red-button create-order-btn">
+        {{ "FORMS.ACCEPT" | translate }}
+      </button>
+    </form>
+    <div class="table-wrapper">
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Deal Amount</th>
+          <th scope="col">Price</th>
+          <th scope="col">Payment Method</th>
+          <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let offer of offers; index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>
+            {{ offer.name }}
+          </td>
+          <td>{{ offer.amount | number }} {{offer.cryptoCurrency}}</td>
+          <td>{{ offer.price | number }} {{offer.currency}}</td>
+          <td>{{ offer.paymentMethod }}</td>
+          <td>{{ offer.type }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
