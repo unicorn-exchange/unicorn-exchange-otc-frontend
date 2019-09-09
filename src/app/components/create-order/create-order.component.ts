@@ -4,7 +4,7 @@ import {Subscription} from "rxjs";
 import {ISettingsCommonRes} from "unicorn-types/types/api/responses";
 import {CommonStore} from "../../stores/common-store.service";
 import {ordersCreateValidationScheme as scheme} from "unicorn-types/types/validators/orders-create-validator";
-import {OrdersCreateFields} from "unicorn-types/types/enums/forms/orders-create";
+import {ordersCreateFields} from "unicorn-types/types/enums/forms/orders-create";
 import {generateControl} from "../../../services/utils";
 
 @Component({
@@ -14,22 +14,22 @@ import {generateControl} from "../../../services/utils";
 })
 export class CreateOrderComponent implements OnInit, OnDestroy {
   form: FormGroup = this.fb.group({
-    ...[generateControl(OrdersCreateFields.countryId, scheme),
-      generateControl(OrdersCreateFields.cryptoCurrencySellId, scheme),
-      generateControl(OrdersCreateFields.cryptoCurrencySellPrice, scheme),
-      generateControl(OrdersCreateFields.cryptoCurrencyBuyId, scheme),
-      generateControl(OrdersCreateFields.cryptoCurrencyBuyPrice, scheme),
-      generateControl(OrdersCreateFields.paymentMethodId, scheme),
-      generateControl(OrdersCreateFields.bankName, scheme),
-      generateControl(OrdersCreateFields.bankName, scheme),
-      generateControl(OrdersCreateFields.marginProfit, scheme),
-      generateControl(OrdersCreateFields.isAutoAdjustTransactionLimit, scheme),
-      generateControl(OrdersCreateFields.termsOfTrade, scheme),
-      generateControl(OrdersCreateFields.isVerifiedUsersOnly, scheme),
-      generateControl(OrdersCreateFields.isTrustedUsersOnly, scheme),
-      generateControl(OrdersCreateFields.isIdentifyUsersBeforeContinueTrade, scheme), ]
+    ...[generateControl(ordersCreateFields.countryId, scheme),
+      generateControl(ordersCreateFields.cryptoCurrencySellId, scheme),
+      generateControl(ordersCreateFields.cryptoCurrencySellPrice, scheme),
+      generateControl(ordersCreateFields.cryptoCurrencyBuyId, scheme),
+      generateControl(ordersCreateFields.cryptoCurrencyBuyPrice, scheme),
+      generateControl(ordersCreateFields.paymentMethodId, scheme),
+      generateControl(ordersCreateFields.bankName, scheme),
+      generateControl(ordersCreateFields.bankName, scheme),
+      generateControl(ordersCreateFields.marginProfit, scheme),
+      generateControl(ordersCreateFields.isAutoAdjustTransactionLimit, scheme),
+      generateControl(ordersCreateFields.termsOfTrade, scheme),
+      generateControl(ordersCreateFields.isVerifiedUsersOnly, scheme),
+      generateControl(ordersCreateFields.isTrustedUsersOnly, scheme),
+      generateControl(ordersCreateFields.isIdentifyUsersBeforeContinueTrade, scheme),]
   });
-  formFields = OrdersCreateFields;
+  formFields = ordersCreateFields;
   settings: ISettingsCommonRes;
   private formSubscription: Subscription;
 

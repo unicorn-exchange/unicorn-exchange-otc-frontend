@@ -50,7 +50,7 @@
     "restyped-axios": "^2.0.0",
     "rxjs": "~6.5.2",
     "tslib": "^1.10.0",
-    "unicorn-types": "https://github.com/unicorn-exchange/unicorn-exchange-types#1.0.5",
+    "unicorn-types": "https://github.com/unicorn-exchange/unicorn-exchange-types#1.0.7",
     "yup": "^0.27.0",
     "zone.js": "~0.9.1"
   },
