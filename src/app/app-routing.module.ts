@@ -7,7 +7,7 @@ import {ProfileInformationComponent} from "./components/profile/profile-informat
 import {ProfilePasswordComponent} from "./components/profile/profile-password/profile-password.component";
 import {OpenMarketComponent} from "./components/open-market/open-market.component";
 import {CreateOrderComponent} from "./components/create-order/create-order.component";
-import {DashboardComponent} from "./components/dashboard/dashboard.component";
+import {OrdersComponent} from "./components/orders/orders.component";
 import {ROUTES} from "../config";
 
 const routes: Routes = [
@@ -27,13 +27,13 @@ const routes: Routes = [
     pathMatch: "full"
   },
   {
-    path: ROUTES.CREATE_DEAL,
+    path: ROUTES.CREATE_ORDER,
     component: CreateOrderComponent,
     pathMatch: "full"
   },
   {
-    path: ROUTES.DASHBOARD,
-    component: DashboardComponent,
+    path: ROUTES.ORDERS,
+    component: OrdersComponent,
     pathMatch: "full"
   },
   {

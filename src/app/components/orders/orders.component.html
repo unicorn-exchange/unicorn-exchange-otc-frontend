@@ -1,10 +1,11 @@
-<div class="dashboard-wrapper">
-  <div class="dashboard">
-    <form class="filters-wrapper" [formGroup]="form">
+<div class="orders-wrapper">
+  <div class="orders">
+    <button (click)="loadOrders()">Load Orders</button>
+    <form [formGroup]="filersForm" class="filters-wrapper">
       <label class="filter-label">
         Crypto currency for sell
         <ng-select
-          [formControlName]="formInputs.cryptoCurrencySell"
+          [formControlName]="orderFilersFields.cryptoCurrencySell"
           [items]="settings.cryptoCurrencies"
           autofocus
           bindLabel="title"
@@ -21,13 +22,13 @@
           bindLabel="title"
           bindValue="id"
           class="default-field currency-select"
-          formControlName="{{formInputs.cryptoCurrencyBuy}}">
+          formControlName="{{orderFilersFields.cryptoCurrencyBuy}}">
         </ng-select>
       </label>
       <label class="filter-label">
         Country
         <ng-select
-          [formControlName]="formInputs.country"
+          [formControlName]="orderFilersFields.country"
           [items]="settings.countries"
           autofocus
           bindLabel="title"
@@ -44,7 +45,7 @@
           bindLabel="title"
           bindValue="id"
           class="default-field"
-          formControlName="{{formInputs.paymentMethod}}">
+          formControlName="{{orderFilersFields.paymentMethod}}">
         </ng-select>
       </label>
       <button type="submit" class="red-button create-order-btn">
@@ -64,8 +65,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let offer of offers; index as i">
-          <th scope="row">{{ i + 1 }}</th>
+        <tr *ngFor="let offer of offers">
+          <th scope="row">{{ offer.id }}</th>
           <td>
             {{ offer.name }}
           </td>

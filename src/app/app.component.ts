@@ -8,10 +8,9 @@ import {TranslateService} from "@ngstack/translate";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
-  title = "demo-app";
-
-  constructor(loc: Location, private translate: TranslateService) {
-    loc.onUrlChange((url) => console.log("url change", url));
-    console.log(translate);
+  constructor(
+    private loc: Location,
+    private translate: TranslateService
+  ) {
   }
 }

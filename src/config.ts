@@ -6,6 +6,7 @@ export const ROUTES = {
   FULL_REGISTRATION: "full-registration",
   CHOOSE_ROLE: "choose-role",
   OPEN_MARKET: "market",
+  ORDERS: "orders",
   PROFILE: {
     PROFILE: "profile",
     NOTIFICATIONS: "notifications",
@@ -15,6 +16,5 @@ export const ROUTES = {
     INVOICES: "invoices",
     CHANGE_PASSWORD: "change-password"
   },
-  CREATE_DEAL: "create-deal",
-  DASHBOARD: "dashboard"
+  CREATE_ORDER: "create-order",
 };

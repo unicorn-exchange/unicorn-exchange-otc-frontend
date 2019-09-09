@@ -11,7 +11,7 @@ export class BackendService {
   apiV1: TypedAxiosInstance<APIV1Doc>;
 
   constructor() {
-    this.apiV1 = new APIV1("http://localhost").axios;
+    this.apiV1 = new APIV1("http://localhost:3000").axios;
   }
 
   setAuth(token?: string) {
