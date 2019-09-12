@@ -1,6 +1,6 @@
 import {TypedAxiosInstance} from "restyped-axios";
 import {APIV1Doc} from "unicorn-types/types/api/api-v1-doc";
-import {Headers} from "../../types/enums/enums";
+import {Headers} from "unicorn-types/types/enums/enums";
 import {Injectable} from "@angular/core";
 import {APIV1} from "./api_v1";
 

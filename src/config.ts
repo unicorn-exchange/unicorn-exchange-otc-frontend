@@ -1,5 +1,5 @@
 export const DEBUG_NETWORK = false;
-export const FAKE_NETWORK = true;
+export const FAKE_NETWORK = false;
 export const ROUTES = {
   SIGN_IN: "sign-in",
   SIGN_UP: "sign-up",

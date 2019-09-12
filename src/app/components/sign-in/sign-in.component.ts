@@ -5,6 +5,7 @@ import {genCtrl} from "../../../services/utils";
 import {signInValidationScheme} from "unicorn-types/types/validators/sign-in-validator";
 import {signInFields} from "unicorn-types/types/enums/forms/sign-in";
 import {Subscription} from "rxjs";
+import {AuthStore} from "../../stores/auth-store.service";
 
 @Component({
   selector: "app-sign-in-component",
@@ -20,13 +21,14 @@ export class SignInComponent implements OnInit, OnDestroy {
   formFields = signInFields;
   private formSubscription: Subscription;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private authStore: AuthStore,
+  ) {
   }
 
   ngOnInit() {
-    this.formSubscription = this.form.valueChanges.subscribe(v => {
-      console.log(v);
-    });
+    this.formSubscription = this.form.valueChanges.subscribe();
   }
 
   ngOnDestroy() {
@@ -39,7 +41,9 @@ export class SignInComponent implements OnInit, OnDestroy {
       return;
     }
 
-    console.log(formData);
+    this.authStore.signIn(formData).catch(errors => {
+      console.log(errors);
+    });
   }
 }
 
