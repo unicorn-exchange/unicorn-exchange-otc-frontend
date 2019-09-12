@@ -12,6 +12,9 @@
     "build-storybook": "build-storybook"
   },
   "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!(unicorn-types)/)"
+    ],
     "preset": "jest-preset-angular",
     "setupFilesAfterEnv": [
       "<rootDir>/tests/setupJest.ts"

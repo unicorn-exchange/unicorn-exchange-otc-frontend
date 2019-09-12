@@ -8,35 +8,35 @@
   </div>
   <span class="heading">{{ "AUTHORIZATION.SIGN_UP.SIGN_UP_HEADER" | translate }}</span>
 
-  <form (ngSubmit)="onClickSubmit(login.value)" [formGroup]="login" class="default-form">
+  <form (ngSubmit)="onSubmit($event, form.value)" [formGroup]="form" class="default-form">
     <label>
       Email:
-      <input [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
-             [placeholder]="'FORMS.EMAIL' | translate"
-             class="form-control default-input"
-             formControlName="email"
-             id="email"
-             type="text">
+      <input
+        [formControlName]="formFields.email"
+        [ngClass]="{ 'is-invalid': form.get(formFields.email).errors }"
+        [placeholder]="'FORMS.EMAIL' | translate"
+        class="form-control default-input"
+        type="text">
     </label>
-    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-      <div *ngIf="f.email.errors.required">{{ "FORMS.EMAIL_REQUIRED" | translate }}</div>
-      <div *ngIf="f.email.errors.email">{{ "FORMS.EMAIL_ERROR" | translate }}</div>
-    </div>
+    <!--    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">-->
+    <!--      <div *ngIf="f.email.errors.required">{{ "FORMS.EMAIL_REQUIRED" | translate }}</div>-->
+    <!--      <div *ngIf="f.email.errors.email">{{ "FORMS.EMAIL_ERROR" | translate }}</div>-->
+    <!--    </div>-->
     <label>
       Password:
-      <input [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
-             [placeholder]="'FORMS.PASSWORD' | translate"
-             class="form-control default-input"
-             formControlName="password"
-             id="password"
-             type="password">
+      <input
+        [formControlName]="formFields.password"
+        [ngClass]="{ 'is-invalid': form.get(formFields.password).errors }"
+        [placeholder]="'FORMS.PASSWORD' | translate"
+        class="form-control default-input"
+        type="password">
     </label>
-    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-      <div *ngIf="f.password.errors.required">{{ "FORMS.PASSWORD_REQUIRED" | translate }}</div>
-      <div *ngIf="f.password.errors.minlength">{{ "FORMS.PASSWORD_ERROR" | translate }}</div>
-    </div>
+    <!--    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">-->
+    <!--      <div *ngIf="f.password.errors.required">{{ "FORMS.PASSWORD_REQUIRED" | translate }}</div>-->
+    <!--      <div *ngIf="f.password.errors.minlength">{{ "FORMS.PASSWORD_ERROR" | translate }}</div>-->
+    <!--    </div>-->
     <div class="btn-wrapper">
-      <button class="red-button" routerLink="/choose-role" type="submit">{{ "FORMS.NEXT" | translate }}</button>
+      <button class="red-button" type="submit">{{ "FORMS.NEXT" | translate }}</button>
     </div>
     <span class="agree-with-terms">
       {{ "FORMS.AGREE_WITH_TERMS" | translate }}

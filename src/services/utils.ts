@@ -2,7 +2,7 @@ import {Schema} from "yup";
 import {AbstractControl} from "@angular/forms";
 
 export function yupValidate<T>(schema: Schema<T>) {
-  return function urlValidator(control: AbstractControl) {
+  return function validatorFn(control: AbstractControl) {
     try {
       schema.validateSync(control.value);
       return {};
@@ -17,7 +17,11 @@ export function yupValidate<T>(schema: Schema<T>) {
   };
 }
 
-export function generateControl(key, scheme, defaultValue = null) {
+export function genCtrl({key, scheme, defaultValue = null}: {
+  key: string;
+  scheme: any;
+  defaultValue?: any;
+}) {
   return {
     [key]: [defaultValue, yupValidate(scheme[key])],
   };

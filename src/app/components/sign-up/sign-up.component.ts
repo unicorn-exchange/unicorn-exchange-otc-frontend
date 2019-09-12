@@ -1,42 +1,45 @@
-import {Component, OnInit} from "@angular/core";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {FormBuilder, FormGroup} from "@angular/forms";
 import {ROUTES} from "../../../config";
+import {Subscription} from "rxjs";
+import {genCtrl} from "../../../services/utils";
+import {signUpValidationScheme} from "unicorn-types/types/validators/sign-up-validator";
+import {signUpFields} from "unicorn-types/types/enums/forms/sign-up";
 
 @Component({
   selector: "app-sign-up-component",
   templateUrl: "./sign-up.component.html",
   styleUrls: ["./sign-up.component.scss"]
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent implements OnInit, OnDestroy {
   ROUTES = ROUTES;
+  form: FormGroup = this.fb.group(Object.assign(
+    genCtrl({key: signUpFields.email, scheme: signUpValidationScheme}),
+    genCtrl({key: signUpFields.password, scheme: signUpValidationScheme})
+  ));
+  formFields = signUpFields;
+  private formSubscription: Subscription;
 
-  login: FormGroup;
-  submitted = false;
-
-  constructor(private formBuilder: FormBuilder) {
-  }
-
-  get f() {
-    return this.login.controls;
+  constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
-    this.login = this.formBuilder.group({
-      email: ["", [Validators.required, Validators.email]],
-      password: ["", [Validators.required, Validators.minLength(6)]],
+    this.formSubscription = this.form.valueChanges.subscribe(v => {
+      console.log(v);
     });
   }
 
-  onClickSubmit(formData) {
-    this.submitted = true;
+  ngOnDestroy() {
+    this.formSubscription.unsubscribe();
+  }
 
-    // stop here if form is invalid
-    if (this.login.invalid) {
+  onSubmit(event, formData) {
+    event.preventDefault();
+    if (this.form.invalid) {
       return;
     }
 
-    console.log("Your Email is : " + formData.email);
-    console.log("Your Password is : " + formData.password);
+    console.log(formData);
   }
 }
 
