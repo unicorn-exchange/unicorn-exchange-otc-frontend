@@ -19,8 +19,9 @@ import {OpenMarketComponent} from "./components/open-market/open-market.componen
 import {RatingComponent} from "./components/rating/rating.component";
 import {CreateOrderComponent} from "./components/create-order/create-order.component";
 import {OrdersComponent} from "./components/orders/orders.component";
+import {AlertsComponent} from "./components/alerts/alerts.component";
 // Other Components
-import {NgbRatingModule, NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbRatingModule, NgbTooltipModule, NgbAlertModule} from "@ng-bootstrap/ng-bootstrap";
 import {UiSwitchModule} from "ngx-toggle-switch";
 import {NgSelectConfig, NgSelectModule} from "@ng-select/ng-select";
 
@@ -39,6 +40,7 @@ export const baseModule: NgModule = {
     TranslateModule.forRoot(),
     UiSwitchModule,
     NgSelectModule,
+    NgbAlertModule
   ],
   declarations: [
     SignInComponent,
@@ -53,6 +55,7 @@ export const baseModule: NgModule = {
     RatingComponent,
     CreateOrderComponent,
     OrdersComponent,
+    AlertsComponent
   ],
   providers: [
     TranslateService,

@@ -1,6 +1,5 @@
 import {Component} from "@angular/core";
-import {Location} from "@angular/common";
-import {TranslateService} from "@ngstack/translate";
+import {Subject} from "rxjs";
 
 @Component({
   selector: "app-root",
@@ -8,9 +7,13 @@ import {TranslateService} from "@ngstack/translate";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
-  constructor(
-    private loc: Location,
-    private translate: TranslateService
-  ) {
+  alertType = new Subject<string>();
+
+  constructor() {
   }
+
+  alertClick() {
+    this.alertType.next("success");
+  }
+
 }
