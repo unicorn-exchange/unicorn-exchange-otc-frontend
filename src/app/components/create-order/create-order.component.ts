@@ -40,10 +40,12 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.commonStore.settings$.subscribe(data => {
+      this.settings = data;
+    });
     this.formSubscription = this.form.valueChanges.subscribe(v => {
       console.log(v);
     });
-    this.settings = this.commonStore.settings;
   }
 
   ngOnDestroy() {

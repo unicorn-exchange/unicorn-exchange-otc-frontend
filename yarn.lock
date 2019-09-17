@@ -10767,9 +10767,9 @@ unicode-property-aliases-ecmascript@^1.0.4:
   resolved "https://registry.yarnpkg.com/unicode-property-aliases-ecmascript/-/unicode-property-aliases-ecmascript-1.0.5.tgz#a9cc6cc7ce63a0a3023fc99e341b94431d405a57"
   integrity sha512-L5RAqCfXqAwR3RriF8pM0lU0w4Ryf/GgzONwi6KnL1taJQa7x1TCxdJnILX59WIGOwR57IVxn7Nej0fz1Ny6fw==
 
-"unicorn-types@https://github.com/unicorn-exchange/unicorn-exchange-types#1.0.7":
-  version "1.0.7"
-  resolved "https://github.com/unicorn-exchange/unicorn-exchange-types#a0fc2b759d92175c5bf908f079f5e6e91be8ecc6"
+"unicorn-types@https://github.com/unicorn-exchange/unicorn-exchange-types#1.0.9":
+  version "1.0.9"
+  resolved "https://github.com/unicorn-exchange/unicorn-exchange-types#5035bc20f45a88a5bf2e0dde9514a2cdb9c49e7b"
   dependencies:
     sequelize "^5.15.2"
     sequelize-typescript "^1.0.0"

@@ -19,7 +19,7 @@ export class AlertsComponent implements OnInit {
     alertConfig.dismissible = false;
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.alertType.subscribe((type) => this.type = type);
     this.alertType.pipe(
       debounceTime(3000)

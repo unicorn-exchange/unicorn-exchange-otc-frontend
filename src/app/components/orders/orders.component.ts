@@ -38,6 +38,8 @@ export class OrdersComponent implements OnInit {
   loadOrders = () => this.ordersStore.loadOrders();
 
   ngOnInit() {
-    this.settings = this.commonStore.settings;
+    this.commonStore.settings$.subscribe(data => {
+      this.settings = data;
+    });
   }
 }
