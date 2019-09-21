@@ -5,12 +5,12 @@
         <span class="first-letter">{{ "UNICORN." | translate }}</span>
         <span>{{ "EXCHANGE" | translate }}</span>
       </div>
-      <div class="nav-wrapper">
+      <div class="nav-wrapper d-none d-md-flex">
         <a class="nav" routerLink="open-market">{{ "HEADER.OPEN_MARKET" | translate }}</a>
         <a class="nav" routerLink="deals">{{ "HEADER.ORDERS" | translate }}</a>
         <a class="nav">{{ "HEADER.OTHER" | translate }}</a>
       </div>
-      <div class="not-verified-account">
+      <div class="not-verified-account d-none d-md-block">
         <img alt="attention" class="attention-icon" src="../../../assets/icons/attention.svg">
         <span>{{ "HEADER.NOT_VERIFIED_ACCOUNT" | translate }}</span>
       </div>
@@ -18,14 +18,40 @@
     <!--  <button class="default-white-btn">{{ "HEADER.BUY_COINS" | translate }}</button>-->
     <div class="right-block">
       <div class="account-info">
-        <div class="balance">321,5c.</div>
-        <div class="notification-wrapper">
+        <div class="balance d-none d-md-block">321,5c.</div>
+        <div class="notification-wrapper d-flex">
           <img class="notification-icon" alt="notification" src="../../../assets/icons/notification.svg">
           <div class="notification-circle"></div>
         </div>
-        <a routerLink="profile/information">
+        <a class="d-none d-md-block" routerLink="profile/information">
           <img class="account-icon" alt="account" src="../../../assets/icons/account.svg">
         </a>
+        <div class="pointer d-block d-md-none">
+          <img
+            (click)="toggleSideBar()"
+            alt="sidebar-icon"
+            class="burger-icon"
+            height="28px"
+            src="../../../assets/icons/bar.svg"
+            width="28px">
+          <div [ngClass]="{'animate-sidebar': showSideBar}" class="side-bar d-flex flex-column">
+            <div class="side-bar-header">
+              <img
+                (click)="toggleSideBar()"
+                alt="close-icon"
+                height="28px"
+                src="../../../assets/icons/close.svg"
+                width="28px">
+            </div>
+            <div class="side-bar-menu">
+              <a class="side-bar-menu-item">balance</a>
+              <a class="side-bar-menu-item">links</a>
+            </div>
+            <div class="side-bar-footer">
+              <a href="/?policy" rel="nofollow">advanced</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

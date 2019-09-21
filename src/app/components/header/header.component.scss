@@ -28,8 +28,6 @@
       }
 
       .nav-wrapper {
-        display: flex;
-
         .nav {
           color: #AEAEBC;
           cursor: pointer;
@@ -66,7 +64,6 @@
         }
 
         .notification-wrapper {
-          display: flex;
           cursor: pointer;
 
           .notification-circle {
@@ -85,6 +82,66 @@
           margin-right: 35px;
         }
       }
+    }
+
+    .side-bar {
+      background-color: $main_red_color;
+      z-index: 10000;
+      position: fixed;
+      height: 100%;
+      top: 0;
+      width: 100%;
+      left: 1000px;
+      color: #fff !important;
+      transition-duration: 1.5s;
+
+      .side-bar-header {
+        position: absolute;
+        top: 25px;
+        right: 175px;
+      }
+
+      .side-bar-menu {
+        font-size: 16px;
+        margin-left: 32px;
+        margin-top: 91px;
+
+        .side-bar-menu-item {
+          display: flex;
+          text-align: left;
+          text-transform: uppercase;
+          letter-spacing: 1.3px;
+          white-space: pre-line;
+          font-weight: 600;
+
+          .active {
+            border-bottom: 2px solid;
+          }
+
+          &:last-child {
+            margin-top: 20px
+          }
+        }
+      }
+
+      a {
+        color: #fff !important;
+      }
+
+      .side-bar-footer {
+        font-size: 14px;
+        font-weight: 300;
+        position: absolute;
+        white-space: pre-line;
+        bottom: 20px;
+        text-align: left;
+        margin-left: 30px;
+      }
+    }
+
+    .animate-sidebar {
+      transform: translate(-842px);
+      transition-duration: 0.7s;
     }
   }
 }

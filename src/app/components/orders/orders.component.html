@@ -1,7 +1,7 @@
 <div class="orders-wrapper">
   <div class="orders">
     <button (click)="loadOrders()">Load Orders</button>
-    <form [formGroup]="filersForm" class="filters-wrapper">
+    <form [formGroup]="filersForm" class="filters-wrapper flex-column flex-md-row">
       <label class="filter-label">
         Crypto currency for sell
         <ng-select
