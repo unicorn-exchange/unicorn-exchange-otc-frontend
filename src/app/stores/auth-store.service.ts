@@ -2,6 +2,12 @@ import {Injectable} from "@angular/core";
 import {BackendService} from "../../services/api/backend.service";
 import {ISignInUserReq, ISignUpUserReq} from "unicorn-types/types/api/requests";
 
+// TODO
+interface IChangeUserPasswordReq {
+  oldPassword: string;
+  newPassword: string;
+}
+
 @Injectable({
   providedIn: "root"
 })
@@ -12,6 +18,14 @@ export class AuthStore {
   constructor(
     private backend: BackendService
   ) {
+  }
+
+  changePassword(params: IChangeUserPasswordReq) {
+    return this.backend.apiV1
+      .post("/auth/change-password", params)
+      .then(res => {
+        return res;
+      });
   }
 
   signIn(params: ISignInUserReq) {

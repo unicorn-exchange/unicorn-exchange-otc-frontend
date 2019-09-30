@@ -17,7 +17,6 @@ import {TranslateService} from "@ngstack/translate";
 export class SignInComponent implements OnInit, OnDestroy {
   ROUTES = ROUTES;
   CONFIG = CONFIG;
-  // customErrorKeys = customErrorKeys;
   submitted = false;
   formFields = signInFields;
   scheme = signInValidationScheme;

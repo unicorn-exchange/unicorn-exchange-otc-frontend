@@ -1,5 +1,6 @@
 import {Injectable} from "@angular/core";
 import {BackendService} from "../../services/api/backend.service";
+import {IOrdersCreateReq} from "unicorn-types/types/api/requests";
 
 interface StoreState {
   orders: any[];
@@ -64,5 +65,13 @@ export class OrdersStore {
     this.backend.apiV1.get("/orders").then(res => {
       console.log(res);
     });
+  }
+
+  createOrder(params: IOrdersCreateReq) {
+    return this.backend.apiV1
+      .post("/create-order", params)
+      .then(res => {
+        return res;
+      });
   }
 }

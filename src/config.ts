@@ -3,7 +3,7 @@ export class CONFIG {
   static readonly THEME = "light";
   static readonly FAKE_NETWORK = true;
   static readonly IS_DEV = true;
-  static readonly DEBUG_NETWORK = true;
+  static readonly DEBUG_NETWORK = false;
 }
 
 class ProfileRoutes {
@@ -19,7 +19,7 @@ class ProfileRoutes {
 export class ROUTES {
   static readonly SIGN_IN = "sign-in";
   static readonly SIGN_UP = "sign-up";
-  static readonly OPEN_MARKET = "open-market";
+  static readonly OPEN_MARKET = "market";
   static readonly FULL_REGISTRATION = "full-registration";
   static readonly ORDERS = "orders";
   static readonly CREATE_ORDER = "create-order";

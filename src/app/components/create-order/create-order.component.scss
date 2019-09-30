@@ -93,13 +93,13 @@
           display: flex;
           align-items: center;
           cursor: pointer;
-          .limit-text {
-            max-width: 186px;
-          }
-          .default-checkbox {
-            margin-left: 15px;
-            width: fit-content;
-          }
+          width: 186px;
+        }
+
+        .default-checkbox {
+          margin-left: 15px;
+          width: fit-content;
+          cursor: pointer;
         }
       }
     }

@@ -1,5 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AuthStore} from "../../../stores/auth-store.service";
+import {Subject} from "rxjs";
 
 @Component({
   selector: "app-profile-password-component",
@@ -9,8 +11,12 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 export class ProfilePasswordComponent implements OnInit {
   form: FormGroup;
   submitted = false;
+  alertType = new Subject<string>();
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private authStore: AuthStore,
+  ) {
   }
 
   get f() {
@@ -25,12 +31,17 @@ export class ProfilePasswordComponent implements OnInit {
     });
   }
 
-  onClickSubmit(event) {
-    event.preventDefault();
+  onSubmit(event, formData) {
     this.submitted = true;
-
+    event.preventDefault();
     if (this.form.invalid) {
       return;
     }
+    this.authStore
+      .changePassword({
+        oldPassword: formData.oldPassword,
+        newPassword: formData.newPassword
+      })
+      .then(() => this.alertType.next("success"));
   }
 }

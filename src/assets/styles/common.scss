@@ -52,6 +52,10 @@
 }
 
 // Default components
+.invalid-feedback {
+  color: $main_red_color !important;
+  display: block;
+}
 .default-input {
   border: none;
   color: #000;
