@@ -1,5 +1,5 @@
 <div class="login-form sign-up-wrapper">
-  <div class="login-header flex-column flex-md-row">
+  <div class="login-header">
     <a
       class="default-link"
       routerLink="/{{ROUTES.SIGN_IN}}">{{ "AUTHORIZATION.SIGN_UP.DONT_HAVE_ACCOUNT" | translate }}
@@ -9,37 +9,50 @@
   <span class="heading">{{ "AUTHORIZATION.SIGN_UP.SIGN_UP_HEADER" | translate }}</span>
 
   <form (ngSubmit)="onSubmit($event, form.value)" [formGroup]="form" class="default-form">
-    <label>
-      Email:
+    <div class="form-group">
+      <label for="username">{{'FORMS.USERNAME' | translate}}:</label>
+      <input
+        [formControlName]="formFields.username"
+        [ngClass]="{ 'is-invalid': submitted && form.get(formFields.username).errors }"
+        [placeholder]="'FORMS.USERNAME' | translate"
+        class="form-control default-input"
+        id="username"
+        type="text">
+      <div *ngIf="submitted" class="invalid-feedback">
+        <div *ngFor="let err of form.get(formFields.username).errors | keyvalue">{{ err.value | translate }}</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">{{'FORMS.EMAIL' | translate}}:</label>
       <input
         [formControlName]="formFields.email"
-        [ngClass]="{ 'is-invalid': form.get(formFields.email).errors }"
+        [ngClass]="{ 'is-invalid': submitted && form.get(formFields.email).errors }"
         [placeholder]="'FORMS.EMAIL' | translate"
         class="form-control default-input"
+        id="email"
         type="text">
-    </label>
-    <!--    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">-->
-    <!--      <div *ngIf="f.email.errors.required">{{ "FORMS.EMAIL_REQUIRED" | translate }}</div>-->
-    <!--      <div *ngIf="f.email.errors.email">{{ "FORMS.EMAIL_ERROR" | translate }}</div>-->
-    <!--    </div>-->
-    <label>
-      Password:
+      <div *ngIf="submitted" class="invalid-feedback">
+        <div *ngFor="let err of form.get(formFields.email).errors | keyvalue">{{ err.value | translate }}</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">{{'FORMS.PASSWORD' | translate}}:</label>
       <input
         [formControlName]="formFields.password"
-        [ngClass]="{ 'is-invalid': form.get(formFields.password).errors }"
+        [ngClass]="{ 'is-invalid': submitted && form.get(formFields.password).errors }"
         [placeholder]="'FORMS.PASSWORD' | translate"
         class="form-control default-input"
-        type="password">
-    </label>
-    <!--    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">-->
-    <!--      <div *ngIf="f.password.errors.required">{{ "FORMS.PASSWORD_REQUIRED" | translate }}</div>-->
-    <!--      <div *ngIf="f.password.errors.minlength">{{ "FORMS.PASSWORD_ERROR" | translate }}</div>-->
-    <!--    </div>-->
+        id="password"
+        type="text">
+      <div *ngIf="submitted" class="invalid-feedback">
+        <div *ngFor="let err of form.get(formFields.password).errors | keyvalue">{{ err.value | translate }}</div>
+      </div>
+    </div>
+
     <div class="btn-wrapper">
       <button class="red-button" type="submit">{{ "FORMS.NEXT" | translate }}</button>
     </div>
-    <span class="agree-with-terms">
-      {{ "FORMS.AGREE_WITH_TERMS" | translate }}
-    </span>
   </form>
 </div>

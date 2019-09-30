@@ -1,10 +1,13 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {ROUTES} from "../../../config";
+import {CONFIG, ROUTES} from "../../../config";
 import {Subscription} from "rxjs";
 import {genCtrl} from "../../../services/utils";
 import {signUpValidationScheme} from "unicorn-types/types/validators/sign-up-validator";
 import {signUpFields} from "unicorn-types/types/enums/forms/sign-up";
+import {Router} from "@angular/router";
+import {TranslateService} from "@ngstack/translate";
+import {AuthStore} from "../../stores/auth-store.service";
 
 @Component({
   selector: "app-sign-up-component",
@@ -13,19 +16,29 @@ import {signUpFields} from "unicorn-types/types/enums/forms/sign-up";
 })
 export class SignUpComponent implements OnInit, OnDestroy {
   ROUTES = ROUTES;
-  form: FormGroup = this.fb.group(Object.assign(
-    genCtrl({key: signUpFields.email, scheme: signUpValidationScheme}),
-    genCtrl({key: signUpFields.password, scheme: signUpValidationScheme})
-  ));
+  CONFIG = CONFIG;
+  // customErrorKeys = customErrorKeys;
+  submitted = false;
   formFields = signUpFields;
-  private formSubscription: Subscription;
+  scheme = signUpValidationScheme;
+  formSubscription: Subscription;
+  form: FormGroup = this.fb.group(Object.assign(
+    genCtrl({key: this.formFields.username, scheme: this.scheme}),
+    genCtrl({key: this.formFields.email, scheme: this.scheme}),
+    genCtrl({key: this.formFields.password, scheme: this.scheme}),
+  ));
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private authStore: AuthStore,
+    private translate: TranslateService,
+    private router: Router,
+  ) {
   }
 
   ngOnInit() {
-    this.formSubscription = this.form.valueChanges.subscribe(v => {
-      console.log(v);
+    this.formSubscription = this.form.valueChanges.subscribe(() => {
+      console.log(this.form.get(this.formFields.email));
     });
   }
 
@@ -34,12 +47,18 @@ export class SignUpComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(event, formData) {
+    this.submitted = true;
     event.preventDefault();
     if (this.form.invalid) {
       return;
     }
 
-    console.log(formData);
+    this.authStore
+      .signUp(formData)
+      .then(() => this.router.navigate([ROUTES.OPEN_MARKET]))
+      .catch(err => {
+        console.log(err);
+      });
   }
 }
 

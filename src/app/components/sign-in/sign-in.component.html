@@ -9,32 +9,34 @@
   <span class="heading">{{ "AUTHORIZATION.SIGN_IN.SIGN_IN_HEADER" | translate }}</span>
 
   <form (ngSubmit)="onSubmit($event, form.value)" [formGroup]="form" class="default-form">
-    <label>
-      Email:
+    <div class="form-group">
+      <label for="email">Email:</label>
       <input
+        [ngClass]="{ 'is-invalid': submitted && form.get(formFields.email).errors }"
         [formControlName]="formFields.email"
-        [ngClass]="{ 'is-invalid': form.get(formFields.email).errors }"
+        id="email"
         [placeholder]="'FORMS.EMAIL' | translate"
         class="form-control default-input"
         type="text">
-    </label>
-    <!--    <div *ngIf="form.get(formFields.email).errors" class="invalid-feedback">-->
-    <!--      <div *ngIf="form.get(formFields.password).errors.required">{{ "FORMS.EMAIL_REQUIRED" | translate }}</div>-->
-    <!--      <div *ngIf="f.email.errors.email">{{ "FORMS.EMAIL_ERROR" | translate }}</div>-->
-    <!--    </div>-->
-    <label>
-      Password:
+      <div *ngIf="submitted" class="invalid-feedback">
+        <div *ngFor="let err of form.get(formFields.email).errors | keyvalue">{{ err.value | translate }}</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
       <input
+        [ngClass]="{ 'is-invalid': submitted && form.get(formFields.password).errors }"
         [formControlName]="formFields.password"
-        [ngClass]="{ 'is-invalid': form.get(formFields.password).errors }"
+        id="password"
         [placeholder]="'FORMS.PASSWORD' | translate"
         class="form-control default-input"
-        type="password">
-    </label>
-    <!--    <div *ngIf="f.password.errors" class="invalid-feedback">-->
-    <!--      <div *ngIf="f.password.errors.required">{{ "FORMS.PASSWORD_REQUIRED" | translate }}</div>-->
-    <!--      <div *ngIf="f.password.errors.minlength">{{ "FORMS.PASSWORD_ERROR" | translate }}</div>-->
-    <!--    </div>-->
+        type="text">
+      <div *ngIf="submitted" class="invalid-feedback">
+        <div *ngFor="let err of form.get(formFields.password).errors | keyvalue">{{ err.value | translate }}</div>
+      </div>
+    </div>
+
     <div class="btn-wrapper">
       <button class="red-button" type="submit">{{ "FORMS.NEXT" | translate }}</button>
     </div>

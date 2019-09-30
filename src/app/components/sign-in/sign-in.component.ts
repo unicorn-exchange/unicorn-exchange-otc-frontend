@@ -1,11 +1,13 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {ROUTES} from "src/config";
+import {CONFIG, ROUTES} from "src/config";
 import {genCtrl} from "../../../services/utils";
 import {signInValidationScheme} from "unicorn-types/types/validators/sign-in-validator";
 import {signInFields} from "unicorn-types/types/enums/forms/sign-in";
 import {Subscription} from "rxjs";
 import {AuthStore} from "../../stores/auth-store.service";
+import {Router} from "@angular/router";
+import {TranslateService} from "@ngstack/translate";
 
 @Component({
   selector: "app-sign-in-component",
@@ -14,21 +16,29 @@ import {AuthStore} from "../../stores/auth-store.service";
 })
 export class SignInComponent implements OnInit, OnDestroy {
   ROUTES = ROUTES;
-  form: FormGroup = this.fb.group(Object.assign(
-    genCtrl({key: signInFields.email, scheme: signInValidationScheme}),
-    genCtrl({key: signInFields.password, scheme: signInValidationScheme})
-  ));
+  CONFIG = CONFIG;
+  // customErrorKeys = customErrorKeys;
+  submitted = false;
   formFields = signInFields;
-  private formSubscription: Subscription;
+  scheme = signInValidationScheme;
+  formSubscription: Subscription;
+  form: FormGroup = this.fb.group(Object.assign(
+    genCtrl({key: this.formFields.email, scheme: this.scheme}),
+    genCtrl({key: this.formFields.password, scheme: this.scheme})
+  ));
 
   constructor(
     private fb: FormBuilder,
     private authStore: AuthStore,
+    private translate: TranslateService,
+    private router: Router,
   ) {
   }
 
   ngOnInit() {
-    this.formSubscription = this.form.valueChanges.subscribe();
+    this.formSubscription = this.form.valueChanges.subscribe(() => {
+      console.log(this.form.get(this.formFields.email));
+    });
   }
 
   ngOnDestroy() {
@@ -36,14 +46,18 @@ export class SignInComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(event, formData) {
+    this.submitted = true;
     event.preventDefault();
     if (this.form.invalid) {
       return;
     }
 
-    this.authStore.signIn(formData).catch(errors => {
-      console.log(errors);
-    });
+    this.authStore
+      .signIn(formData)
+      .then(() => this.router.navigate([ROUTES.OPEN_MARKET]))
+      .catch(err => {
+        console.log(err);
+      });
   }
 }
 

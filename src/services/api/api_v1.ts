@@ -1,5 +1,5 @@
 import axios, {TypedAxiosInstance} from "restyped-axios";
-import {DEBUG_NETWORK, FAKE_NETWORK} from "../../config";
+import {CONFIG} from "../../config";
 import {APIV1Doc} from "unicorn-types/types/api/api-v1-doc";
 import {mockAPIV1Requests} from "./mock/api_v1_mock";
 import {AxiosInstance} from "axios";
@@ -15,10 +15,10 @@ export class APIV1 {
       baseURL: `${baseURL}/api/v1`,
       headers,
     });
-    if (FAKE_NETWORK) {
+    if (CONFIG.FAKE_NETWORK) {
       mockAPIV1Requests(this.axios as AxiosInstance);
     }
-    if (!DEBUG_NETWORK) {
+    if (!CONFIG.DEBUG_NETWORK) {
       return;
     }
     this.axios.interceptors.request.use(request => {

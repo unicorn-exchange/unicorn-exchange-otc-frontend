@@ -73,6 +73,7 @@
     }
   },
   "FORMS": {
+    "USERNAME": "Username",
     "EMAIL": "Email",
     "EMAIL_REQUIRED": "Email is required",
     "EMAIL_ERROR": "Email must be a valid email address",
