@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute, ParamMap, Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {OrdersStore} from "../../stores/orders-store.service";
-import {switchMap} from "rxjs/operators";
+import {ROUTES} from "../../../config";
 
 @Component({
   selector: "app-order-component",
@@ -11,20 +11,22 @@ import {switchMap} from "rxjs/operators";
 export class OrderComponent implements OnInit {
 
   showSideBar = false;
-  offer = {};
+  offer: {};
+  ROUTES = ROUTES;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private ordersStore: OrdersStore,
   ) {
+    this.offer = ordersStore.state.orders[1];
   }
 
   ngOnInit() {
-    this.offer = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        this.ordersStore.getOrder(params.get("id")))
-    );
+    // this.offer = this.route.paramMap.pipe(
+    //   switchMap((params: ParamMap) =>
+    //     this.ordersStore.getOrder(params.get("id")))
+    // );
   }
 
   toggleSideBar() {

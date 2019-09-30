@@ -20,7 +20,10 @@ export class OrdersStore {
         cryptoCurrency: "BTC",
         currency: "₽",
         type: "Sell",
-        paymentMethod: "Credit Card"
+        paymentMethod: "Credit Card",
+        country: "England",
+        bank: "City Bank",
+        termsOfTrade: "Description"
       },
       {
         id: 2,
@@ -30,7 +33,10 @@ export class OrdersStore {
         cryptoCurrency: "BTC",
         currency: "₽",
         type: "Buy",
-        paymentMethod: "PayPall"
+        paymentMethod: "PayPall",
+        country: "Russia",
+        bank: "Rocket Bank",
+        termsOfTrade: "Description"
       },
       {
         id: 3,
@@ -40,7 +46,10 @@ export class OrdersStore {
         cryptoCurrency: "BTC",
         currency: "₽",
         type: "Sell",
-        paymentMethod: "Yandex"
+        paymentMethod: "Yandex",
+        country: "Russia",
+        bank: "Mastercard",
+        termsOfTrade: "Description"
       },
       {
         id: 4,
@@ -50,7 +59,10 @@ export class OrdersStore {
         cryptoCurrency: "BTC",
         currency: "₽",
         type: "Sell",
-        paymentMethod: "Credit Card"
+        paymentMethod: "Credit Card",
+        country: "USA",
+        bank: "City Bank",
+        termsOfTrade: "Description"
       },
     ],
   };
