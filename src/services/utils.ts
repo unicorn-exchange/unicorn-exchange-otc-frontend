@@ -9,7 +9,7 @@ export function yupValidate<T>(schema: Schema<T>) {
     } catch (result) {
       if (result.errors.length) {
         return result.errors.reduce((obj, val) => {
-          obj[result.name] = val;
+          obj[result.type || result.message] = val;
           return obj;
         }, {});
       }
