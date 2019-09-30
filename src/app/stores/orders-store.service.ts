@@ -74,4 +74,12 @@ export class OrdersStore {
         return res;
       });
   }
+
+  getOrder(id) {
+    return this.backend.apiV1
+      .get(`get-order/${id}`)
+      .then(res => {
+        return res;
+      });
+  }
 }
