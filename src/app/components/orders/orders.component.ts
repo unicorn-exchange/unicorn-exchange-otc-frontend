@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ISettingsCommonRes} from "unicorn-types/types/api/responses";
 import {CommonStore} from "../../stores/common-store.service";
 import {OrdersStore} from "../../stores/orders-store.service";
+import {ROUTES} from "../../../config";
 
 enum orderFilersFields {
   country = "country",
@@ -26,6 +27,7 @@ export class OrdersComponent implements OnInit {
   orderFilersFields = orderFilersFields;
   settings: ISettingsCommonRes;
   offers: any[];
+  ROUTES = ROUTES;
 
   constructor(
     private fb: FormBuilder,

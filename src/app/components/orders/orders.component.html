@@ -65,7 +65,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let offer of offers">
+        <tr class="pointer" [routerLink]="['/order', offer.id]" *ngFor="let offer of offers">
           <th scope="row">{{ offer.id }}</th>
           <td>
             {{ offer.name }}

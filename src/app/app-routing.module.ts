@@ -9,6 +9,7 @@ import {OpenMarketComponent} from "./components/open-market/open-market.componen
 import {CreateOrderComponent} from "./components/create-order/create-order.component";
 import {OrdersComponent} from "./components/orders/orders.component";
 import {ROUTES} from "../config";
+import {OrderComponent} from "./components/order/order.component";
 
 const routes: Routes = [
   {
@@ -34,6 +35,11 @@ const routes: Routes = [
   {
     path: ROUTES.ORDERS,
     component: OrdersComponent,
+    pathMatch: "full"
+  },
+  {
+    path: ROUTES.ORDER,
+    component: OrderComponent,
     pathMatch: "full"
   },
   {

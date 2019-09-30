@@ -22,6 +22,7 @@ export class ROUTES {
   static readonly OPEN_MARKET = "market";
   static readonly FULL_REGISTRATION = "full-registration";
   static readonly ORDERS = "orders";
+  static readonly ORDER = "order/:id";
   static readonly CREATE_ORDER = "create-order";
   static readonly PROFILE = ProfileRoutes;
 }

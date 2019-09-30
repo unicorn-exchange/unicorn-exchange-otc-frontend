@@ -20,8 +20,9 @@ import {RatingComponent} from "./components/rating/rating.component";
 import {CreateOrderComponent} from "./components/create-order/create-order.component";
 import {OrdersComponent} from "./components/orders/orders.component";
 import {AlertsComponent} from "./components/alerts/alerts.component";
+import {OrderComponent} from "./components/order/order.component";
 // Other Components
-import {NgbRatingModule, NgbTooltipModule, NgbAlertModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbAlertModule, NgbRatingModule, NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
 import {UiSwitchModule} from "ngx-toggle-switch";
 import {NgSelectConfig, NgSelectModule} from "@ng-select/ng-select";
 
@@ -55,7 +56,8 @@ export const baseModule: NgModule = {
     RatingComponent,
     CreateOrderComponent,
     OrdersComponent,
-    AlertsComponent
+    AlertsComponent,
+    OrderComponent
   ],
   providers: [
     TranslateService,
