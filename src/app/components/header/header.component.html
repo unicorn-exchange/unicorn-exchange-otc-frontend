@@ -6,19 +6,24 @@
         <span>{{ "EXCHANGE" | translate }}</span>
       </div>
       <div class="nav-wrapper d-none d-md-flex">
-        <a class="nav" routerLink="open-market">{{ "HEADER.OPEN_MARKET" | translate }}</a>
-        <a class="nav" routerLink="deals">{{ "HEADER.ORDERS" | translate }}</a>
-        <a class="nav">{{ "HEADER.OTHER" | translate }}</a>
+        <a class="nav" routerLink="/{{ROUTES.OPEN_MARKET}}">{{ "HEADER.OPEN_MARKET" | translate }}</a>
+        <a class="nav" routerLink="/{{ROUTES.ORDERS}}">{{ "HEADER.ORDERS" | translate }}</a>
+        <a class="nav" routerLink="/{{ROUTES.CREATE_ORDER}}">Create order</a>
       </div>
-      <div class="not-verified-account d-none d-md-block">
-        <img alt="attention" class="attention-icon" src="../../../assets/icons/attention.svg">
-        <span>{{ "HEADER.NOT_VERIFIED_ACCOUNT" | translate }}</span>
-      </div>
+      <!--      <div class="not-verified-account d-none d-md-block">-->
+      <!--        <img alt="attention" class="attention-icon" src="../../../assets/icons/attention.svg">-->
+      <!--        <span>{{ "HEADER.NOT_VERIFIED_ACCOUNT" | translate }}</span>-->
+      <!--      </div>-->
     </div>
     <!--  <button class="default-white-btn">{{ "HEADER.BUY_COINS" | translate }}</button>-->
     <div class="right-block">
       <div class="account-info">
-        <div class="balance d-none d-md-block">321,5c.</div>
+        <div class="balance d-none d-md-block">
+          <img alt="wallet-icon" class="wallet-icon" src="../../../assets/icons/wallet.svg">
+          <span>1 BTC</span>
+        </div>
+        <a routerLink="/{{ROUTES.DEPOSIT}}" class="balance d-none d-md-block">Deposit</a>
+        <a routerLink="/{{ROUTES.WITHDRAW}}" class="balance d-none d-md-block">Withdraw</a>
         <div class="notification-wrapper d-flex">
           <img class="notification-icon" alt="notification" src="../../../assets/icons/notification.svg">
           <div class="notification-circle"></div>

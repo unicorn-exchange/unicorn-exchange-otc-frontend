@@ -21,6 +21,8 @@ import {CreateOrderComponent} from "./components/create-order/create-order.compo
 import {OrdersComponent} from "./components/orders/orders.component";
 import {AlertsComponent} from "./components/alerts/alerts.component";
 import {OrderComponent} from "./components/order/order.component";
+import {DepositComponent} from "./components/deposit/deposit.component";
+import {WithdrawComponent} from "./components/withdraw/withdraw.component";
 // Other Components
 import {NgbAlertModule, NgbRatingModule, NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
 import {UiSwitchModule} from "ngx-toggle-switch";
@@ -57,7 +59,9 @@ export const baseModule: NgModule = {
     CreateOrderComponent,
     OrdersComponent,
     AlertsComponent,
-    OrderComponent
+    OrderComponent,
+    DepositComponent,
+    WithdrawComponent
   ],
   providers: [
     TranslateService,

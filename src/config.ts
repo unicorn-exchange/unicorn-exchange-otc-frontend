@@ -23,6 +23,8 @@ export class ROUTES {
   static readonly FULL_REGISTRATION = "full-registration";
   static readonly ORDERS = "orders";
   static readonly ORDER = "order";
+  static readonly DEPOSIT = "deposit";
+  static readonly WITHDRAW = "withdraw";
   static readonly CREATE_ORDER = "create-order";
   static readonly PROFILE = ProfileRoutes;
 }

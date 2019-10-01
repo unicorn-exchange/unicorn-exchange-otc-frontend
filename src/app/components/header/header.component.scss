@@ -2,19 +2,16 @@
 
 .header-wrapper {
   padding: 42px 33px 0 33px;
-  background-color: #fff;
 
   .header {
     padding-bottom: 33px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: solid 1px #e9e9f0;
 
     .left-block {
       display: flex;
-      justify-content: space-between;
-      width: 72%;
+      width: 70%;
       align-items: baseline;
 
       .company-name {
@@ -28,6 +25,7 @@
       }
 
       .nav-wrapper {
+        margin-left: 60px;
         .nav {
           color: #AEAEBC;
           cursor: pointer;
@@ -62,6 +60,14 @@
 
         .balance {
           color: #aeaebc;
+          display: flex;
+        }
+
+        .wallet-icon {
+          width: 15px;
+          height: 15px;
+          margin-right: 7px;
+          margin-top: -4px;
         }
 
         .notification-wrapper {
