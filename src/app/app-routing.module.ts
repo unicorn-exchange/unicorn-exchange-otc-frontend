@@ -38,7 +38,7 @@ const routes: Routes = [
     pathMatch: "full"
   },
   {
-    path: ROUTES.ORDER,
+    path: `${ROUTES.ORDER}/:id`,
     component: OrderComponent,
     pathMatch: "full"
   },

@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {BackendService} from "../../services/api/backend.service";
-import {IOrdersCreateReq} from "unicorn-types/types/api/requests";
+import {IOrderDTO} from "unicorn-types/types/api/dtos";
 
 interface StoreState {
   orders: any[];
@@ -79,7 +79,7 @@ export class OrdersStore {
     });
   }
 
-  createOrder(params: IOrdersCreateReq) {
+  createOrder(params: IOrderDTO) {
     return this.backend.apiV1
       .post("/create-order", params)
       .then(res => {
@@ -89,7 +89,7 @@ export class OrdersStore {
 
   getOrder(id) {
     return this.backend.apiV1
-      .get(`get-order/${id}`)
+      .get("/orders/:id")
       .then(res => {
         return res;
       });
