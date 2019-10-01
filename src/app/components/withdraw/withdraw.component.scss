@@ -6,6 +6,10 @@
 
   .details-wrapper {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+  }
+
+  .btn-wrapper {
+    margin-top: 30px;
   }
 }

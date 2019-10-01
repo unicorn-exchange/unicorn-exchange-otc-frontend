@@ -19,6 +19,9 @@
           <div
             *ngFor="let err of form.get(formFields.cryptoCurrencyBuyId).errors | keyvalue">{{ err.value | translate }}</div>
         </div>
+        <div class="btn-wrapper">
+          <button type="submit" class="red-button">Continue</button>
+        </div>
       </div>
       <div class="history">
         <h2>
@@ -50,9 +53,7 @@
           </tr>
           </tbody>
         </table>
-
       </div>
     </div>
-    <button type="submit" class="red-button">Continue</button>
   </form>
 </div>
