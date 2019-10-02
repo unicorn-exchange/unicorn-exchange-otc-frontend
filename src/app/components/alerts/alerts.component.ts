@@ -11,6 +11,7 @@ import {Subject} from "rxjs";
 })
 export class AlertsComponent implements OnInit {
   @Input() alertType = new Subject<string>();
+  @Input() messageText: string;
 
   type: string;
 

@@ -2,11 +2,13 @@ import {Component, OnDestroy, OnInit} from "@angular/core";
 import {ordersCreateValidationScheme} from "unicorn-types/types/validators/orders-create-validator";
 import {ordersCreateFields} from "unicorn-types/types/enums/forms/orders-create";
 import {ISettingsCommonRes} from "unicorn-types/types/api/responses";
-import {Subject, Subscription} from "rxjs";
+import {Subscription} from "rxjs";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {genCtrl} from "../../../services/utils";
 import {CommonStore} from "../../stores/common-store.service";
 import {OrdersStore} from "../../stores/orders-store.service";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {DepositModalComponent} from "./deposit-modal/deposit-modal.component";
 
 @Component({
   selector: "app-deposit-component",
@@ -19,7 +21,6 @@ export class DepositComponent implements OnInit, OnDestroy {
   submitted = false;
   settings: ISettingsCommonRes;
   formSubscription: Subscription;
-  alertType = new Subject<string>();
   form: FormGroup = this.fb.group(Object.assign(
     genCtrl({key: this.formFields.cryptoCurrencyBuyId, scheme: this.scheme}),
   ));
@@ -39,6 +40,7 @@ export class DepositComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private commonStore: CommonStore,
     private ordersStore: OrdersStore,
+    private modalService: NgbModal
   ) {
   }
 
@@ -62,11 +64,14 @@ export class DepositComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.ordersStore
-      .createOrder(formData)
-      .then(() => this.alertType.next("success"))
-      .catch(err => {
-        console.log(err);
-      });
+    const modalRef = this.modalService.open(DepositModalComponent, {size: "lg"});
+    modalRef.componentInstance.name = "World";
+
+    // this.ordersStore
+    //   .createOrder(formData)
+    //   .then(() => this.alertType.next("success"))
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
   }
 }

@@ -23,10 +23,13 @@ import {AlertsComponent} from "./components/alerts/alerts.component";
 import {OrderComponent} from "./components/order/order.component";
 import {DepositComponent} from "./components/deposit/deposit.component";
 import {WithdrawComponent} from "./components/withdraw/withdraw.component";
+import {DepositModalComponent} from "./components/deposit/deposit-modal/deposit-modal.component";
+import {WithdrawModalComponent} from "./components/withdraw/withdraw-modal/withdraw-modal.component";
 // Other Components
-import {NgbAlertModule, NgbRatingModule, NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbAlertModule, NgbModalModule, NgbRatingModule, NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
 import {UiSwitchModule} from "ngx-toggle-switch";
 import {NgSelectConfig, NgSelectModule} from "@ng-select/ng-select";
+import {ClipboardModule} from "ngx-clipboard";
 
 // tslint:disable-next-line:ban-types
 export function setupTranslateFactory(service: TranslateService): Function {
@@ -43,7 +46,9 @@ export const baseModule: NgModule = {
     TranslateModule.forRoot(),
     UiSwitchModule,
     NgSelectModule,
-    NgbAlertModule
+    NgbAlertModule,
+    NgbModalModule,
+    ClipboardModule
   ],
   declarations: [
     SignInComponent,
@@ -61,7 +66,13 @@ export const baseModule: NgModule = {
     AlertsComponent,
     OrderComponent,
     DepositComponent,
-    WithdrawComponent
+    WithdrawComponent,
+    DepositModalComponent,
+    WithdrawModalComponent
+  ],
+  entryComponents: [
+    DepositModalComponent,
+    WithdrawModalComponent
   ],
   providers: [
     TranslateService,
@@ -89,6 +100,9 @@ export const baseModule: NgModule = {
   ],
   bootstrap: [
     AppComponent
+  ],
+  entryComponents: [
+    ...baseModule.entryComponents
   ]
 })
 export class AppModule {
