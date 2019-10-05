@@ -34,7 +34,7 @@ export class OrdersComponent implements OnInit {
     private commonStore: CommonStore,
     private ordersStore: OrdersStore,
   ) {
-    this.offers = ordersStore.state.orders;
+    this.offers = ordersStore.state.offers;
   }
 
   loadOrders = () => this.ordersStore.loadOrders();

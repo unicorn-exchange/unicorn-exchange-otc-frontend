@@ -3,7 +3,7 @@ import {BackendService} from "../../services/api/backend.service";
 import {IOrderDTO} from "unicorn-types/types/api/dtos";
 
 interface StoreState {
-  orders: any[];
+  offers: any[];
 }
 
 @Injectable({
@@ -11,7 +11,7 @@ interface StoreState {
 })
 export class OrdersStore {
   state: StoreState = {
-    orders: [
+    offers: [
       {
         id: 1,
         name: "Jake Trump",
