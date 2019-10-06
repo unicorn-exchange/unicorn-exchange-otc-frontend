@@ -12,7 +12,7 @@
               Country
             </label>
             <ng-select
-              [formControlName]="formFields.countryId"
+              [formControlName]="orderWriteFields.countryId"
               [items]="settings.countries"
               autofocus
               bindLabel="title"
@@ -23,7 +23,7 @@
             </ng-select>
             <div *ngIf="submitted" class="invalid-feedback">
               <div
-                *ngFor="let err of form.get(formFields.countryId).errors | keyvalue">{{ err.value | translate }}</div>
+                *ngFor="let err of form.get(orderWriteFields.countryId).errors | keyvalue">{{ err.value | translate }}</div>
             </div>
           </div>
 
@@ -38,12 +38,12 @@
               bindValue="id"
               class="default-field"
               id="paymentMethods"
-              formControlName="{{formFields.paymentMethodId}}">
+              formControlName="{{orderWriteFields.paymentMethodId}}">
             </ng-select>
 
             <div *ngIf="submitted" class="invalid-feedback">
               <div
-                *ngFor="let err of form.get(formFields.paymentMethodId).errors | keyvalue">{{ err.value | translate }}</div>
+                *ngFor="let err of form.get(orderWriteFields.paymentMethodId).errors | keyvalue">{{ err.value | translate }}</div>
             </div>
           </div>
 
@@ -52,12 +52,12 @@
               Bank name
             </label>
             <input
-              [formControlName]="formFields.bankName"
+              [formControlName]="orderCommonFields.bankName"
               class="form-control default-input default-field"
               id="bankName"
               type="text">
             <div *ngIf="submitted" class="invalid-feedback">
-              <div *ngFor="let err of form.get(formFields.bankName).errors | keyvalue">{{ err.value | translate }}</div>
+              <div *ngFor="let err of form.get(orderCommonFields.bankName).errors | keyvalue">{{ err.value | translate }}</div>
             </div>
           </div>
         </div>
@@ -78,14 +78,14 @@
             </span>
             </label>
             <input
-              [formControlName]="formFields.isAutoAdjustTransactionLimit"
+              [formControlName]="orderCommonFields.isAutoAdjustTransactionLimit"
               class="form-control default-input default-checkbox"
               id="isAutoAdjustTransactionLimit"
               type="checkbox">
           </div>
           <div *ngIf="submitted" class="invalid-feedback">
             <div
-              *ngFor="let err of form.get(formFields.isAutoAdjustTransactionLimit).errors | keyvalue">{{ err.value | translate }}</div>
+              *ngFor="let err of form.get(orderCommonFields.isAutoAdjustTransactionLimit).errors | keyvalue">{{ err.value | translate }}</div>
           </div>
         </div>
 
@@ -101,7 +101,7 @@
                 src="assets/icons/info.svg"/>
             </label>
             <textarea
-              [formControlName]="formFields.termsOfTrade"
+              [formControlName]="orderCommonFields.termsOfTrade"
               class="form-control default-textarea"
               id="termsOfTrade"
               cols="3" rows="2">
@@ -109,7 +109,7 @@
           </div>
           <div *ngIf="submitted" class="invalid-feedback">
             <div
-              *ngFor="let err of form.get(formFields.termsOfTrade).errors | keyvalue">{{ err.value | translate }}</div>
+              *ngFor="let err of form.get(orderCommonFields.termsOfTrade).errors | keyvalue">{{ err.value | translate }}</div>
           </div>
         </div>
 
@@ -125,14 +125,14 @@
                 src="assets/icons/info.svg"/>
             </label>
             <input
-              [formControlName]="formFields.isVerifiedUsersOnly"
+              [formControlName]="orderCommonFields.isVerifiedUsersOnly"
               id="isVerifiedUsersOnly"
               class="form-control default-input default-checkbox"
               type="checkbox">
           </div>
           <div *ngIf="submitted" class="invalid-feedback">
             <div
-              *ngFor="let err of form.get(formFields.isVerifiedUsersOnly).errors | keyvalue">{{ err.value | translate }}</div>
+              *ngFor="let err of form.get(orderCommonFields.isVerifiedUsersOnly).errors | keyvalue">{{ err.value | translate }}</div>
           </div>
         </div>
 
@@ -148,14 +148,14 @@
                 src="assets/icons/info.svg"/>
             </label>
             <input
-              [formControlName]="formFields.isTrustedUsersOnly"
+              [formControlName]="orderCommonFields.isTrustedUsersOnly"
               id="isTrustedUsersOnly"
               class="form-control default-input default-checkbox"
               type="checkbox">
           </div>
           <div *ngIf="submitted" class="invalid-feedback">
             <div
-              *ngFor="let err of form.get(formFields.isTrustedUsersOnly).errors | keyvalue">{{ err.value | translate }}</div>
+              *ngFor="let err of form.get(orderCommonFields.isTrustedUsersOnly).errors | keyvalue">{{ err.value | translate }}</div>
           </div>
         </div>
 
@@ -165,14 +165,14 @@
               Identify user before continue trade
             </label>
             <input
-              [formControlName]="formFields.isIdentifyUsersBeforeContinueTrade"
+              [formControlName]="orderCommonFields.isIdentifyUsersBeforeContinueTrade"
               class="form-control default-input default-checkbox"
               id="isIdentifyUsersBeforeContinueTrade"
               type="checkbox">
           </div>
           <div *ngIf="submitted" class="invalid-feedback">
             <div
-              *ngFor="let err of form.get(formFields.isIdentifyUsersBeforeContinueTrade).errors | keyvalue">{{ err.value | translate }}</div>
+              *ngFor="let err of form.get(orderCommonFields.isIdentifyUsersBeforeContinueTrade).errors | keyvalue">{{ err.value | translate }}</div>
           </div>
         </div>
       </div>

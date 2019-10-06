@@ -3,11 +3,12 @@ export class CONFIG {
   static readonly THEME = "light";
   static readonly FAKE_NETWORK = true;
   static readonly IS_DEV = true;
-  static readonly DEBUG_NETWORK = false;
+  static readonly DEBUG_NETWORK = true;
+  static readonly DEBUG_PERFORMANCE = true;
 }
 
 class ProfileRoutes {
-  static readonly PROFILE = "profile";
+  static readonly base = "profile";
   static readonly NOTIFICATIONS = "notifications";
   static readonly INFO = "information";
   static readonly CATEGORIES = "categories";

@@ -5,7 +5,7 @@
       <label class="filter-label">
         Crypto currency for sell
         <ng-select
-          [formControlName]="orderFilersFields.cryptoCurrencySell"
+          [formControlName]="orderFilersFields.cryptoCurrencySellId"
           [items]="settings.cryptoCurrencies"
           autofocus
           bindLabel="title"
@@ -22,13 +22,13 @@
           bindLabel="title"
           bindValue="id"
           class="default-field currency-select"
-          formControlName="{{orderFilersFields.cryptoCurrencyBuy}}">
+          formControlName="{{orderFilersFields.cryptoCurrencyBuyId}}">
         </ng-select>
       </label>
       <label class="filter-label">
         Country
         <ng-select
-          [formControlName]="orderFilersFields.country"
+          [formControlName]="orderFilersFields.countryId"
           [items]="settings.countries"
           autofocus
           bindLabel="title"
@@ -45,7 +45,7 @@
           bindLabel="title"
           bindValue="id"
           class="default-field"
-          formControlName="{{orderFilersFields.paymentMethod}}">
+          formControlName="{{orderFilersFields.paymentMethodId}}">
         </ng-select>
       </label>
       <button type="submit" class="red-button create-order-btn">
@@ -65,15 +65,19 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let offer of orders" [routerLink]="['/order', offer.id]" class="pointer">
-          <th scope="row">{{ offer.id }}</th>
+        <tr *ngFor="let order of orders" [routerLink]="['/order', order.id]" class="pointer">
+          <th scope="row">{{ order.id }}</th>
           <td>
-            {{ offer.name }}
+            {{ order.owner.username }}
+            {{ order.owner.email }}
           </td>
-          <td>{{ offer.amount | number }} {{offer.cryptoCurrency}}</td>
-          <td>{{ offer.price | number }} {{offer.currency}}</td>
-          <td>{{ offer.paymentMethod }}</td>
-          <td>{{ offer.type }}</td>
+          <td>{{ order.cryptoCurrencyBuyPrice | number }} {{order.cryptoCurrencyBuy.title}}</td>
+          <td>{{ order.cryptoCurrencySellPrice | number }} {{order.cryptoCurrencySell.title}}</td>
+          <td>{{ order.paymentMethod.title }}</td>
+          <td>
+            <button (click)="confirmOrder(order.id)">Confirm</button>
+            <button (click)="declineOrder(order.id)">Decline</button>
+          </td>
         </tr>
         </tbody>
       </table>

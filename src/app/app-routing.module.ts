@@ -55,7 +55,7 @@ const routes: Routes = [
     pathMatch: "full"
   },
   {
-    path: ROUTES.PROFILE.PROFILE,
+    path: ROUTES.PROFILE.base,
     component: ProfileComponent,
     children: [
       {

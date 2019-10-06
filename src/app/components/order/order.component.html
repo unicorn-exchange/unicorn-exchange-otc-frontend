@@ -2,7 +2,6 @@
   <div class="header">
     <a routerLink="/{{ROUTES.ORDERS}}" class="back-wrapper">
       <img alt="back-img" class="back-arrow-icon" src="assets/icons/back-arrow.svg">
-      <img alt="back-img" class="back-arrow-icon" src="assets/icons/back-arrow.svg">
       <span class="back-text">Go back to deals</span>
     </a>
   </div>
@@ -30,7 +29,7 @@
           Deal Amount:
         </span>
         <span class="value">
-          {{offer.amount}} {{offer.cryptoCurrency}}
+          {{order.cryptoCurrencyBuyPrice}} {{order.cryptoCurrencyBuy.title}}
         </span>
       </div>
       <div class="order-value-info">
@@ -38,7 +37,7 @@
           Price:
         </span>
         <span class="value">
-          {{offer.price}} {{offer.currency}}
+          {{order.cryptoCurrencyBuyPrice}} {{order.cryptoCurrencyBuy.title}}
         </span>
       </div>
       <div class="order-value-info">
@@ -46,7 +45,7 @@
           Payment Method:
         </span>
         <span class="value">
-          {{offer.paymentMethod}}
+          {{order.paymentMethod}}
         </span>
       </div>
       <div class="order-value-info">
@@ -54,7 +53,7 @@
           Country:
         </span>
         <span class="value">
-          {{offer.country}}
+          {{order.country}}
         </span>
       </div>
       <div class="order-value-info">
@@ -62,12 +61,10 @@
           Terms Of Trade:
         </span>
         <span class="value">
-          {{offer.termsOfTrade}}
+          {{order.termsOfTrade}}
         </span>
       </div>
     </div>
   </div>
-  <button class="red-button confirm-btn">
-    {{offer.type}}
-  </button>
+  <button (click)="confirmOrder()" class="red-button confirm-btn">Confirm</button>
 </div>

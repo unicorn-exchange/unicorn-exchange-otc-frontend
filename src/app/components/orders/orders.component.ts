@@ -5,7 +5,7 @@ import {CommonStore} from "../../stores/common-store.service";
 import {OrdersStore} from "../../stores/orders-store.service";
 import {ROUTES} from "../../../config";
 import {IPartOrderDTO} from "unicorn-types/types/api/dtos";
-import {orderReadFields} from "unicorn-types/types/enums/forms/order";
+import {orderWriteFields} from "unicorn-types/types/enums/forms/order";
 import {BaseComponent} from "../base-component/base.component";
 import {takeUntil} from "rxjs/operators";
 
@@ -17,12 +17,12 @@ import {takeUntil} from "rxjs/operators";
 })
 export class OrdersComponent extends BaseComponent implements OnInit {
   filersForm: FormGroup = this.fb.group({
-    [orderReadFields.country]: [null, [Validators.required]],
-    [orderReadFields.cryptoCurrencySell]: [null, [Validators.required]],
-    [orderReadFields.cryptoCurrencyBuy]: [null, [Validators.required]],
-    [orderReadFields.paymentMethod]: [null, [Validators.required]],
+    [orderWriteFields.countryId]: [null, [Validators.required]],
+    [orderWriteFields.cryptoCurrencySellId]: [null, [Validators.required]],
+    [orderWriteFields.cryptoCurrencyBuyId]: [null, [Validators.required]],
+    [orderWriteFields.paymentMethodId]: [null, [Validators.required]],
   });
-  orderFilersFields = orderReadFields;
+  orderFilersFields = orderWriteFields;
   settings: ISettingsCommonRes;
   orders: IPartOrderDTO[];
   count: number;
@@ -37,6 +37,10 @@ export class OrdersComponent extends BaseComponent implements OnInit {
   }
 
   loadOrders = () => this.ordersStore.loadOrders();
+
+  confirmOrder = orderId => this.ordersStore.confirmOrder(orderId);
+
+  declineOrder = orderId => this.ordersStore.declineOrder(orderId);
 
   ngOnInit() {
     this.commonStore.settings$.pipe(takeUntil(this.ngUnsubscribe))

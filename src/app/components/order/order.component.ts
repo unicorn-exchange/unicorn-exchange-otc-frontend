@@ -1,10 +1,10 @@
 import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute, ParamMap, Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {OrdersStore} from "../../stores/orders-store.service";
 import {ROUTES} from "../../../config";
-import {Subscription} from "rxjs";
 import {BaseComponent} from "../base-component/base.component";
-import {switchMap} from "rxjs/operators";
+import {takeUntil} from "rxjs/operators";
+import {IFullOrderDTO} from "unicorn-types/types/api/dtos";
 
 @Component({
   selector: "app-order-component",
@@ -13,8 +13,7 @@ import {switchMap} from "rxjs/operators";
 })
 export class OrderComponent extends BaseComponent implements OnInit {
   showSideBar = false;
-  routerSubscription: Subscription;
-  offer: {};
+  order: IFullOrderDTO;
   ROUTES = ROUTES;
 
   constructor(
@@ -26,14 +25,21 @@ export class OrderComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        this.ordersStore.getOrder(params.get("id")))
-    );
-    this.routerSubscription = this.route.paramMap.subscribe(params => {
-      this.ordersStore.getOrder(params.get("id"));
-    });
+    this.route.paramMap
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(params => {
+        this.ordersStore
+          .getOrder(params.get("id"))
+          .then(order => {
+            this.order = order;
+          })
+          .catch(err => {
+            console.error(err);
+          });
+      });
   }
+
+  confirmOrder = () => this.ordersStore.confirmOrder(this.order.id);
 
   toggleSideBar() {
     this.showSideBar = !this.showSideBar;

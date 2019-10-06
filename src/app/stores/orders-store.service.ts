@@ -23,7 +23,7 @@ export class OrdersStore {
   }
 
   loadOrders() {
-    this.backend.apiV1
+    return this.backend.apiV1
       .get("/orders")
       .then(res => {
         if (!res.data.ok) {
@@ -50,7 +50,23 @@ export class OrdersStore {
 
   getOrder(id) {
     return this.backend.apiV1
-      .get("/orders/:id")
+      .get("/orders/:id", id)
+      .then(res => {
+        return res.data;
+      });
+  }
+
+  confirmOrder(id) {
+    return this.backend.apiV1
+      .post("/orders/:id/confirm", id)
+      .then(res => {
+        return res.data;
+      });
+  }
+
+  declineOrder(id) {
+    return this.backend.apiV1
+      .post("/orders/:id/confirm", id)
       .then(res => {
         return res.data;
       });
