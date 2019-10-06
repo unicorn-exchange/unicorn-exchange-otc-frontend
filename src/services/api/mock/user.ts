@@ -1,8 +1,7 @@
-import {commonResponse} from "./common-response";
-import {ISignInRes} from "unicorn-types/types/api/responses";
+import {IUserDTO} from "unicorn-types/types/api/dtos";
 
-export const user: ISignInRes = {
-  token: "token",
-  errors: [],
-  ...commonResponse,
+export const user: IUserDTO = {
+  id: 1,
+  username: "test_user",
+  email: "testuser@mail.ru",
 };

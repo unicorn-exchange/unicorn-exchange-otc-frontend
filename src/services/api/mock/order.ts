@@ -1,18 +1,36 @@
-import {IOrderDTO} from "unicorn-types/types/api/dtos";
-import {ordersCreateFields} from "unicorn-types/types/enums/forms/orders-create";
+import {IFullOrderDTO} from "unicorn-types/types/api/dtos";
+import {orderCommonFields, orderReadFields} from "unicorn-types/types/enums/forms/order";
+import {user} from "./user";
 
-export const order: IOrderDTO = {
-  [ordersCreateFields.countryId]: 1,
-  [ordersCreateFields.cryptoCurrencySellId]: 1,
-  [ordersCreateFields.cryptoCurrencySellPrice]: 1,
-  [ordersCreateFields.cryptoCurrencyBuyId]: 1,
-  [ordersCreateFields.cryptoCurrencyBuyPrice]: 1,
-  [ordersCreateFields.paymentMethodId]: 1,
-  [ordersCreateFields.bankName]: "bank",
-  [ordersCreateFields.marginProfit]: 1,
-  [ordersCreateFields.termsOfTrade]: "terms",
-  [ordersCreateFields.isAutoAdjustTransactionLimit]: true,
-  [ordersCreateFields.isVerifiedUsersOnly]: true,
-  [ordersCreateFields.isTrustedUsersOnly]: true,
-  [ordersCreateFields.isIdentifyUsersBeforeContinueTrade]: true,
+export const order: IFullOrderDTO = {
+  [orderReadFields.country]: {
+    id: 1,
+    title: "Russia"
+  },
+  [orderReadFields.cryptoCurrencySell]: {
+    id: 1,
+    title: "BTC"
+  },
+  [orderReadFields.cryptoCurrencyBuy]: {
+    id: 1,
+    title: "USDT"
+  },
+  [orderReadFields.paymentMethod]: {
+    id: 1,
+    title: "Pay Pall"
+  },
+  [orderReadFields.owner]: user,
+  [orderReadFields.currency]: {
+    id: 1,
+    title: "USD",
+  },
+  [orderCommonFields.cryptoCurrencySellPrice]: 1,
+  [orderCommonFields.cryptoCurrencyBuyPrice]: 3187422,
+  [orderCommonFields.bankName]: "bank",
+  [orderCommonFields.marginProfit]: 1,
+  [orderCommonFields.termsOfTrade]: "terms",
+  [orderCommonFields.isAutoAdjustTransactionLimit]: true,
+  [orderCommonFields.isVerifiedUsersOnly]: true,
+  [orderCommonFields.isTrustedUsersOnly]: true,
+  [orderCommonFields.isIdentifyUsersBeforeContinueTrade]: true,
 };
