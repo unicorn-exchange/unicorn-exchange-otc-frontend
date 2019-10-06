@@ -17,8 +17,9 @@ export class OrdersStore {
     count: 0,
   });
 
-  constructor(private backend: BackendService) {
-    // this.loadOrders();
+  constructor(
+    private backend: BackendService
+  ) {
   }
 
   loadOrders() {
@@ -36,7 +37,7 @@ export class OrdersStore {
       })
       .catch(err => {
         console.error(err);
-      })
+      });
   }
 
   createOrder(params: IFullOrderDTO) {

@@ -1,11 +1,11 @@
 import {genCtrl} from "../src/services/utils";
 import {ordersCreateValidationScheme as scheme} from "unicorn-types/types/validators/orders-create-validator";
-import {ordersCreateFields} from "unicorn-types/types/enums/forms/orders-create";
+import {orderWriteFields, orderCommonFields} from "unicorn-types/types/enums/forms/order";
 
 describe("Utils", () => {
   it("should return correct validation controls", () => {
-    const key1 = ordersCreateFields.countryId;
-    const key2 = ordersCreateFields.bankName;
+    const key1 = orderWriteFields.countryId;
+    const key2 = orderCommonFields.bankName;
     const obj = Object.assign(
       genCtrl({
         key: key1,

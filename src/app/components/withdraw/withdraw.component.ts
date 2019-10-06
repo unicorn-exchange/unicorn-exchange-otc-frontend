@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {ordersCreateValidationScheme} from "unicorn-types/types/validators/orders-create-validator";
-import {ordersCreateFields} from "unicorn-types/types/enums/forms/orders-create";
 import {ISettingsCommonRes} from "unicorn-types/types/api/responses";
 import {Subscription} from "rxjs";
 import {FormBuilder, FormGroup} from "@angular/forms";
@@ -9,6 +8,7 @@ import {CommonStore} from "../../stores/common-store.service";
 import {OrdersStore} from "../../stores/orders-store.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {WithdrawModalComponent} from "./withdraw-modal/withdraw-modal.component";
+import {orderWriteFields} from "unicorn-types/types/enums/forms/order";
 
 @Component({
   selector: "app-withdraw-component",
@@ -17,7 +17,7 @@ import {WithdrawModalComponent} from "./withdraw-modal/withdraw-modal.component"
 })
 export class WithdrawComponent implements OnInit, OnDestroy {
   scheme = ordersCreateValidationScheme;
-  formFields = ordersCreateFields;
+  formFields = orderWriteFields;
   submitted = false;
   settings: ISettingsCommonRes;
   formSubscription: Subscription;

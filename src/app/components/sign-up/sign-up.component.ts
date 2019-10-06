@@ -1,27 +1,25 @@
-import {Component, OnDestroy, OnInit} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {CONFIG, ROUTES} from "../../../config";
-import {Subscription} from "rxjs";
+import {ROUTES} from "../../../config";
 import {genCtrl} from "../../../services/utils";
 import {signUpValidationScheme} from "unicorn-types/types/validators/sign-up-validator";
 import {signUpFields} from "unicorn-types/types/enums/forms/sign-up";
 import {Router} from "@angular/router";
 import {TranslateService} from "@ngstack/translate";
 import {AuthStore} from "../../stores/auth-store.service";
+import {BaseComponent} from "../base-component/base.component";
+import {takeUntil} from "rxjs/operators";
 
 @Component({
   selector: "app-sign-up-component",
   templateUrl: "./sign-up.component.html",
   styleUrls: ["./sign-up.component.scss"]
 })
-export class SignUpComponent implements OnInit, OnDestroy {
+export class SignUpComponent extends BaseComponent implements OnInit {
   ROUTES = ROUTES;
-  CONFIG = CONFIG;
-  // customErrorKeys = customErrorKeys;
   submitted = false;
   formFields = signUpFields;
   scheme = signUpValidationScheme;
-  formSubscription: Subscription;
   form: FormGroup = this.fb.group(Object.assign(
     genCtrl({key: this.formFields.username, scheme: this.scheme}),
     genCtrl({key: this.formFields.email, scheme: this.scheme}),
@@ -34,16 +32,15 @@ export class SignUpComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     private router: Router,
   ) {
+    super();
   }
 
   ngOnInit() {
-    this.formSubscription = this.form.valueChanges.subscribe(() => {
-      console.log(this.form.get(this.formFields.email));
-    });
-  }
-
-  ngOnDestroy() {
-    this.formSubscription.unsubscribe();
+    this.form.valueChanges
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(v => {
+        console.log(v);
+      });
   }
 
   onSubmit(event, formData) {

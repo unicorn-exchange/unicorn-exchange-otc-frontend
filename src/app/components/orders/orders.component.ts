@@ -48,5 +48,6 @@ export class OrdersComponent extends BaseComponent implements OnInit {
         this.orders = data.orders;
         this.count = data.count;
       });
+    this.loadOrders();
   }
 }

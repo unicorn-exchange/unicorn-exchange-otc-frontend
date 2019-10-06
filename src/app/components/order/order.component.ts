@@ -1,15 +1,17 @@
-import {Component, OnDestroy, OnInit} from "@angular/core";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Component, OnInit} from "@angular/core";
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {OrdersStore} from "../../stores/orders-store.service";
 import {ROUTES} from "../../../config";
 import {Subscription} from "rxjs";
+import {BaseComponent} from "../base-component/base.component";
+import {switchMap} from "rxjs/operators";
 
 @Component({
   selector: "app-order-component",
   templateUrl: "./order.component.html",
   styleUrls: ["./order.component.scss"]
 })
-export class OrderComponent implements OnInit, OnDestroy {
+export class OrderComponent extends BaseComponent implements OnInit {
   showSideBar = false;
   routerSubscription: Subscription;
   offer: {};
@@ -20,21 +22,17 @@ export class OrderComponent implements OnInit, OnDestroy {
     private router: Router,
     private ordersStore: OrdersStore,
   ) {
+    super();
   }
 
   ngOnInit() {
-    // this.routerSubscription = this.route.paramMap.pipe(
-    //   switchMap((params: ParamMap) =>
-    //     this.ordersStore.getOrder(params.get("id")))
-    // );
-    this.offer = this.ordersStore.state$.offers[1];
+    this.route.paramMap.pipe(
+      switchMap((params: ParamMap) =>
+        this.ordersStore.getOrder(params.get("id")))
+    );
     this.routerSubscription = this.route.paramMap.subscribe(params => {
       this.ordersStore.getOrder(params.get("id"));
     });
-  }
-
-  ngOnDestroy() {
-    this.routerSubscription.unsubscribe();
   }
 
   toggleSideBar() {
