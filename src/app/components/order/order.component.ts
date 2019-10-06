@@ -27,7 +27,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     //   switchMap((params: ParamMap) =>
     //     this.ordersStore.getOrder(params.get("id")))
     // );
-    this.offer = this.ordersStore.state.offers[1];
+    this.offer = this.ordersStore.state$.offers[1];
     this.routerSubscription = this.route.paramMap.subscribe(params => {
       this.ordersStore.getOrder(params.get("id"));
     });

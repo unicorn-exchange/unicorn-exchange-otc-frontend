@@ -1,89 +1,49 @@
 import {Injectable} from "@angular/core";
 import {BackendService} from "../../services/api/backend.service";
-import {IOrderDTO} from "unicorn-types/types/api/dtos";
+import {IFullOrderDTO, IPartOrderDTO} from "unicorn-types/types/api/dtos";
+import {BehaviorSubject} from "rxjs";
 
-interface StoreState {
-  offers: any[];
+interface IStoreState {
+  orders: IPartOrderDTO[];
+  count: number;
 }
 
 @Injectable({
   providedIn: "root"
 })
 export class OrdersStore {
-  state: StoreState = {
-    offers: [
-      {
-        id: 1,
-        name: "Jake Trump",
-        amount: 0.1,
-        price: 67000,
-        cryptoCurrency: "BTC",
-        currency: "₽",
-        type: "Sell",
-        paymentMethod: "Credit Card",
-        country: "England",
-        bank: "City Bank",
-        termsOfTrade: "Description"
-      },
-      {
-        id: 2,
-        name: "Jake Trump",
-        amount: 0.02,
-        price: 12000,
-        cryptoCurrency: "BTC",
-        currency: "₽",
-        type: "Buy",
-        paymentMethod: "PayPall",
-        country: "Russia",
-        bank: "Rocket Bank",
-        termsOfTrade: "Description"
-      },
-      {
-        id: 3,
-        name: "Jake Trump",
-        amount: 0.025,
-        price: 15000,
-        cryptoCurrency: "BTC",
-        currency: "₽",
-        type: "Sell",
-        paymentMethod: "Yandex",
-        country: "Russia",
-        bank: "Mastercard",
-        termsOfTrade: "Description"
-      },
-      {
-        id: 4,
-        name: "Jake Trump",
-        amount: 0.2,
-        price: 132000,
-        cryptoCurrency: "BTC",
-        currency: "₽",
-        type: "Sell",
-        paymentMethod: "Credit Card",
-        country: "USA",
-        bank: "City Bank",
-        termsOfTrade: "Description"
-      },
-    ],
-  };
+  state$: BehaviorSubject<IStoreState> = new BehaviorSubject<IStoreState>({
+    orders: [],
+    count: 0,
+  });
 
   constructor(private backend: BackendService) {
-    // this.backend.apiV1.get("/orders").then(res => {
-    //   console.log(res);
-    // });
+    // this.loadOrders();
   }
 
   loadOrders() {
-    this.backend.apiV1.get("/orders").then(res => {
-      console.log(res);
-    });
+    this.backend.apiV1
+      .get("/orders")
+      .then(res => {
+        if (!res.data.ok) {
+          return console.error(res.data.errors);
+        }
+        this.state$.next({
+          count: res.data.count,
+          orders: res.data.payload,
+        });
+        return res.data;
+      })
+      .catch(err => {
+        console.error(err);
+      })
   }
 
-  createOrder(params: IOrderDTO) {
+  createOrder(params: IFullOrderDTO) {
     return this.backend.apiV1
       .post("/create-order", params)
       .then(res => {
-        return res;
+        return res.data;
       });
   }
 
@@ -91,7 +51,7 @@ export class OrdersStore {
     return this.backend.apiV1
       .get("/orders/:id")
       .then(res => {
-        return res;
+        return res.data;
       });
   }
 }
