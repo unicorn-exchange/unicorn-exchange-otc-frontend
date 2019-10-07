@@ -1,4 +1,3 @@
-<app-alerts-component [alertType]="alertType" [messageText]="'Сopied successfully'"></app-alerts-component>
 <div class="modal-header">
   <h4 class="modal-title">Withdraw</h4>
   <button (click)="activeModal.dismiss('Cross click')" aria-label="Close" class="close" type="button">
@@ -6,25 +5,55 @@
   </button>
 </div>
 <div class="modal-body">
-  <form class="withdraw-body">
+  <form (ngSubmit)="onSubmit($event, form.value)" [formGroup]="form" class="withdraw-body">
     <div class="coin-info">
       <div class="form-group">
         <label for="address">
           Withdraw coin Address
         </label>
-        <!--        <input-->
-        <!--          [formControlName]="formFields.bankName"-->
-        <!--          class="form-control default-input default-field"-->
-        <!--          id="address"-->
-        <!--          type="text">-->
-        <!--        <div *ngIf="submitted" class="invalid-feedback">-->
-        <!--          <div-->
-        <!--            *ngFor="let err of form.get(formFields.countryId).errors | keyvalue">{{ err.value | translate }}</div>-->
-        <!--        </div>-->
+        <input
+          [formControlName]="formFields.address"
+          class="form-control default-input default-field"
+          id="address"
+          type="text">
+        <div *ngIf="submitted" class="invalid-feedback">
+          <div
+            *ngFor="let err of form.get(formFields.address).errors | keyvalue">{{ err.value | translate }}
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="amount">
+          Withdraw coin Amount
+        </label>
+        <input
+          [formControlName]="formFields.amount"
+          class="form-control default-input default-field"
+          id="amount"
+          type="number">
+        <div *ngIf="submitted" class="invalid-feedback">
+          <div
+            *ngFor="let err of form.get(formFields.amount).errors | keyvalue">{{ err.value | translate }}
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">
+          Fund password
+        </label>
+        <input
+          [formControlName]="formFields.password"
+          class="form-control default-input default-field"
+          id="password"
+          type="password">
+        <div *ngIf="submitted" class="invalid-feedback">
+          <div
+            *ngFor="let err of form.get(formFields.password).errors | keyvalue">{{ err.value | translate }}
+          </div>
+        </div>
       </div>
     </div>
   </form>
-  <p>Hello, {{name}}!</p>
 </div>
 <div class="modal-footer">
   <button (click)="activeModal.close('Close click')" class="btn btn-outline-dark" type="button">Close</button>
