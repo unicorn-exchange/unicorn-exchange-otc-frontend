@@ -9,6 +9,7 @@
     <div class="account-wrapper">
       <img alt="user-img" class="user-img" src="../../../assets/images/user.png">
       <span class="user-name">{{order.owner.username}}</span>
+      <!--      TODO: Make real data-->
       <div class="user-deals">
         <span class="heading">
           User deals:
@@ -29,7 +30,7 @@
           Deal Amount:
         </span>
         <span class="value">
-          {{order.cryptoCurrencyBuyPrice}} {{order.cryptoCurrencyBuy.title}}
+          {{order.currencyBuyPrice}} {{order.currencyBuy.title}}
         </span>
       </div>
       <div class="order-value-info">
@@ -37,7 +38,7 @@
           Price:
         </span>
         <span class="value">
-          {{order.cryptoCurrencySellPrice}} {{order.cryptoCurrencySell.title}}
+          {{order.currencySellPrice}} {{order.currencySell.title}}
         </span>
       </div>
       <div class="order-value-info">

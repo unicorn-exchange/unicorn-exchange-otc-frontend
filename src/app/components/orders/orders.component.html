@@ -71,8 +71,8 @@
             {{ order.owner.username }}
             {{ order.owner.email }}
           </td>
-          <td>{{ order.cryptoCurrencyBuyPrice | number }} {{order.cryptoCurrencyBuy.title}}</td>
-          <td>{{ order.cryptoCurrencySellPrice | number }} {{order.cryptoCurrencySell.title}}</td>
+          <td>{{ order.currencyBuyPrice | number }} {{order.currencyBuy.title}}</td>
+          <td>{{ order.currencySellPrice | number }} {{order.currencySell.title}}</td>
           <td>{{ order.paymentMethod.title }}</td>
           <td>
             <button (click)="confirmOrder(order.id)">Confirm</button>
