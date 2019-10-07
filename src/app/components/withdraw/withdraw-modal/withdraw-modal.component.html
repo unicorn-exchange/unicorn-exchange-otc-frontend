@@ -1,46 +1,29 @@
 <app-alerts-component [alertType]="alertType" [messageText]="'Сopied successfully'"></app-alerts-component>
 <div class="modal-header">
-  <h4 class="modal-title">Deposit</h4>
+  <h4 class="modal-title">Withdraw</h4>
   <button (click)="activeModal.dismiss('Cross click')" aria-label="Close" class="close" type="button">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <div class="modal-body">
-  <div class="withdraw-body">
-    <div class="deposit-address">
-      <span class="heading">Deposit address:</span>
-      <span>{{address}}</span>
-      <img
-        (cbOnSuccess)="successCopy()"
-        [cbContent]="address"
-        alt="copy"
-        class="copy-icon"
-        ngxClipboard
-        src="../../../../assets/icons/copy.svg"
-      >
+  <form class="withdraw-body">
+    <div class="coin-info">
+      <div class="form-group">
+        <label for="address">
+          Withdraw coin Address
+        </label>
+        <!--        <input-->
+        <!--          [formControlName]="formFields.bankName"-->
+        <!--          class="form-control default-input default-field"-->
+        <!--          id="address"-->
+        <!--          type="text">-->
+        <!--        <div *ngIf="submitted" class="invalid-feedback">-->
+        <!--          <div-->
+        <!--            *ngFor="let err of form.get(formFields.countryId).errors | keyvalue">{{ err.value | translate }}</div>-->
+        <!--        </div>-->
+      </div>
     </div>
-    <div class="scan-block">
-      Scan
-    </div>
-    <div class="note-wrapper">
-      <h4 class="heading">Notes for Token Deposit:</h4>
-      <p class="paragraph">
-        1.BTC deposit requires 6 networks to confirm the arrival, for the specific crediting time
-        , please refer to the actual crediting time.
-      </p>
-      <p class="paragraph">
-        2.The minimum deposit amount is 0.01BTC and the operation will fail when the amount is less than 0.01BTC.
-      </p>
-      <p class="paragraph danger">
-        Please do not transfer other tokens into BTC address(including BCHSV , BCHABC).
-      </p>
-      <p class="paragraph">
-        Important Notice
-        <br>
-        It is forbidden to recharge assets outside BTC to BTC address.
-      </p>
-    </div>
-  </div>
+  </form>
   <p>Hello, {{name}}!</p>
 </div>
 <div class="modal-footer">
