@@ -29,8 +29,8 @@ export class OrderComponent extends BaseComponent implements OnInit {
       .subscribe(params => {
         this.ordersStore
           .getOrder(params.get("id"))
-          .then(order => {
-            this.order = order;
+          .then(res => {
+            this.order = res.payload;
           })
           .catch(err => {
             console.error(err);

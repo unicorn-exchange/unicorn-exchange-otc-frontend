@@ -1,10 +1,9 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {ordersCreateValidationScheme} from "unicorn-types/types/validators/orders-create-validator";
-import {ISettingsCommonRes} from "unicorn-types/types/api/responses";
 import {Subscription} from "rxjs";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {genCtrl} from "../../../services/utils";
-import {CommonStore} from "../../stores/common-store.service";
+import {CommonStore, IAppSettings} from "../../stores/common-store.service";
 import {OrdersStore} from "../../stores/orders-store.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {WithdrawModalComponent} from "./withdraw-modal/withdraw-modal.component";
@@ -19,7 +18,7 @@ export class WithdrawComponent implements OnInit, OnDestroy {
   scheme = ordersCreateValidationScheme;
   formFields = orderWriteFields;
   submitted = false;
-  settings: ISettingsCommonRes;
+  settings: IAppSettings;
   formSubscription: Subscription;
   form: FormGroup = this.fb.group(Object.assign(
     genCtrl({key: this.formFields.cryptoCurrencyBuyId, scheme: this.scheme}),

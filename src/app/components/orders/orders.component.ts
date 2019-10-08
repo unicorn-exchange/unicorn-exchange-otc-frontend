@@ -1,7 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ISettingsCommonRes} from "unicorn-types/types/api/responses";
-import {CommonStore} from "../../stores/common-store.service";
+import {CommonStore, IAppSettings} from "../../stores/common-store.service";
 import {OrdersStore} from "../../stores/orders-store.service";
 import {ROUTES} from "../../../config";
 import {IPartOrderDTO} from "unicorn-types/types/api/dtos";
@@ -23,7 +22,7 @@ export class OrdersComponent extends BaseComponent implements OnInit {
     [orderWriteFields.paymentMethodId]: [null, [Validators.required]],
   });
   orderFilersFields = orderWriteFields;
-  settings: ISettingsCommonRes;
+  settings: IAppSettings;
   orders: IPartOrderDTO[];
   count: number;
   ROUTES = ROUTES;

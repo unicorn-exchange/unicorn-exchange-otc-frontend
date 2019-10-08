@@ -1,8 +1,7 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Subject, Subscription} from "rxjs";
-import {ISettingsCommonRes} from "unicorn-types/types/api/responses";
-import {CommonStore} from "../../stores/common-store.service";
+import {CommonStore, IAppSettings} from "../../stores/common-store.service";
 import {ordersCreateValidationScheme} from "unicorn-types/types/validators/orders-create-validator";
 import {genCtrl} from "../../../services/utils";
 import {OrdersStore} from "../../stores/orders-store.service";
@@ -19,7 +18,7 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
   orderWriteFields = orderWriteFields;
   orderCommonFields = orderCommonFields;
   submitted = false;
-  settings: ISettingsCommonRes;
+  settings: IAppSettings;
   formSubscription: Subscription;
   alertType = new Subject<string>();
   form: FormGroup = this.fb.group(Object.assign(

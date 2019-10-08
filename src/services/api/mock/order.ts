@@ -1,29 +1,28 @@
 import {IFullOrderDTO} from "unicorn-types/types/api/dtos";
 import {orderCommonFields, orderReadFields} from "unicorn-types/types/enums/forms/order";
 import {user} from "./user";
+import {CurrencyTypes} from "unicorn-types/types/enums/currency-types";
 
 export const order: IFullOrderDTO = {
   [orderReadFields.country]: {
     id: 1,
     title: "Russia"
   },
-  [orderReadFields.cryptoCurrencySell]: {
+  [orderCommonFields.currencySell]: {
     id: 1,
-    title: "BTC"
+    title: "BTC",
+    type: CurrencyTypes.cryptoCurrency,
   },
-  [orderReadFields.cryptoCurrencyBuy]: {
+  [orderCommonFields.currencyBuy]: {
     id: 1,
-    title: "USDT"
+    title: "USD",
+    type: CurrencyTypes.fiat,
   },
   [orderReadFields.paymentMethod]: {
     id: 1,
     title: "Pay Pall"
   },
   [orderReadFields.owner]: user,
-  [orderReadFields.currency]: {
-    id: 1,
-    title: "USD",
-  },
   [orderCommonFields.currencySellPrice]: 1,
   [orderCommonFields.currencyBuyPrice]: 3187422,
   [orderCommonFields.bankName]: "bank",

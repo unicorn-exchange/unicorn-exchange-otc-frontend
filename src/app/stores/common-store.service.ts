@@ -5,16 +5,15 @@ import {BackendService} from "../../services/api/backend.service";
 import {ICurrencyDTO} from "unicorn-types/types/api/dtos";
 import {CurrencyTypes} from "unicorn-types/types/enums/currency-types";
 
-interface ITemp extends Partial<ISettingsCommonRes> {
+export interface IAppSettings extends Partial<ISettingsCommonRes> {
   currencies: ICurrencyDTO[];
 }
-
 
 @Injectable({
   providedIn: "root"
 })
 export class CommonStore {
-  settings$: BehaviorSubject<ITemp> = new BehaviorSubject<ITemp>({
+  settings$: BehaviorSubject<IAppSettings> = new BehaviorSubject<IAppSettings>({
     currencies: [],
     countries: [],
     paymentMethods: [],
@@ -30,8 +29,7 @@ export class CommonStore {
         .concat(res.data.fiats.map(i => {
           (i as ICurrencyDTO).type = CurrencyTypes.fiat;
           return i;
-        }));
-      return;
+        })) as ICurrencyDTO[];
       this.settings$.next({
         currencies: arr,
         countries: res.data.countries,
