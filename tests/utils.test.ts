@@ -1,6 +1,9 @@
 import {genCtrl} from "../src/services/utils";
 import {ordersCreateValidationScheme as scheme} from "unicorn-types/types/validators/orders-create-validator";
-import {orderWriteFields, orderCommonFields} from "unicorn-types/types/enums/forms/order";
+import {orderCommonFields, orderWriteFields} from "unicorn-types/types/enums/forms/order";
+import {globalSettings} from "../src/services/api/mock/global-settings";
+import {ICurrencyDTO} from "unicorn-types/types/api/dtos";
+import {CurrencyTypes} from "unicorn-types/types/enums/currency-types";
 
 describe("Utils", () => {
   it("should return correct validation controls", () => {
@@ -19,6 +22,20 @@ describe("Utils", () => {
 
     expect(Array.isArray(obj[key1])).toBeTruthy();
     expect(Array.isArray(obj[key2])).toBeTruthy();
+  });
+
+  it("should concat arrays", () => {
+    const arr = globalSettings.cryptoCurrencies
+      .map(i => {
+        (i as ICurrencyDTO).type = CurrencyTypes.cryptoCurrency;
+        return i;
+      })
+      .concat(globalSettings.fiats)
+      .map(i => {
+        (i as ICurrencyDTO).type = CurrencyTypes.fiat;
+        return i;
+      });
+    return arr;
   });
 });
 

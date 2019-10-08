@@ -2,21 +2,40 @@ import {ISettingsCommonRes} from "unicorn-types/types/api/responses";
 import {BehaviorSubject} from "rxjs";
 import {Injectable} from "@angular/core";
 import {BackendService} from "../../services/api/backend.service";
+import {ICurrencyDTO} from "unicorn-types/types/api/dtos";
+import {CurrencyTypes} from "unicorn-types/types/enums/currency-types";
+
+interface ITemp extends Partial<ISettingsCommonRes> {
+  currencies: ICurrencyDTO[];
+}
+
 
 @Injectable({
   providedIn: "root"
 })
 export class CommonStore {
-  settings$: BehaviorSubject<ISettingsCommonRes> = new BehaviorSubject<ISettingsCommonRes>({
-    cryptoCurrencies: [],
+  settings$: BehaviorSubject<ITemp> = new BehaviorSubject<ITemp>({
+    currencies: [],
     countries: [],
     paymentMethods: [],
-    ok: true,
   });
 
   constructor(private backend: BackendService) {
     backend.apiV1.get("/settings/common").then(res => {
-      this.settings$.next(res.data);
+      const arr = res.data.cryptoCurrencies
+        .map(i => {
+          (i as ICurrencyDTO).type = CurrencyTypes.cryptoCurrency;
+          return i;
+        })
+        .concat(res.data.fiats)
+        .map(i => {
+          (i as ICurrencyDTO).type = CurrencyTypes.fiat;
+          return i;
+        });
+      return;
+      // this.settings$.next({
+      //   currencies: arr,
+      // });
     });
   }
 }
