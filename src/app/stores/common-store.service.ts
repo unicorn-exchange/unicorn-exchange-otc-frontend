@@ -9,6 +9,7 @@ import {BackendService} from "../../services/api/backend.service";
 export class CommonStore {
   settings$: BehaviorSubject<ISettingsCommonRes> = new BehaviorSubject<ISettingsCommonRes>({
     cryptoCurrencies: [],
+    fiats: [],
     countries: [],
     paymentMethods: [],
     ok: true,

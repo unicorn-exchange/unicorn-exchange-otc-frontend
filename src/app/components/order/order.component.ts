@@ -12,7 +12,6 @@ import {IFullOrderDTO} from "unicorn-types/types/api/dtos";
   styleUrls: ["./order.component.scss"]
 })
 export class OrderComponent extends BaseComponent implements OnInit {
-  showSideBar = false;
   order: IFullOrderDTO;
   ROUTES = ROUTES;
 
@@ -40,10 +39,6 @@ export class OrderComponent extends BaseComponent implements OnInit {
   }
 
   confirmOrder = () => this.ordersStore.confirmOrder(this.order.id);
-
-  toggleSideBar() {
-    this.showSideBar = !this.showSideBar;
-  }
 
   checkPath() {
   }

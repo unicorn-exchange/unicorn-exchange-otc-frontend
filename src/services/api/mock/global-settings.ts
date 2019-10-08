@@ -16,6 +16,13 @@ export const globalSettings: ISettingsCommonRes = {
     id: 2,
     title: "Russia"
   }],
+  fiats: [{
+    id: 1,
+    title: "Rubles"
+  }, {
+    id: 2,
+    title: "Usd"
+  }],
   paymentMethods: [{
     id: 1,
     title: "PayPal"
