@@ -24,18 +24,18 @@ describe("Utils", () => {
     expect(Array.isArray(obj[key2])).toBeTruthy();
   });
 
-  it("should concat arrays", () => {
+  it("should concat ", () => {
     const arr = globalSettings.cryptoCurrencies
       .map(i => {
         (i as ICurrencyDTO).type = CurrencyTypes.cryptoCurrency;
         return i;
       })
-      .concat(globalSettings.fiats)
-      .map(i => {
+      .concat(globalSettings.fiats.map(i => {
         (i as ICurrencyDTO).type = CurrencyTypes.fiat;
         return i;
-      });
-    return arr;
+      }));
+
+    expect(Array.isArray(arr)).toBeTruthy();
   });
 });
 

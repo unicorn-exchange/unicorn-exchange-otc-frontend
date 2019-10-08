@@ -27,15 +27,16 @@ export class CommonStore {
           (i as ICurrencyDTO).type = CurrencyTypes.cryptoCurrency;
           return i;
         })
-        .concat(res.data.fiats)
-        .map(i => {
+        .concat(res.data.fiats.map(i => {
           (i as ICurrencyDTO).type = CurrencyTypes.fiat;
           return i;
-        });
+        }));
       return;
-      // this.settings$.next({
-      //   currencies: arr,
-      // });
+      this.settings$.next({
+        currencies: arr,
+        countries: res.data.countries,
+        paymentMethods: res.data.paymentMethods
+      });
     });
   }
 }
