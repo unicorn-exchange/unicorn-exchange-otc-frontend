@@ -1,6 +1,6 @@
 import {ISettingsCommonRes} from "unicorn-types/types/api/responses";
 
-export const globalSettings: ISettingsCommonRes = {
+export const settingsCommonRes: ISettingsCommonRes = {
   ok: true,
   cryptoCurrencies: [{
     id: 1,

@@ -1,9 +1,9 @@
 import {IOrdersRes} from "unicorn-types/types/api/responses";
 import {order} from "./order";
-import {commonResponse} from "./common-response";
+import {commonRes} from "./common-res";
 
-export const orders: IOrdersRes = {
+export const ordersRes: IOrdersRes = {
   count: 1,
   payload: [order],
-  ...commonResponse
+  ...commonRes
 };

@@ -5,20 +5,22 @@
       <span class="back-text">Go back to deals</span>
     </a>
   </div>
-  <div class="info-wrapper">
+  <div *ngIf="state.isLoading">
+    <h1>Loading</h1>
+  </div>
+  <div *ngIf="!state.isLoading" class="info-wrapper">
     <div class="account-wrapper">
       <img alt="user-img" class="user-img" src="../../../assets/images/user.png">
       <span class="user-name">{{order.owner.username}}</span>
-      <!--      TODO: Make real data-->
       <div class="user-deals">
         <span class="heading">
           User deals:
         </span>
-        <span>13</span>
+        <span>{{order.owner.dealsCount}}</span>
       </div>
       <app-rating-component
         [maxRate]="settings.maxRating"
-        [rate]="4"
+        [rate]="order.owner.rating"
         [isReadOnly]="true"
       >
       </app-rating-component>

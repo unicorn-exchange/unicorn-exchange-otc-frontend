@@ -20,7 +20,7 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
   submitted = false;
   settings: IAppSettings;
   formSubscription: Subscription;
-  alertType = new Subject<string>();
+  alertType = new Subject<"success" | "error">();
   form: FormGroup = this.fb.group(Object.assign(
     genCtrl({key: orderWriteFields.countryId, scheme: this.scheme}),
     genCtrl({key: orderCommonFields.currencySell, scheme: this.scheme}),

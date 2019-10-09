@@ -1,7 +1,7 @@
 import {genCtrl} from "../src/services/utils";
 import {ordersCreateValidationScheme as scheme} from "unicorn-types/types/validators/orders-create-validator";
 import {orderCommonFields, orderWriteFields} from "unicorn-types/types/enums/forms/order";
-import {globalSettings} from "../src/services/api/mock/global-settings";
+import {settingsCommonRes} from "../src/services/api/mock/settings-common-res";
 import {ICurrencyDTO} from "unicorn-types/types/api/dtos";
 import {CurrencyTypes} from "unicorn-types/types/enums/currency-types";
 
@@ -25,12 +25,12 @@ describe("Utils", () => {
   });
 
   it("should concat ", () => {
-    const arr = globalSettings.cryptoCurrencies
+    const arr = settingsCommonRes.cryptoCurrencies
       .map(i => {
         (i as ICurrencyDTO).type = CurrencyTypes.cryptoCurrency;
         return i;
       })
-      .concat(globalSettings.fiats.map(i => {
+      .concat(settingsCommonRes.fiats.map(i => {
         (i as ICurrencyDTO).type = CurrencyTypes.fiat;
         return i;
       }));

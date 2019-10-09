@@ -7,7 +7,9 @@ export interface IComponentState {
 }
 
 export class BaseComponent implements OnDestroy {
-  state: IComponentState;
+  state: IComponentState = {
+    isLoading: true,
+  };
   // TODO: Think about BehaviorSubject
   // state$: BehaviorSubject<IComponentState> = new BehaviorSubject<IComponentState>({
   //   isLoading: false,

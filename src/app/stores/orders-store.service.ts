@@ -1,7 +1,8 @@
 import {Injectable} from "@angular/core";
 import {BackendService} from "../../services/api/backend.service";
-import {IFullOrderDTO, IPartOrderDTO} from "unicorn-types/types/api/dtos";
+import {IOrderWriteDTO, IPartOrderDTO} from "unicorn-types/types/api/dtos";
 import {BehaviorSubject} from "rxjs";
+import {ORDERS_CONFIRM, ORDERS_CREATE, ORDERS_DECLINE, ORDERS_GET_ONE} from "unicorn-types/types/api/api-v1-doc";
 
 interface IStoreState {
   orders: IPartOrderDTO[];
@@ -40,9 +41,9 @@ export class OrdersStore {
       });
   }
 
-  createOrder(params: IFullOrderDTO) {
+  createOrder(params: IOrderWriteDTO) {
     return this.backend.apiV1
-      .post("/create-order", params)
+      .post(ORDERS_CREATE, params)
       .then(res => {
         return res.data;
       });
@@ -50,7 +51,7 @@ export class OrdersStore {
 
   getOrder(id) {
     return this.backend.apiV1
-      .get("/orders/:id", id)
+      .get(ORDERS_GET_ONE, id)
       .then(res => {
         return res.data;
       });
@@ -58,7 +59,7 @@ export class OrdersStore {
 
   confirmOrder(id) {
     return this.backend.apiV1
-      .post("/orders/:id/confirm", id)
+      .post(ORDERS_CONFIRM, id)
       .then(res => {
         return res.data;
       });
@@ -66,7 +67,7 @@ export class OrdersStore {
 
   declineOrder(id) {
     return this.backend.apiV1
-      .post("/orders/:id/confirm", id)
+      .post(ORDERS_DECLINE, id)
       .then(res => {
         return res.data;
       });
