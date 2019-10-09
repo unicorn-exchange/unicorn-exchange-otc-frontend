@@ -3,10 +3,10 @@
     <button (click)="loadOrders()">Load Orders</button>
     <form [formGroup]="filersForm" class="filters-wrapper flex-column flex-md-row">
       <label class="filter-label">
-        Crypto currency for sell
+        Currency for sell
         <ng-select
-          [formControlName]="orderFilersFields.cryptoCurrencySellId"
-          [items]="settings.cryptoCurrencies"
+          [formControlName]="orderCommonFields.currencySell"
+          [items]="settings.currencies"
           autofocus
           bindLabel="title"
           bindValue="id"
@@ -15,14 +15,14 @@
         </ng-select>
       </label>
       <label class="filter-label">
-        Crypto currency for buy
+        Currency for buy
         <ng-select
-          [items]="settings.cryptoCurrencies"
+          [items]="settings.currencies"
           autofocus
           bindLabel="title"
           bindValue="id"
           class="default-field currency-select"
-          formControlName="{{orderFilersFields.cryptoCurrencyBuyId}}">
+          formControlName="{{orderCommonFields.currencyBuy}}">
         </ng-select>
       </label>
       <label class="filter-label">
