@@ -4,7 +4,7 @@ import {CommonStore, IAppSettings} from "../../stores/common-store.service";
 import {OrdersStore} from "../../stores/orders-store.service";
 import {ROUTES} from "../../../config";
 import {IPartOrderDTO} from "unicorn-types/types/api/dtos";
-import {orderWriteFields} from "unicorn-types/types/enums/forms/order";
+import {orderCommonFields, orderWriteFields} from "unicorn-types/types/enums/forms/order";
 import {BaseComponent} from "../base-component/base.component";
 import {takeUntil} from "rxjs/operators";
 
@@ -16,12 +16,13 @@ import {takeUntil} from "rxjs/operators";
 })
 export class OrdersComponent extends BaseComponent implements OnInit {
   filersForm: FormGroup = this.fb.group({
+    [orderCommonFields.currencySell]: [null, [Validators.required]],
+    [orderCommonFields.currencyBuy]: [null, [Validators.required]],
     [orderWriteFields.countryId]: [null, [Validators.required]],
-    [orderWriteFields.cryptoCurrencySellId]: [null, [Validators.required]],
-    [orderWriteFields.cryptoCurrencyBuyId]: [null, [Validators.required]],
     [orderWriteFields.paymentMethodId]: [null, [Validators.required]],
   });
   orderFilersFields = orderWriteFields;
+  orderCommonFields = orderCommonFields;
   settings: IAppSettings;
   orders: IPartOrderDTO[];
   count: number;
