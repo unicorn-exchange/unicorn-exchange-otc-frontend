@@ -22,7 +22,12 @@ export function genCtrl({key, scheme, defaultValue = null}: {
   scheme: any;
   defaultValue?: any;
 }) {
+  const subScheme = scheme[key];
+  if (!subScheme) {
+    console.error("No sub-scheme", scheme, key);
+    throw new Error("No sub-scheme");
+  }
   return {
-    [key]: [defaultValue, yupValidate(scheme[key])],
+    [key]: [defaultValue, yupValidate(subScheme)],
   };
 }

@@ -7,7 +7,7 @@ import {CommonStore, IAppSettings} from "../../stores/common-store.service";
 import {OrdersStore} from "../../stores/orders-store.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {DepositModalComponent} from "./deposit-modal/deposit-modal.component";
-import {orderWriteFields} from "unicorn-types/types/enums/forms/order";
+import {orderCommonFields} from "unicorn-types/types/enums/forms/order";
 
 @Component({
   selector: "app-deposit-component",
@@ -16,12 +16,12 @@ import {orderWriteFields} from "unicorn-types/types/enums/forms/order";
 })
 export class DepositComponent implements OnInit, OnDestroy {
   scheme = ordersCreateValidationScheme;
-  formFields = orderWriteFields;
+  orderCommonFields = orderCommonFields;
   submitted = false;
   settings: IAppSettings;
   formSubscription: Subscription;
   form: FormGroup = this.fb.group(Object.assign(
-    genCtrl({key: this.formFields.cryptoCurrencyBuyId, scheme: this.scheme}),
+    genCtrl({key: orderCommonFields.currencyBuy, scheme: this.scheme}),
   ));
   deposits = [
     {

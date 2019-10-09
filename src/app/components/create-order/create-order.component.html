@@ -66,8 +66,8 @@
             <label class="currency-label">
               Crypto currency for sell
               <ng-select
-                [formControlName]="orderWriteFields.cryptoCurrencySellId"
-                [items]="settings.cryptoCurrencies"
+                [formControlName]="orderCommonFields.currencySell"
+                [items]="settings.currencies"
                 autofocus
                 bindLabel="title"
                 bindValue="id"
@@ -91,12 +91,12 @@
             <label class="currency-label">
               Crypto currency for buy
               <ng-select
-                [items]="settings.cryptoCurrencies"
+                [items]="settings.currencies"
                 autofocus
                 bindLabel="title"
                 bindValue="id"
                 class="default-field currency-select"
-                formControlName="{{orderWriteFields.cryptoCurrencyBuyId}}">
+                formControlName="{{orderCommonFields.currencyBuy}}">
               </ng-select>
             </label>
 

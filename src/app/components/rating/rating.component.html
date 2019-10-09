@@ -1,5 +1,6 @@
 <div class="rating-component">
   <ng-template #starTemplate let-fill="fill">
+    <!-- TODO: Store svg in /assets -->
     <svg
       class="star"
       [class.full]="fill === 100"
@@ -17,8 +18,9 @@
     </svg>
   </ng-template>
   <ngb-rating
-    [(rate)]="cardRate"
+    [(rate)]="rate"
     [starTemplate]="starTemplate"
     [readonly]="isReadOnly"
-    [max]="maxRate"></ngb-rating>
+    [max]="maxRate">
+  </ngb-rating>
 </div>

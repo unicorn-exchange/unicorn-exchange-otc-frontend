@@ -5,6 +5,7 @@ import {ROUTES} from "../../../config";
 import {BaseComponent} from "../base-component/base.component";
 import {takeUntil} from "rxjs/operators";
 import {IFullOrderDTO} from "unicorn-types/types/api/dtos";
+import {CommonStore, IAppSettings} from "../../stores/common-store.service";
 
 @Component({
   selector: "app-order-component",
@@ -13,20 +14,26 @@ import {IFullOrderDTO} from "unicorn-types/types/api/dtos";
 })
 export class OrderComponent extends BaseComponent implements OnInit {
   order: IFullOrderDTO;
+  settings: IAppSettings;
   ROUTES = ROUTES;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private ordersStore: OrdersStore,
+    private commonStore: CommonStore,
   ) {
     super();
   }
 
   ngOnInit() {
-    this.route.paramMap
-      .pipe(takeUntil(this.ngUnsubscribe))
+    this.commonStore.settings$.pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(data => {
+        this.settings = data;
+      });
+    this.route.paramMap.pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(params => {
+        this.state.isLoading = true;
         this.ordersStore
           .getOrder(params.get("id"))
           .then(res => {
@@ -34,12 +41,12 @@ export class OrderComponent extends BaseComponent implements OnInit {
           })
           .catch(err => {
             console.error(err);
+          })
+          .finally(() => {
+            this.state.isLoading = false;
           });
       });
   }
 
   confirmOrder = () => this.ordersStore.confirmOrder(this.order.id);
-
-  checkPath() {
-  }
 }

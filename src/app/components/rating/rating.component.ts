@@ -6,10 +6,10 @@ import {Component, Input, OnInit} from "@angular/core";
   styleUrls: ["./rating.component.scss"]
 })
 export class RatingComponent implements OnInit {
-  @Input() cardRate: number;
+  @Input() rate: number;
   @Input() maxRate: number;
   @Input() isReadOnly: boolean;
-  @Input() color: any;
+  @Input() ! color = "#e9e9f0";
 
   constructor() {
   }

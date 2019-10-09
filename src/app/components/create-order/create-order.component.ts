@@ -23,9 +23,9 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
   alertType = new Subject<string>();
   form: FormGroup = this.fb.group(Object.assign(
     genCtrl({key: orderWriteFields.countryId, scheme: this.scheme}),
-    genCtrl({key: orderWriteFields.cryptoCurrencySellId, scheme: this.scheme}),
+    genCtrl({key: orderCommonFields.currencySell, scheme: this.scheme}),
     genCtrl({key: orderCommonFields.currencySellPrice, scheme: this.scheme}),
-    genCtrl({key: orderWriteFields.cryptoCurrencyBuyId, scheme: this.scheme}),
+    genCtrl({key: orderCommonFields.currencyBuy, scheme: this.scheme}),
     genCtrl({key: orderCommonFields.currencyBuyPrice, scheme: this.scheme}),
     genCtrl({key: orderWriteFields.paymentMethodId, scheme: this.scheme}),
     genCtrl({key: orderCommonFields.bankName, scheme: this.scheme}),

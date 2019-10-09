@@ -7,7 +7,10 @@ import {CurrencyTypes} from "unicorn-types/types/enums/currency-types";
 
 export interface IAppSettings extends Partial<ISettingsCommonRes> {
   currencies: ICurrencyDTO[];
+  maxRating: number;
 }
+
+const MAX_RATING = 5;
 
 @Injectable({
   providedIn: "root"
@@ -17,6 +20,7 @@ export class CommonStore {
     currencies: [],
     countries: [],
     paymentMethods: [],
+    maxRating: MAX_RATING,
   });
 
   constructor(private backend: BackendService) {
@@ -33,7 +37,8 @@ export class CommonStore {
       this.settings$.next({
         currencies: arr,
         countries: res.data.countries,
-        paymentMethods: res.data.paymentMethods
+        paymentMethods: res.data.paymentMethods,
+        maxRating: MAX_RATING,
       });
     });
   }

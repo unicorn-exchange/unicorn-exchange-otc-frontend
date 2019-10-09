@@ -6,7 +6,7 @@
           Select crypto currency for buy
         </label>
         <ng-select
-          [formControlName]="formFields.cryptoCurrencyBuyId"
+          [formControlName]="orderCommonFields.currencyBuy"
           [items]="settings.cryptoCurrencies"
           autofocus
           bindLabel="title"
@@ -17,7 +17,7 @@
         </ng-select>
         <div *ngIf="submitted" class="invalid-feedback">
           <div
-            *ngFor="let err of form.get(formFields.cryptoCurrencyBuyId).errors | keyvalue">{{ err.value | translate }}</div>
+            *ngFor="let err of form.get(orderCommonFields.currencyBuy).errors | keyvalue">{{ err.value | translate }}</div>
         </div>
         <div class="btn-wrapper">
           <button type="submit" class="red-button">Continue</button>
