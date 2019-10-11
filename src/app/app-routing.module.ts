@@ -12,6 +12,7 @@ import {ROUTES} from "../config";
 import {OrderComponent} from "./components/order/order.component";
 import {DepositComponent} from "./components/deposit/deposit.component";
 import {WithdrawComponent} from "./components/withdraw/withdraw.component";
+import {OrderProcessingComponent} from "./components/processing/order-processing.component";
 
 const routes: Routes = [
   {
@@ -52,6 +53,11 @@ const routes: Routes = [
   {
     path: `${ROUTES.ORDER}/:id`,
     component: OrderComponent,
+    pathMatch: "full"
+  },
+  {
+    path: `${ROUTES.ORDER}/:id/${ROUTES.PROCESSING}`,
+    component: OrderProcessingComponent,
     pathMatch: "full"
   },
   {

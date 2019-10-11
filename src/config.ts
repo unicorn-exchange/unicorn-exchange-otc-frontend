@@ -27,5 +27,6 @@ export class ROUTES {
   static readonly DEPOSIT = "deposit";
   static readonly WITHDRAW = "withdraw";
   static readonly CREATE_ORDER = "create-order";
+  static readonly PROCESSING = "processing";
   static readonly PROFILE = ProfileRoutes;
 }

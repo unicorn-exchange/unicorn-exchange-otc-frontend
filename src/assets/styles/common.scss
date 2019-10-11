@@ -37,10 +37,6 @@
     }
   }
 
-  //.form-control {
-  //  margin-top: 40px;
-  //}
-
   .form-control:first-child {
     margin-top: 0;
   }
@@ -56,6 +52,7 @@
   color: $main_red_color !important;
   display: block;
 }
+
 .default-input {
   border: none;
   color: #000;
@@ -65,7 +62,6 @@
   padding: 9px 3px;
   border-radius: 0;
   box-shadow: none;
-  outline: none;
 
   &:hover,
   &:active,
@@ -97,7 +93,6 @@
   border: none;
   background-color: #fff;
   box-shadow: none;
-  outline: none;
   color: #000;
   font-size: 18px;
   font-weight: normal;
@@ -119,7 +114,6 @@
   border: solid 1px $main_red_color;
   background-color: $main_red_color;
   box-shadow: none;
-  outline: none;
   color: #fff;
   font-size: 18px;
   font-weight: normal;
@@ -153,6 +147,16 @@
 
 ::-ms-input-placeholder {
   color: #000;
+}
+
+button {
+  outline: none;
+
+  &:hover,
+  &:active,
+  &:focus {
+    outline: none;
+  }
 }
 
 input[type=number]::-webkit-inner-spin-button,

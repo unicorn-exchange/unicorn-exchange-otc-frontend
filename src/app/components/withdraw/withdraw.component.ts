@@ -63,8 +63,7 @@ export class WithdrawComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const modalRef = this.modalService.open(WithdrawModalComponent, {size: "lg"});
-    modalRef.componentInstance.name = "World";
+    this.modalService.open(WithdrawModalComponent, {size: "lg"});
 
     // this.ordersStore
     //   .createOrder(formData)

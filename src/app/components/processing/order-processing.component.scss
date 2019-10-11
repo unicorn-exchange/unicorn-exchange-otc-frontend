@@ -1,0 +1,85 @@
+@import "../../../assets/styles/variables";
+
+.order-processing-wrapper {
+  width: 80%;
+  background-color: #fff;
+  padding: 10px 30px 30px 10px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .header {
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 20px;
+  }
+
+  .info-wrapper {
+    display: flex;
+    align-items: center;
+
+    .order-value-info {
+      .info-heading {
+        font-weight: bold;
+      }
+    }
+
+    .base-info {
+      display: flex;
+
+      .account-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .user-img {
+          border-radius: 50%;
+          width: 50px;
+          height: 50px;
+        }
+
+        .user-name {
+          margin-top: 5px;
+          font-size: 16px;
+        }
+
+        .user-deals {
+          font-size: 16px;
+
+          .heading {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    .credential-info {
+      border-radius: 4px;
+      border: 1px solid #aeaebc;
+      padding: 15px;
+      margin-left: 100px;
+
+      .confirm-pay {
+        padding-top: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .pay-description {
+          text-decoration: underline;
+          font-size: 13px;
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+
+  .btn-wrapper {
+    padding-top: 30px;
+
+    .red-button {
+      margin: 0 10px;
+    }
+  }
+}

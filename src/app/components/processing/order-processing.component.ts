@@ -6,13 +6,15 @@ import {BaseComponent} from "../base-component/base.component";
 import {takeUntil} from "rxjs/operators";
 import {IFullOrderDTO} from "unicorn-types/types/api/dtos";
 import {CommonStore, IAppSettings} from "../../stores/common-store.service";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {OrderDeclineModalComponent} from "./order-decline-modal/order-decline-modal.component";
 
 @Component({
-  selector: "app-order-component",
-  templateUrl: "./order.component.html",
-  styleUrls: ["./order.component.scss"]
+  selector: "app-order-processing-component",
+  templateUrl: "./order-processing.component.html",
+  styleUrls: ["./order-processing.component.scss"]
 })
-export class OrderComponent extends BaseComponent implements OnInit {
+export class OrderProcessingComponent extends BaseComponent implements OnInit {
   order: IFullOrderDTO;
   settings: IAppSettings;
   ROUTES = ROUTES;
@@ -22,6 +24,7 @@ export class OrderComponent extends BaseComponent implements OnInit {
     private router: Router,
     private ordersStore: OrdersStore,
     private commonStore: CommonStore,
+    private modalService: NgbModal,
   ) {
     super();
   }
@@ -48,10 +51,8 @@ export class OrderComponent extends BaseComponent implements OnInit {
       });
   }
 
-  confirmOrder = () => {
-    this.ordersStore.confirmOrder(this.order.id);
-    this.router.navigate([ROUTES.PROCESSING], {relativeTo: this.route});
-  };
-
-  declineOrder = () => this.ordersStore.declineOrder(this.order.id);
+  declineOrder() {
+    const modalRef = this.modalService.open(OrderDeclineModalComponent, {size: "lg"});
+    modalRef.componentInstance.orderId = this.order.id;
+  }
 }

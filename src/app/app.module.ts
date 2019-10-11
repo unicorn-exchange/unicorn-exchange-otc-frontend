@@ -4,6 +4,10 @@ import {APP_INITIALIZER, NgModule} from "@angular/core";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {TranslateModule, TranslateService} from "@ngstack/translate";
+import {NgbAlertModule, NgbModalModule, NgbRatingModule, NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
+import {UiSwitchModule} from "ngx-toggle-switch";
+import {NgSelectConfig, NgSelectModule} from "@ng-select/ng-select";
+import {ClipboardModule} from "ngx-clipboard";
 // Components
 import {AppRoutingModule} from "./app-routing.module";
 import {AppComponent} from "./app.component";
@@ -25,11 +29,9 @@ import {DepositComponent} from "./components/deposit/deposit.component";
 import {WithdrawComponent} from "./components/withdraw/withdraw.component";
 import {DepositModalComponent} from "./components/deposit/deposit-modal/deposit-modal.component";
 import {WithdrawModalComponent} from "./components/withdraw/withdraw-modal/withdraw-modal.component";
-// Other Components
-import {NgbAlertModule, NgbModalModule, NgbRatingModule, NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
-import {UiSwitchModule} from "ngx-toggle-switch";
-import {NgSelectConfig, NgSelectModule} from "@ng-select/ng-select";
-import {ClipboardModule} from "ngx-clipboard";
+import {OrderProcessingComponent} from "./components/processing/order-processing.component";
+import {OrderDeclineModalComponent} from "./components/processing/order-decline-modal/order-decline-modal.component";
+import {OrderPayModalComponent} from "./components/processing/order-pay-modal/order-pay-modal.component";
 
 // tslint:disable-next-line:ban-types
 export function setupTranslateFactory(service: TranslateService): Function {
@@ -68,11 +70,16 @@ export const baseModule: NgModule = {
     DepositComponent,
     WithdrawComponent,
     DepositModalComponent,
-    WithdrawModalComponent
+    WithdrawModalComponent,
+    OrderProcessingComponent,
+    OrderDeclineModalComponent,
+    OrderPayModalComponent
   ],
   entryComponents: [
     DepositModalComponent,
-    WithdrawModalComponent
+    WithdrawModalComponent,
+    OrderDeclineModalComponent,
+    OrderPayModalComponent
   ],
   providers: [
     TranslateService,
