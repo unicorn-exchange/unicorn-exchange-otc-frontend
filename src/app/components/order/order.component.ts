@@ -49,4 +49,6 @@ export class OrderComponent extends BaseComponent implements OnInit {
   }
 
   confirmOrder = () => this.ordersStore.confirmOrder(this.order.id);
+
+  declineOrder = () => this.ordersStore.declineOrder(this.order.id);
 }

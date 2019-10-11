@@ -1,3 +1,4 @@
+<app-alerts-component [alertType]="alertType"></app-alerts-component>
 <div class="create-order-wrapper">
   <app-alerts-component [alertType]="alertType"></app-alerts-component>
   <span class="heading">
@@ -63,50 +64,78 @@
         </div>
         <div class="exchange-block">
           <div class="left-block">
-            <label class="currency-label">
-              Crypto currency for sell
+            <div class="form-group">
+              <label for="currencySell">
+                Currency for sell
+              </label>
               <ng-select
                 [formControlName]="orderCommonFields.currencySell"
                 [items]="settings.currencies"
                 autofocus
+                id="currencySell"
                 bindLabel="title"
                 bindValue="id"
                 class="default-field currency-select"
               >
               </ng-select>
-            </label>
+              <div *ngIf="submitted" class="invalid-feedback">
+                <div
+                  *ngFor="let err of form.get(orderCommonFields.currencySell).errors | keyvalue">{{ err.value | translate }}</div>
+              </div>
+            </div>
 
-            <label>
-              Sell price
+            <div class="form-group">
+              <label for="currencySellPrice">
+                Sell price
+              </label>
               <input
                 [formControlName]="orderCommonFields.currencySellPrice"
                 class="form-control default-input default-field"
-                type="number">
-            </label>
+                id="currencySellPrice"
+                type="number"
+              >
+              <div *ngIf="submitted" class="invalid-feedback">
+                <div
+                  *ngFor="let err of form.get(orderCommonFields.currencySellPrice).errors | keyvalue">{{ err.value | translate }}</div>
+              </div>
+            </div>
           </div>
           <div class="change">
             <img alt="change" class="change-icon" src="../../../assets/icons/repeat.svg"/>
           </div>
           <div class="right-block">
-            <label class="currency-label">
-              Crypto currency for buy
+            <div class="form-group">
+              <label for="currencyBuy">
+                Currency for buy
+              </label>
               <ng-select
                 [items]="settings.currencies"
                 autofocus
                 bindLabel="title"
                 bindValue="id"
+                id="currencyBuy"
                 class="default-field currency-select"
                 formControlName="{{orderCommonFields.currencyBuy}}">
               </ng-select>
-            </label>
-
-            <label>
-              Buy price
+              <div *ngIf="submitted" class="invalid-feedback">
+                <div
+                  *ngFor="let err of form.get(orderCommonFields.currencyBuy).errors | keyvalue">{{ err.value | translate }}</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="currencyBuyPrice">
+                Buy price
+              </label>
               <input
                 [formControlName]="orderCommonFields.currencyBuyPrice"
+                id="currencyBuyPrice"
                 class="form-control default-input default-field"
                 type="number">
-            </label>
+              <div *ngIf="submitted" class="invalid-feedback">
+                <div
+                  *ngFor="let err of form.get(orderCommonFields.currencyBuyPrice).errors | keyvalue">{{ err.value | translate }}</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
