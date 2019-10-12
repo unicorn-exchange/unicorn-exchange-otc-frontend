@@ -119,4 +119,8 @@ export class AppModule {
   constructor(private config: NgSelectConfig) {
     this.config.notFoundText = "Custom not found";
   }
+
+  onInit() {
+
+  }
 }

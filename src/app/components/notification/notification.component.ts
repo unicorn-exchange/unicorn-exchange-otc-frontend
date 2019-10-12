@@ -4,6 +4,8 @@ import {debounceTime, takeUntil} from "rxjs/operators";
 import {CommonStore, IGlobalNotification} from "../../stores/common-store.service";
 import {BaseComponent} from "../base-component/base.component";
 
+const DEBOUNCE_TIME = 3000;
+
 @Component({
   selector: "app-notification-component",
   templateUrl: "./notification.component.html",
@@ -29,7 +31,7 @@ export class NotificationComponent extends BaseComponent implements OnInit {
         this.alertConfig.type = params.type;
       });
     this.commonStore.globalNotification$
-      .pipe(debounceTime(3000))
+      .pipe(debounceTime(DEBOUNCE_TIME))
       .subscribe(() => {
         this.notification = null;
       });

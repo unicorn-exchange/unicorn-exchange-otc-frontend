@@ -57,7 +57,7 @@ export class SignInComponent extends BaseComponent implements OnInit {
 
     this.authStore
       .signIn(formData)
-      .then(() => this.router.navigate([ROUTES.OPEN_MARKET]))
+      .then(() => this.router.navigate([ROUTES.ORDERS]))
       .catch(err => {
         console.error(err);
         this.commonStore.showNotification({

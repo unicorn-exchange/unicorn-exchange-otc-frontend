@@ -4,7 +4,6 @@
       class="default-link"
       routerLink="/{{ROUTES.SIGN_UP}}">{{ "AUTHORIZATION.SIGN_IN.DONT_HAVE_ACCOUNT" | translate }}
     </a>
-    <span>{{ "AUTHORIZATION.LOGIN_GOOGLE" | translate }}</span>
   </div>
   <span class="heading">{{ "AUTHORIZATION.SIGN_IN.SIGN_IN_HEADER" | translate }}</span>
 
@@ -31,7 +30,7 @@
         id="password"
         [placeholder]="'FORMS.PASSWORD' | translate"
         class="form-control default-input"
-        type="text">
+        type="password">
       <div *ngIf="submitted" class="invalid-feedback">
         <div *ngFor="let err of form.get(formFields.password).errors | keyvalue">{{ err.value | translate }}</div>
       </div>

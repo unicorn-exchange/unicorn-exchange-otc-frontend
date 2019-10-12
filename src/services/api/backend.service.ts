@@ -6,6 +6,8 @@ import {APIV1} from "./api_v1";
 import {CONFIG, ROUTES} from "../../config";
 import {CommonStore} from "../../app/stores/common-store.service";
 import {NotificationType} from "../../app/components/notification/notification.enum";
+import {KeyEnum} from "../db/key.enum";
+import {DBService} from "../db/db.service";
 
 @Injectable({
   providedIn: "root"
@@ -15,11 +17,14 @@ export class BackendService {
 
   constructor(
     private commonStore: CommonStore,
+    private db: DBService,
   ) {
     this.apiV1 = new APIV1("http://localhost:3000/api/v1").axios;
 
     this.apiV1.interceptors.request.use(this.onRequest, this.onRequestError);
     this.apiV1.interceptors.response.use(this.onResponse, this.onResponseError);
+
+    this.setAuth(this.db.storage.get(KeyEnum.token));
   }
 
   private onRequest = (request) => {

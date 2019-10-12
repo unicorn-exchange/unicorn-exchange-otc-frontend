@@ -39,6 +39,21 @@ export class OrdersComponent extends BaseComponent implements OnInit {
     super();
   }
 
+  ngOnInit() {
+    this.settingsStore.settings$
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(data => {
+        this.settings = data;
+      });
+    this.ordersStore.state$
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(data => {
+        this.orders = data.orders;
+        this.count = data.count;
+      });
+    this.loadOrders();
+  }
+
   loadOrders() {
     this.ordersStore
       .loadOrders()
@@ -70,20 +85,5 @@ export class OrdersComponent extends BaseComponent implements OnInit {
           type: NotificationType.error
         });
       });
-  }
-
-  ngOnInit() {
-    this.settingsStore.settings$
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe(data => {
-        this.settings = data;
-      });
-    this.ordersStore.state$
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe(data => {
-        this.orders = data.orders;
-        this.count = data.count;
-      });
-    this.loadOrders();
   }
 }
