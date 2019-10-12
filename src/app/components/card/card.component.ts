@@ -6,11 +6,14 @@ import {Component, Input, OnInit} from "@angular/core";
   styleUrls: ["./card.component.scss"]
 })
 export class CardComponent implements OnInit {
-  @Input() cardName: string;
-  @Input() price: number;
-  @Input() changedPrice: number;
+  @Input() userName: string;
+  @Input() sellPrice: number;
+  @Input() buyPrice: number;
+  @Input() sellCurrency: string;
+  @Input() buyCurrency: string;
+  @Input() country: string;
+  @Input() userRate: number;
   @Input() isDarkCard: boolean;
-  @Input() isLightCard: boolean;
 
   constructor() {
   }

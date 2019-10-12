@@ -53,5 +53,8 @@ export class OrderComponent extends BaseComponent implements OnInit {
     this.router.navigate([ROUTES.PROCESSING], {relativeTo: this.route});
   };
 
-  declineOrder = () => this.ordersStore.declineOrder(this.order.id);
+  declineOrder = () => {
+    this.ordersStore.declineOrder(this.order.id);
+    this.router.navigate([ROUTES.ORDERS]);
+  };
 }

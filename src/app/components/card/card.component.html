@@ -1,15 +1,15 @@
 <div class="market-card-wrapper"
-     [ngClass]="{'dark-card': isDarkCard, 'light-card': isLightCard}">
+     [ngClass]="{'dark-card': isDarkCard, 'light-card': !isDarkCard}">
   <div class="market-card-header">
     <app-rating-component
-      [rate]="2"
+      [rate]="userRate"
       [maxRate]="3"
       [isReadOnly]="true"
       [color]="'#e9e9f0'"></app-rating-component>
     <div class="seller">
       <div class="main-seller-info">
         <img alt="user" class="user-img" src="../../../assets/images/user.png">
-        <span class="seller-name">John Meller</span>
+        <span class="seller-name">{{userName}}</span>
       </div>
 <!--      <span class="date">17 feb 12:04</span>-->
     </div>
@@ -20,13 +20,13 @@
       <span class="market-card-name">Category/Name</span>
     </div>
     <div class="market-card-price">
-      <span class="main-price">1 100€</span>
-      <span class="country">Russian Federation</span>
+      <span class="main-price">{{sellPrice}} {{sellCurrency}}</span>
+      <span class="country">{{country}}</span>
     </div>
   </div>
   <div class="market-card-footer">
     <button class="buy-btn">
-      buy
+      buy for {{buyPrice}} {{buyCurrency}}
     </button>
   </div>
 </div>
