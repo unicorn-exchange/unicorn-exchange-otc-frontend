@@ -27,11 +27,13 @@ export class OrderComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.commonStore.settings$.pipe(takeUntil(this.ngUnsubscribe))
+    this.commonStore.settings$
+      .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(data => {
         this.settings = data;
       });
-    this.route.paramMap.pipe(takeUntil(this.ngUnsubscribe))
+    this.route.paramMap
+      .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(params => {
         this.state.isLoading = true;
         this.ordersStore
@@ -48,12 +50,12 @@ export class OrderComponent extends BaseComponent implements OnInit {
       });
   }
 
-  confirmOrder = () => {
+  confirmOrder() {
     this.ordersStore.confirmOrder(this.order.id);
     this.router.navigate([ROUTES.PROCESSING], {relativeTo: this.route});
   }
 
-  declineOrder = () => {
+  declineOrder() {
     this.ordersStore.declineOrder(this.order.id);
     this.router.navigate([ROUTES.ORDERS]);
   }

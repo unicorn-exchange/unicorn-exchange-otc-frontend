@@ -1,13 +1,19 @@
 import {ISettingsCommonRes} from "unicorn-types/types/api/responses";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Subject} from "rxjs";
 import {Injectable} from "@angular/core";
 import {BackendService} from "../../services/api/backend.service";
 import {ICurrencyDTO} from "unicorn-types/types/api/dtos";
 import {CurrencyTypes} from "unicorn-types/types/enums/currency-types";
+import {NotificationType} from "../components/notification/notification.enum";
 
 export interface IAppSettings extends Partial<ISettingsCommonRes> {
   currencies: ICurrencyDTO[];
   maxRating: number;
+}
+
+export interface IGlobalNotification {
+  text: string;
+  type: NotificationType;
 }
 
 const MAX_RATING = 5;
@@ -22,6 +28,7 @@ export class CommonStore {
     paymentMethods: [],
     maxRating: MAX_RATING,
   });
+  globalNotification$ = new Subject<IGlobalNotification>();
 
   constructor(private backend: BackendService) {
     backend.apiV1.get("/settings/common").then(res => {
@@ -41,5 +48,9 @@ export class CommonStore {
         maxRating: MAX_RATING,
       });
     });
+  }
+
+  showNotification(params: IGlobalNotification) {
+    this.globalNotification$.next(params);
   }
 }

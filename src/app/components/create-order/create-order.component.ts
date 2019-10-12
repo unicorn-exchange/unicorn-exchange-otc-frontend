@@ -1,12 +1,13 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {Subject, Subscription} from "rxjs";
+import {Subscription} from "rxjs";
 import {CommonStore, IAppSettings} from "../../stores/common-store.service";
 import {ordersCreateValidationScheme} from "unicorn-types/types/validators/orders-create-validator";
 import {genCtrl} from "../../../services/utils";
 import {OrdersStore} from "../../stores/orders-store.service";
 import {TranslateService} from "@ngstack/translate";
 import {orderCommonFields, orderWriteFields} from "unicorn-types/types/enums/forms/order";
+import {NotificationType} from "../notification/notification.enum";
 
 @Component({
   selector: "app-create-order-component",
@@ -20,7 +21,6 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
   submitted = false;
   settings: IAppSettings;
   formSubscription: Subscription;
-  alertType = new Subject<"success" | "error">();
   form: FormGroup = this.fb.group(Object.assign(
     genCtrl({key: orderWriteFields.countryId, scheme: this.scheme}),
     genCtrl({key: orderCommonFields.currencySell, scheme: this.scheme}),
@@ -68,7 +68,12 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
 
     this.ordersStore
       .createOrder(formData)
-      .then(() => this.alertType.next("success"))
+      .then(() => {
+        this.commonStore.showNotification({
+          text: "Order created",
+          type: NotificationType.success,
+        });
+      })
       .catch(err => {
         console.log(err);
       });

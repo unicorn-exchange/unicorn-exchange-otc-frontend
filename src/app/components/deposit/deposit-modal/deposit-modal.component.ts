@@ -1,25 +1,32 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {Subject} from "rxjs";
+import {BaseComponent} from "../../base-component/base.component";
+import {CommonStore} from "../../../stores/common-store.service";
+import {NotificationType} from "../../notification/notification.enum";
 
 @Component({
   selector: "app-deposit-modal-content",
   templateUrl: "./deposit-modal.component.html",
   styleUrls: ["./deposit-modal.component.scss"]
 })
-export class DepositModalComponent implements OnInit {
+export class DepositModalComponent extends BaseComponent implements OnInit {
   @Input() name;
   address = "0xa94ab44a1c16714dad4f732410c49a112d8d3605";
-  alertType = new Subject<string>();
 
-
-  constructor(public activeModal: NgbActiveModal) {
+  constructor(
+    private activeModal: NgbActiveModal,
+    private commonStore: CommonStore,
+  ) {
+    super();
   }
 
   ngOnInit() {
   }
 
   successCopy() {
-    this.alertType.next("success");
+    this.commonStore.showNotification({
+      text: "Address has been copied",
+      type: NotificationType.success,
+    });
   }
 }

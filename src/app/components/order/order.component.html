@@ -8,7 +8,7 @@
   <div *ngIf="state.isLoading">
     <h1>Loading</h1>
   </div>
-  <div *ngIf="!state.isLoading" class="info-wrapper">
+  <div *ngIf="!state.isLoading && order" class="info-wrapper">
     <div class="account-wrapper">
       <img alt="user-img" class="user-img" src="../../../assets/images/user.png">
       <span class="user-name">{{order.owner.username}}</span>

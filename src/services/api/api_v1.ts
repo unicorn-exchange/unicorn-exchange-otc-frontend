@@ -12,22 +12,11 @@ export class APIV1 {
 
   constructor(baseURL: string, headers: {} = {}) {
     this.axios = axios.create<APIV1Doc>({
-      baseURL: `${baseURL}/api/v1`,
+      baseURL,
       headers,
     });
     if (CONFIG.FAKE_NETWORK) {
       mockAPIV1Requests(this.axios as AxiosInstance);
     }
-    if (!CONFIG.DEBUG_NETWORK) {
-      return;
-    }
-    this.axios.interceptors.request.use(request => {
-      console.log("Request", request);
-      return request;
-    });
-    this.axios.interceptors.response.use(response => {
-      console.log("Response:", response);
-      return response;
-    });
   }
 }

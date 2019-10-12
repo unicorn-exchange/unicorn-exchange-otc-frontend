@@ -23,7 +23,7 @@ import {OpenMarketComponent} from "./components/open-market/open-market.componen
 import {RatingComponent} from "./components/rating/rating.component";
 import {CreateOrderComponent} from "./components/create-order/create-order.component";
 import {OrdersComponent} from "./components/orders/orders.component";
-import {AlertsComponent} from "./components/alerts/alerts.component";
+import {NotificationComponent} from "./components/notification/notification.component";
 import {OrderComponent} from "./components/order/order.component";
 import {DepositComponent} from "./components/deposit/deposit.component";
 import {WithdrawComponent} from "./components/withdraw/withdraw.component";
@@ -66,7 +66,7 @@ export const baseModule: NgModule = {
     RatingComponent,
     CreateOrderComponent,
     OrdersComponent,
-    AlertsComponent,
+    NotificationComponent,
     OrderComponent,
     DepositComponent,
     WithdrawComponent,
@@ -103,6 +103,7 @@ export const baseModule: NgModule = {
   declarations: [
     AppComponent,
     ...baseModule.declarations,
+    NotificationComponent,
   ],
   providers: [
     ...baseModule.providers,

@@ -9,6 +9,7 @@ import {Router} from "@angular/router";
 import {TranslateService} from "@ngstack/translate";
 import {BaseComponent} from "../base-component/base.component";
 import {takeUntil} from "rxjs/operators";
+import {Subject} from "rxjs";
 
 @Component({
   selector: "app-sign-in-component",
@@ -18,6 +19,7 @@ import {takeUntil} from "rxjs/operators";
 export class SignInComponent extends BaseComponent implements OnInit {
   ROUTES = ROUTES;
   submitted = false;
+  alertType = new Subject<string>();
   formFields = signInFields;
   scheme = signInValidationScheme;
   form: FormGroup = this.fb.group(Object.assign(
@@ -43,6 +45,7 @@ export class SignInComponent extends BaseComponent implements OnInit {
   }
 
   onSubmit(event, formData) {
+    this.alertType.next("success");
     this.submitted = true;
     event.preventDefault();
     if (this.form.invalid) {

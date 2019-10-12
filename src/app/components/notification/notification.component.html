@@ -1,11 +1,11 @@
 <div class="alerts-wrapper">
-  <ngb-alert *ngIf="type" [type]="type" class="animated 1.5s fadeInDown">
+  <ngb-alert *ngIf="notification" [type]="notification.type" class="animated 1.5s fadeInDown">
     <img
-      *ngIf="type === 'success'"
+      *ngIf="notification.type === 'success'"
       alt="success-icon"
       class="alert-icon"
       src="../../../assets/icons/alert-success.svg"
     >
-    {{messageText}}
+    {{notification.text}}
   </ngb-alert>
 </div>

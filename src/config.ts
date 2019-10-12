@@ -1,7 +1,7 @@
 export class CONFIG {
   static readonly RECAPTCHA_KEY = "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI";
   static readonly THEME = "light";
-  static readonly FAKE_NETWORK = true;
+  static readonly FAKE_NETWORK = false;
   static readonly IS_DEV = true;
   static readonly DEBUG_NETWORK = true;
   static readonly DEBUG_PERFORMANCE = true;
