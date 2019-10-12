@@ -51,10 +51,10 @@ export class OrderComponent extends BaseComponent implements OnInit {
   confirmOrder = () => {
     this.ordersStore.confirmOrder(this.order.id);
     this.router.navigate([ROUTES.PROCESSING], {relativeTo: this.route});
-  };
+  }
 
   declineOrder = () => {
     this.ordersStore.declineOrder(this.order.id);
     this.router.navigate([ROUTES.ORDERS]);
-  };
+  }
 }
