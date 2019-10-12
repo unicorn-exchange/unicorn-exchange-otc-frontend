@@ -18,6 +18,7 @@
   .info-wrapper {
     display: flex;
     align-items: center;
+    justify-content: space-around;
 
     .order-value-info {
       .info-heading {
@@ -58,7 +59,6 @@
       border-radius: 4px;
       border: 1px solid #aeaebc;
       padding: 15px;
-      margin-left: 100px;
 
       .confirm-pay {
         padding-top: 30px;
@@ -72,6 +72,10 @@
           margin-top: 5px;
         }
       }
+    }
+
+    .payment-order-info {
+      width: 35%;
     }
   }
 

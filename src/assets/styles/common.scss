@@ -190,3 +190,7 @@ input[type=number]::-webkit-outer-spin-button {
 .pointer {
   cursor: pointer;
 }
+
+.danger {
+  color: $main_red_color;
+}

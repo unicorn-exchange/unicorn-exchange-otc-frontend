@@ -84,14 +84,24 @@
         </span>
       </div>
       <div class="confirm-pay">
-        <button class="red-button">I paid</button>
+        <button (click)="confirmPay()" class="red-button">I paid</button>
         <span class="pay-description">
           I confirm, that I paid.
         </span>
       </div>
     </div>
     <div class="payment-order-info">
-
+      <p>
+        After payment, click on the "I paid" button and wait for the funds to be credited to your address.
+        If the funds have not been received within an hour, write to the seller, and then in support
+      </p>
+      <br>
+      <div class="danger">
+        <h5>Attention!</h5>
+        <span>
+          Do not reject the offer after payment, otherwise you will not receive money
+        </span>
+      </div>
     </div>
   </div>
   <div class="btn-wrapper">

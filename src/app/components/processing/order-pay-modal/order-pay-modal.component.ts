@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from "@angular/core";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {BaseComponent} from "../../base-component/base.component";
 import {OrdersStore} from "../../../stores/orders-store.service";
+import {Subject} from "rxjs";
 
 @Component({
   selector: "app-order-pay-modal-content",
@@ -10,6 +11,8 @@ import {OrdersStore} from "../../../stores/orders-store.service";
 })
 export class OrderPayModalComponent extends BaseComponent implements OnInit {
   @Input() orderId;
+  alertType = new Subject<string>();
+
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -22,7 +25,8 @@ export class OrderPayModalComponent extends BaseComponent implements OnInit {
   }
 
   confirmOrder = () => {
-    this.activeModal.dismiss('Cross click');
+    this.alertType.next("success");
+    this.activeModal.dismiss("Cross click");
     this.ordersStore.confirmOrder(this.orderId);
-  };
+  }
 }

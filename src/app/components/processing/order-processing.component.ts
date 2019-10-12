@@ -8,6 +8,7 @@ import {IFullOrderDTO} from "unicorn-types/types/api/dtos";
 import {CommonStore, IAppSettings} from "../../stores/common-store.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {OrderDeclineModalComponent} from "./order-decline-modal/order-decline-modal.component";
+import {OrderPayModalComponent} from "./order-pay-modal/order-pay-modal.component";
 
 @Component({
   selector: "app-order-processing-component",
@@ -49,6 +50,11 @@ export class OrderProcessingComponent extends BaseComponent implements OnInit {
             this.state.isLoading = false;
           });
       });
+  }
+
+  confirmPay() {
+    const modalRef = this.modalService.open(OrderPayModalComponent, {size: "lg"});
+    modalRef.componentInstance.orderId = this.order.id;
   }
 
   declineOrder() {
