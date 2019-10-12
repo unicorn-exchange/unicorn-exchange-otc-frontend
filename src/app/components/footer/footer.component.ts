@@ -8,16 +8,11 @@ import {ROUTES} from "../../../config";
 })
 export class FooterComponent implements OnInit {
 
-  showSideBar = false;
   ROUTES = ROUTES;
 
   constructor() {
   }
 
   ngOnInit() {
-  }
-
-  toggleSideBar() {
-    this.showSideBar = !this.showSideBar;
   }
 }

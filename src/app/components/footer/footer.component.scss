@@ -1,8 +1,38 @@
 @import "../../../assets/styles/variables";
 
 .footer-wrapper {
-  padding: 42px 33px 0 33px;
+  padding: 20px 33px;
+  background-color: #e7e7ec;
+  margin-top: 50px;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 
   .footer {
+    .footer-block {
+      display: flex;
+      flex-direction: column;
+
+      .footer-block-title {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .footer-link {
+        color: $main_text_color;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .company-name {
+        font-family: $circular_std;
+        font-weight: bold;
+        font-size: 24px;
+
+        .first-letter {
+          color: $main_red_color;
+        }
+      }
+    }
   }
 }
