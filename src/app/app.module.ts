@@ -75,6 +75,7 @@ export const baseModule: NgModule = {
     OrderProcessingComponent,
     OrderDeclineModalComponent,
     OrderPayModalComponent,
+    NotificationComponent,
     FooterComponent
   ],
   entryComponents: [
@@ -103,7 +104,6 @@ export const baseModule: NgModule = {
   declarations: [
     AppComponent,
     ...baseModule.declarations,
-    NotificationComponent,
   ],
   providers: [
     ...baseModule.providers,
