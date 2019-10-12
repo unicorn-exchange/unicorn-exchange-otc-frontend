@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {ordersCreateValidationScheme} from "unicorn-types/types/validators/orders-create-validator";
-import {Subscription} from "rxjs";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {genCtrl} from "../../../services/utils";
 import {CommonStore, IAppSettings} from "../../stores/common-store.service";
@@ -8,18 +7,19 @@ import {OrdersStore} from "../../stores/orders-store.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {DepositModalComponent} from "./deposit-modal/deposit-modal.component";
 import {orderCommonFields} from "unicorn-types/types/enums/forms/order";
+import {takeUntil} from "rxjs/operators";
+import {BaseComponent} from "../base-component/base.component";
 
 @Component({
   selector: "app-deposit-component",
   templateUrl: "./deposit.component.html",
   styleUrls: ["./deposit.component.scss"]
 })
-export class DepositComponent implements OnInit, OnDestroy {
+export class DepositComponent extends BaseComponent implements OnInit, OnDestroy {
   scheme = ordersCreateValidationScheme;
   orderCommonFields = orderCommonFields;
   submitted = false;
   settings: IAppSettings;
-  formSubscription: Subscription;
   form: FormGroup = this.fb.group(Object.assign(
     genCtrl({key: orderCommonFields.currencyBuy, scheme: this.scheme}),
   ));
@@ -41,19 +41,14 @@ export class DepositComponent implements OnInit, OnDestroy {
     private ordersStore: OrdersStore,
     private modalService: NgbModal
   ) {
+    super()
   }
 
   ngOnInit() {
-    this.commonStore.settings$.subscribe(data => {
-      this.settings = data;
-    });
-    this.formSubscription = this.form.valueChanges.subscribe(v => {
-      console.log(v);
-    });
-  }
-
-  ngOnDestroy() {
-    this.formSubscription.unsubscribe();
+    this.commonStore.settings$.pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(data => {
+        this.settings = data;
+      });
   }
 
   onSubmit(event, formData) {
