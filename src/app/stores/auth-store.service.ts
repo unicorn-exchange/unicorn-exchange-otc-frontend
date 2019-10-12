@@ -33,7 +33,7 @@ export class AuthStore {
       .post("/auth/sign-in", params)
       .then(res => {
         if (!res.data.token || res.data.errors.length) {
-          throw res.data.errors;
+          throw res;
         }
         this.token = res.data.token;
         return res;
@@ -45,7 +45,7 @@ export class AuthStore {
       .post("/auth/sign-up", params)
       .then(res => {
         if (!res.data.token || res.data.errors.length) {
-          throw res.data.errors;
+          throw res;
         }
         this.token = res.data.token;
         return res;

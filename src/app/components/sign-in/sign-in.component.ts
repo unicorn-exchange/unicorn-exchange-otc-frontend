@@ -9,7 +9,8 @@ import {Router} from "@angular/router";
 import {TranslateService} from "@ngstack/translate";
 import {BaseComponent} from "../base-component/base.component";
 import {takeUntil} from "rxjs/operators";
-import {Subject} from "rxjs";
+import {CommonStore} from "../../stores/common-store.service";
+import {NotificationType} from "../notification/notification.enum";
 
 @Component({
   selector: "app-sign-in-component",
@@ -19,7 +20,6 @@ import {Subject} from "rxjs";
 export class SignInComponent extends BaseComponent implements OnInit {
   ROUTES = ROUTES;
   submitted = false;
-  alertType = new Subject<string>();
   formFields = signInFields;
   scheme = signInValidationScheme;
   form: FormGroup = this.fb.group(Object.assign(
@@ -30,6 +30,7 @@ export class SignInComponent extends BaseComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authStore: AuthStore,
+    private commonStore: CommonStore,
     private translate: TranslateService,
     private router: Router,
   ) {
@@ -45,18 +46,24 @@ export class SignInComponent extends BaseComponent implements OnInit {
   }
 
   onSubmit(event, formData) {
-    this.alertType.next("success");
     this.submitted = true;
     event.preventDefault();
     if (this.form.invalid) {
-      return;
+      return this.commonStore.showNotification({
+        text: "Please check the form",
+        type: NotificationType.warning
+      });
     }
 
     this.authStore
       .signIn(formData)
       .then(() => this.router.navigate([ROUTES.OPEN_MARKET]))
       .catch(err => {
-        console.log(err);
+        console.error(err);
+        this.commonStore.showNotification({
+          text: "Invalid credentials",
+          type: NotificationType.error
+        });
       });
   }
 }

@@ -5,10 +5,11 @@ import {ROUTES} from "../../../config";
 import {BaseComponent} from "../base-component/base.component";
 import {takeUntil} from "rxjs/operators";
 import {IFullOrderDTO} from "unicorn-types/types/api/dtos";
-import {CommonStore, IAppSettings} from "../../stores/common-store.service";
+import {CommonStore} from "../../stores/common-store.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {OrderDeclineModalComponent} from "./order-decline-modal/order-decline-modal.component";
 import {OrderPayModalComponent} from "./order-pay-modal/order-pay-modal.component";
+import {IAppSettings, SettingsStore} from "../../stores/settings-store.service";
 
 @Component({
   selector: "app-order-processing-component",
@@ -25,17 +26,20 @@ export class OrderProcessingComponent extends BaseComponent implements OnInit {
     private router: Router,
     private ordersStore: OrdersStore,
     private commonStore: CommonStore,
+    private settingsStore: SettingsStore,
     private modalService: NgbModal,
   ) {
     super();
   }
 
   ngOnInit() {
-    this.commonStore.settings$.pipe(takeUntil(this.ngUnsubscribe))
+    this.settingsStore.settings$
+      .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(data => {
         this.settings = data;
       });
-    this.route.paramMap.pipe(takeUntil(this.ngUnsubscribe))
+    this.route.paramMap
+      .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(params => {
         this.state.isLoading = true;
         this.ordersStore

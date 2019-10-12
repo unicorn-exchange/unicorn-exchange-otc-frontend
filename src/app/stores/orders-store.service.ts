@@ -27,9 +27,6 @@ export class OrdersStore {
     return this.backend.apiV1
       .get("/orders")
       .then(res => {
-        if (!res.data.ok) {
-          return console.error(res.data.errors);
-        }
         this.state$.next({
           count: res.data.count,
           orders: res.data.payload,
@@ -37,7 +34,11 @@ export class OrdersStore {
         return res.data;
       })
       .catch(err => {
-        console.error(err);
+        this.state$.next({
+          count: 0,
+          orders: [],
+        });
+        throw err;
       });
   }
 

@@ -9,6 +9,8 @@ import {TranslateService} from "@ngstack/translate";
 import {AuthStore} from "../../stores/auth-store.service";
 import {BaseComponent} from "../base-component/base.component";
 import {takeUntil} from "rxjs/operators";
+import {NotificationType} from "../notification/notification.enum";
+import {CommonStore} from "../../stores/common-store.service";
 
 @Component({
   selector: "app-sign-up-component",
@@ -29,6 +31,7 @@ export class SignUpComponent extends BaseComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authStore: AuthStore,
+    private commonStore: CommonStore,
     private translate: TranslateService,
     private router: Router,
   ) {
@@ -47,14 +50,20 @@ export class SignUpComponent extends BaseComponent implements OnInit {
     this.submitted = true;
     event.preventDefault();
     if (this.form.invalid) {
-      return;
+      return this.commonStore.showNotification({
+        text: "Please check the form",
+        type: NotificationType.warning
+      });
     }
 
     this.authStore
       .signUp(formData)
       .then(() => this.router.navigate([ROUTES.OPEN_MARKET]))
       .catch(err => {
-        console.log(err);
+        this.commonStore.showNotification({
+          text: "Invalid credentials",
+          type: NotificationType.error
+        });
       });
   }
 }

@@ -3,7 +3,9 @@ import {APIV1Doc} from "unicorn-types/types/api/api-v1-doc";
 import {Headers} from "unicorn-types/types/enums/enums";
 import {Injectable} from "@angular/core";
 import {APIV1} from "./api_v1";
-import {CONFIG} from "../../config";
+import {CONFIG, ROUTES} from "../../config";
+import {CommonStore} from "../../app/stores/common-store.service";
+import {NotificationType} from "../../app/components/notification/notification.enum";
 
 @Injectable({
   providedIn: "root"
@@ -11,26 +13,30 @@ import {CONFIG} from "../../config";
 export class BackendService {
   apiV1: TypedAxiosInstance<APIV1Doc>;
 
-  constructor() {
+  constructor(
+    private commonStore: CommonStore,
+  ) {
     this.apiV1 = new APIV1("http://localhost:3000/api/v1").axios;
 
-    this.apiV1.interceptors.request.use(BackendService.onRequest, BackendService.onRequestError);
-    this.apiV1.interceptors.response.use(BackendService.onResponse, BackendService.onResponseError);
+    this.apiV1.interceptors.request.use(this.onRequest, this.onRequestError);
+    this.apiV1.interceptors.response.use(this.onResponse, this.onResponseError);
   }
 
-  private static onRequest(request) {
+  private onRequest = (request) => {
     if (CONFIG.DEBUG_NETWORK) {
       console.log("Request", request);
     }
     return request;
-  }
+  };
 
-  private static onRequestError(error: any) {
+  private onRequestError = (error: any) => {
+    if (CONFIG.DEBUG_NETWORK) {
+      console.error("Request error", error);
+    }
     return Promise.reject(error);
+  };
 
-  }
-
-  private static onResponse(response) {
+  private onResponse = (response) => {
     if (CONFIG.DEBUG_NETWORK) {
       console.log("Response:", response);
     }
@@ -38,11 +44,21 @@ export class BackendService {
       return Promise.reject(response);
     }
     return response;
-  }
+  };
 
-  private static onResponseError(error: any) {
+  private onResponseError = (error: any) => {
+    if (CONFIG.DEBUG_NETWORK) {
+      console.error("Response error:", error);
+    }
+    if (error.response.status === 401) {
+      this.commonStore.redirectTo(ROUTES.SIGN_IN);
+      this.commonStore.showNotification({
+        type: NotificationType.error,
+        text: "Please sign in first!",
+      });
+    }
     return Promise.reject(error);
-  }
+  };
 
   setAuth(token?: string) {
     if (!token) {

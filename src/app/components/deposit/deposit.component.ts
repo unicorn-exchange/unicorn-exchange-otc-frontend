@@ -3,11 +3,12 @@ import {ordersCreateValidationScheme} from "unicorn-types/types/validators/order
 import {Subscription} from "rxjs";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {genCtrl} from "../../../services/utils";
-import {CommonStore, IAppSettings} from "../../stores/common-store.service";
+import {CommonStore} from "../../stores/common-store.service";
 import {OrdersStore} from "../../stores/orders-store.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {DepositModalComponent} from "./deposit-modal/deposit-modal.component";
 import {orderCommonFields} from "unicorn-types/types/enums/forms/order";
+import {IAppSettings, SettingsStore} from "../../stores/settings-store.service";
 
 @Component({
   selector: "app-deposit-component",
@@ -38,13 +39,14 @@ export class DepositComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private commonStore: CommonStore,
+    private settingsStore: SettingsStore,
     private ordersStore: OrdersStore,
     private modalService: NgbModal
   ) {
   }
 
   ngOnInit() {
-    this.commonStore.settings$.subscribe(data => {
+    this.settingsStore.settings$.subscribe(data => {
       this.settings = data;
     });
     this.formSubscription = this.form.valueChanges.subscribe(v => {
