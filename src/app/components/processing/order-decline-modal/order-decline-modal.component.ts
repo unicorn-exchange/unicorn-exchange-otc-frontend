@@ -27,5 +27,6 @@ export class OrderDeclineModalComponent extends BaseComponent implements OnInit 
   declineOrder = () => {
     this.ordersStore.declineOrder(this.orderId);
     this.router.navigate([ROUTES.ORDERS]);
+    this.activeModal.dismiss("Cross click");
   }
 }

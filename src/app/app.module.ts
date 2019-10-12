@@ -32,6 +32,7 @@ import {WithdrawModalComponent} from "./components/withdraw/withdraw-modal/withd
 import {OrderProcessingComponent} from "./components/processing/order-processing.component";
 import {OrderDeclineModalComponent} from "./components/processing/order-decline-modal/order-decline-modal.component";
 import {OrderPayModalComponent} from "./components/processing/order-pay-modal/order-pay-modal.component";
+import {FooterComponent} from "./components/footer/footer.component";
 
 // tslint:disable-next-line:ban-types
 export function setupTranslateFactory(service: TranslateService): Function {
@@ -73,7 +74,8 @@ export const baseModule: NgModule = {
     WithdrawModalComponent,
     OrderProcessingComponent,
     OrderDeclineModalComponent,
-    OrderPayModalComponent
+    OrderPayModalComponent,
+    FooterComponent
   ],
   entryComponents: [
     DepositModalComponent,

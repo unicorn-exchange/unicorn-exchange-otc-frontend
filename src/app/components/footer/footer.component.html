@@ -1,0 +1,17 @@
+<div class="footer-wrapper">
+  <div class="footer">
+    <div class="unicorn-info footer-block">
+      <div class="company-name">
+        <span class="first-letter">{{ "UNICORN." | translate }}</span>
+        <span>{{ "EXCHANGE" | translate }}</span>
+      </div>
+      <span>© Unicorn Exchange All rights reserved</span>
+    </div>
+    <div class="footer-block">
+      <span class="footer-block-title">Actions</span>
+      <a [routerLink]="ROUTES.ORDERS" class="footer-link">Buy or sell</a>
+      <a [routerLink]="ROUTES.CREATE_ORDER" class="footer-link">Make your own deal</a>
+      <a [routerLink]="ROUTES.ORDERS" class="footer-link"></a>
+    </div>
+  </div>
+</div>

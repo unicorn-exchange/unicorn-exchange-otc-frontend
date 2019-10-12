@@ -1,6 +1,5 @@
 <div class="orders-wrapper">
   <div class="orders">
-    <button (click)="loadOrders()">Load Orders</button>
     <form [formGroup]="filersForm" class="filters-wrapper flex-column flex-md-row">
       <label class="filter-label">
         Currency for sell
@@ -56,8 +55,7 @@
       <table class="table">
         <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">Name</th>
+          <th scope="col">Owner</th>
           <th scope="col">Deal Amount</th>
           <th scope="col">Price</th>
           <th scope="col">Payment Method</th>

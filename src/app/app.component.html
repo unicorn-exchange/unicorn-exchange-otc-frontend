@@ -1,6 +1,6 @@
-<div>
-  <app-header-component></app-header-component>
+<app-header-component></app-header-component>
 
+<div>
   <div *ngIf="CONFIG.IS_DEV">
     <a routerLink="/">Base</a> |
     <a [routerLink]="ROUTES.SIGN_IN">Sign In</a> |
@@ -21,3 +21,5 @@
 </div>
 
 <router-outlet></router-outlet>
+
+<!--<app-footer-component></app-footer-component>-->
