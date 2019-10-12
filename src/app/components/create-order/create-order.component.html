@@ -72,7 +72,6 @@
                 autofocus
                 id="currencySell"
                 bindLabel="title"
-                bindValue="id"
                 class="default-field currency-select"
               >
               </ng-select>
@@ -110,7 +109,6 @@
                 [items]="settings.currencies"
                 autofocus
                 bindLabel="title"
-                bindValue="id"
                 id="currencyBuy"
                 class="default-field currency-select"
                 formControlName="{{orderCommonFields.currencyBuy}}">
@@ -220,7 +218,7 @@
                 class="info-icon"
                 ngbTooltip="Restrict your advertisement to be shown only to users that you have marked as Trusted. Learn how to mark users as trusted."
                 placement="top"
-                src="../../../assets/icons/info.svg"/>
+                src="../../../assets/icons/repeat.svg"/>
             </label>
             <input
               [formControlName]="orderCommonFields.isTrustedUsersOnly"

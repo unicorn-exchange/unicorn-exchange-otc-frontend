@@ -3,14 +3,13 @@
     <div class="details-wrapper">
       <div class="form-group details-group">
         <label for="cryptoCurrencyBuyId" class="currency-label">
-          Select crypto currency for withdraw
+          Select currency for withdraw
         </label>
         <ng-select
           [formControlName]="orderCommonFields.currencyBuy"
-          [items]="settings.cryptoCurrencies"
+          [items]="settings.currencies"
           autofocus
           bindLabel="title"
-          bindValue="id"
           id="cryptoCurrencyBuyId"
           class="default-field currency-select"
         >
