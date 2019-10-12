@@ -5,6 +5,8 @@ import {takeUntil} from "rxjs/operators";
 import {genCtrl} from "../../../../services/utils";
 import * as yup from "yup";
 import {BaseComponent} from "../../base-component/base.component";
+import {NotificationType} from "../../notification/notification.enum";
+import {CommonStore} from "../../../stores/common-store.service";
 
 enum withDrawFields {
   address = "address",
@@ -46,6 +48,7 @@ export class WithdrawModalComponent extends BaseComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     private fb: FormBuilder,
+    private commonStore: CommonStore,
   ) {
     super();
   }
@@ -64,12 +67,10 @@ export class WithdrawModalComponent extends BaseComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-
-    // this.authStore
-    //   .signIn(formData)
-    //   .then(() => this.router.navigate([ROUTES.OPEN_MARKET]))
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
+    this.commonStore.showNotification({
+      text: "Successful",
+      type: NotificationType.success,
+    });
+    this.activeModal.dismiss("Cross click");
   }
 }
