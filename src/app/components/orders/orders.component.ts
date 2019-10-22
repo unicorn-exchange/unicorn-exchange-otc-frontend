@@ -80,8 +80,8 @@ export class OrdersComponent extends BaseComponent implements OnInit {
         });
       })
       .finally(() => {
-        this.router.navigate([`${ROUTES.ORDER}/${orderId}/${ROUTES.PROCESSING}`])
-      })
+        this.router.navigate([`${ROUTES.ORDER}/${orderId}/${ROUTES.PROCESSING}`]);
+      });
   }
 
   declineOrder(orderId) {

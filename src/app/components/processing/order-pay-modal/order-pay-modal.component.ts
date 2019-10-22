@@ -39,6 +39,6 @@ export class OrderPayModalComponent extends BaseComponent implements OnInit {
           type: NotificationType.success,
           text: "Request has been sent",
         });
-      })
+      });
   }
 }

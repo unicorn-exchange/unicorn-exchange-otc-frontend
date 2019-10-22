@@ -23,7 +23,7 @@ export function mockAPIV1Requests(api: AxiosInstance) {
   transport.onGet(ORDERS_GET_ONE).reply(200, orderRes);
   transport.onPost(ORDERS_CONFIRM).reply(200, commonRes);
   transport.onPost(ORDERS_DECLINE).reply(200, commonRes);
-  transport.onPost('change/password').reply(200, commonRes);
+  transport.onPost("change/password").reply(200, commonRes);
   transport.onPost(ORDERS_CREATE).reply(200, commonRes);
   transport.onPost(AUTH_SIGN_IN).reply(200, commonRes);
   transport.onPost(AUTH_SIGN_UP).reply(200, commonRes);
