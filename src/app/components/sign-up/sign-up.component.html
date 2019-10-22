@@ -4,17 +4,25 @@
       class="default-link"
       routerLink="/{{ROUTES.SIGN_IN}}">{{ "AUTHORIZATION.SIGN_UP.DONT_HAVE_ACCOUNT" | translate }}
     </a>
+    <div (click)="loginWithGoogle()" class="google-sign-in">
+      <img alt="google" class="google-icon" src="../../../assets/icons/google.svg">
+      <span>{{ "AUTHORIZATION.LOGIN_GOOGLE" | translate }}</span>
+    </div>
   </div>
   <span class="heading">{{ "AUTHORIZATION.SIGN_UP.SIGN_UP_HEADER" | translate }}</span>
 
   <form (ngSubmit)="onSubmit($event, form.value)" [formGroup]="form" class="default-form">
-    <div class="form-group">
-      <label for="username">{{'FORMS.USERNAME' | translate}}:</label>
+    <div class="form-group custom-form-group">
+      <label
+        *ngIf="form.get(formFields.username).value"
+        class="custom-label"
+        for="username"
+      >{{'FORMS.USERNAME' | translate}}:</label>
       <input
-        [formControlName]="formFields.username"
         [ngClass]="{ 'is-invalid': submitted && form.get(formFields.username).errors }"
+        [formControlName]="formFields.username"
+        class="form-control custom-input"
         [placeholder]="'FORMS.USERNAME' | translate"
-        class="form-control default-input"
         id="username"
         type="text">
       <div *ngIf="submitted" class="invalid-feedback">
@@ -22,13 +30,17 @@
       </div>
     </div>
 
-    <div class="form-group">
-      <label for="email">{{'FORMS.EMAIL' | translate}}:</label>
+    <div class="form-group custom-form-group">
+      <label
+        *ngIf="form.get(formFields.email).value"
+        class="custom-label"
+        for="email"
+      >{{'FORMS.EMAIL' | translate}}:</label>
       <input
-        [formControlName]="formFields.email"
         [ngClass]="{ 'is-invalid': submitted && form.get(formFields.email).errors }"
+        [formControlName]="formFields.email"
+        class="form-control custom-input"
         [placeholder]="'FORMS.EMAIL' | translate"
-        class="form-control default-input"
         id="email"
         type="text">
       <div *ngIf="submitted" class="invalid-feedback">
@@ -36,13 +48,17 @@
       </div>
     </div>
 
-    <div class="form-group">
-      <label for="password">{{'FORMS.PASSWORD' | translate}}:</label>
+    <div class="form-group custom-form-group">
+      <label
+        *ngIf="form.get(formFields.password).value"
+        class="custom-label"
+        for="password"
+      >{{'FORMS.PASSWORD' | translate}}:</label>
       <input
-        [formControlName]="formFields.password"
         [ngClass]="{ 'is-invalid': submitted && form.get(formFields.password).errors }"
+        [formControlName]="formFields.password"
+        class="form-control custom-input"
         [placeholder]="'FORMS.PASSWORD' | translate"
-        class="form-control default-input"
         id="password"
         type="password">
       <div *ngIf="submitted" class="invalid-feedback">

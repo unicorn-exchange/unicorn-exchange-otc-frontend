@@ -4,6 +4,8 @@ import {BaseComponent} from "../../base-component/base.component";
 import {OrdersStore} from "../../../stores/orders-store.service";
 import {ROUTES} from "../../../../config";
 import {Router} from "@angular/router";
+import {NotificationType} from "../../notification/notification.enum";
+import {CommonStore} from "../../../stores/common-store.service";
 
 @Component({
   selector: "app-order-decline-modal-content",
@@ -16,6 +18,7 @@ export class OrderDeclineModalComponent extends BaseComponent implements OnInit 
   constructor(
     public activeModal: NgbActiveModal,
     private ordersStore: OrdersStore,
+    private commonStore: CommonStore,
     private router: Router,
   ) {
     super();
@@ -25,7 +28,22 @@ export class OrderDeclineModalComponent extends BaseComponent implements OnInit 
   }
 
   declineOrder = () => {
-    this.ordersStore.declineOrder(this.orderId);
+    this.ordersStore
+      .declineOrder(this.orderId)
+      .catch(() => {
+        this.commonStore.showNotification({
+          text: "Error while declining order",
+          type: NotificationType.error
+        });
+      })
+      .finally(() => {
+        this.commonStore.showNotification({
+          text: "Order declined",
+          type: NotificationType.success
+        });
+        this.router.navigate([ROUTES.ORDERS]);
+      });
+
     this.router.navigate([ROUTES.ORDERS]);
     this.activeModal.dismiss("Cross click");
   }

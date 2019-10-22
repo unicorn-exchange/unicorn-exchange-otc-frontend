@@ -1,34 +1,61 @@
 import {Component, OnInit} from "@angular/core";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AuthStore} from "../../../stores/auth-store.service";
-import {Subject} from "rxjs";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {genCtrl} from "../../../../services/utils";
+import {ProfileStore} from "../../../stores/profile-store.service";
+import * as yup from "yup";
+import {BaseComponent} from "../../base-component/base.component";
+import {NotificationType} from "../../notification/notification.enum";
+import {CommonStore} from "../../../stores/common-store.service";
+
+export enum changePasswordFields {
+  oldPassword = "oldPassword",
+  newPassword = "newPassword",
+  confirmPassword = "confirmPassword",
+}
+
+export const changePasswordValidationScheme = {
+  [changePasswordFields.oldPassword]: yup
+    .string()
+    .nullable()
+    .required(),
+  [changePasswordFields.newPassword]: yup
+    .string()
+    .nullable()
+    .required(),
+};
 
 @Component({
   selector: "app-profile-password-component",
   templateUrl: "./profile-password.component.html",
   styleUrls: ["./profile-password.component.scss"]
 })
-export class ProfilePasswordComponent implements OnInit {
-  form: FormGroup;
+export class ProfilePasswordComponent extends BaseComponent implements OnInit {
   submitted = false;
-  alertType = new Subject<string>();
+  formFields = changePasswordFields;
+  scheme = changePasswordValidationScheme;
+  form: FormGroup = this.fb.group(Object.assign(
+    genCtrl({key: this.formFields.oldPassword, scheme: this.scheme}),
+    genCtrl({key: this.formFields.newPassword, scheme: this.scheme}),
+    genCtrl({
+      key: this.formFields.confirmPassword, scheme: {
+        [changePasswordFields.confirmPassword]: yup
+          .string()
+          .nullable()
+          .matches(/"newPassword"/)
+          .required(),
+      }
+    }),
+  ));
 
   constructor(
     private fb: FormBuilder,
-    private authStore: AuthStore,
+    private profileStore: ProfileStore,
+    private commonStore: CommonStore,
   ) {
-  }
-
-  get f() {
-    return this.form.controls;
+    super();
   }
 
   ngOnInit() {
-    this.form = this.fb.group({
-      oldPassword: ["", [Validators.required, Validators.minLength(6)]],
-      newPassword: ["", [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ["", [Validators.required, Validators.minLength(6)]]
-    });
   }
 
   onSubmit(event, formData) {
@@ -37,11 +64,20 @@ export class ProfilePasswordComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    this.authStore
-      .changePassword({
-        oldPassword: formData.oldPassword,
-        newPassword: formData.newPassword
+
+    this.profileStore
+      .profileChangePassword(formData)
+      .then(() => {
+        this.commonStore.showNotification({
+          type: NotificationType.success,
+          text: "Password changed ",
+        });
       })
-      .then(() => this.alertType.next("success"));
+      .catch(() => {
+        this.commonStore.showNotification({
+          type: NotificationType.error,
+          text: "Error while changing password. Try again later",
+        });
+      });
   }
 }

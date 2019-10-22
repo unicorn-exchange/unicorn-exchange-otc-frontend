@@ -46,6 +46,10 @@ export class SignUpComponent extends BaseComponent implements OnInit {
       });
   }
 
+  loginWithGoogle() {
+    this.authStore.googleLogin();
+  }
+
   onSubmit(event, formData) {
     this.submitted = true;
     event.preventDefault();

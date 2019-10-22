@@ -24,7 +24,7 @@ export class CreateOrderComponent extends BaseComponent implements OnInit, OnDes
   orderCommonFields = orderCommonFields;
   submitted = false;
   settings: IAppSettings;
-  ROUTES = ROUTES
+  ROUTES = ROUTES;
   formSubscription: Subscription;
   form: FormGroup = this.fb.group(Object.assign(
     genCtrl({key: orderWriteFields.countryId, scheme: this.scheme}),
@@ -86,7 +86,7 @@ export class CreateOrderComponent extends BaseComponent implements OnInit, OnDes
           text: "Order created!",
           type: NotificationType.success
         });
-        this.router.navigate([ROUTES.ORDERS])
-      })
+        this.router.navigate([ROUTES.ORDERS]);
+      });
   }
 }

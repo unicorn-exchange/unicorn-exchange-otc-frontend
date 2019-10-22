@@ -25,11 +25,20 @@ export class OrderPayModalComponent extends BaseComponent implements OnInit {
   }
 
   confirmOrder() {
-    this.commonStore.showNotification({
-      type: NotificationType.success,
-      text: "Request has been sent",
-    });
     this.activeModal.dismiss("Cross click");
-    this.ordersStore.confirmOrder(this.orderId);
+    this.ordersStore
+      .confirmOrder(this.orderId)
+      .catch(() => {
+        this.commonStore.showNotification({
+          type: NotificationType.error,
+          text: "Error while confirming order",
+        });
+      })
+      .finally(() => {
+        this.commonStore.showNotification({
+          type: NotificationType.success,
+          text: "Request has been sent",
+        });
+      })
   }
 }

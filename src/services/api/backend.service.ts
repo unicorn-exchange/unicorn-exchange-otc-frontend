@@ -32,14 +32,14 @@ export class BackendService {
       console.log("Request", request);
     }
     return request;
-  };
+  }
 
   private onRequestError = (error: any) => {
     if (CONFIG.DEBUG_NETWORK) {
       console.error("Request error", error);
     }
     return Promise.reject(error);
-  };
+  }
 
   private onResponse = (response) => {
     if (CONFIG.DEBUG_NETWORK) {
@@ -49,7 +49,7 @@ export class BackendService {
       return Promise.reject(response);
     }
     return response;
-  };
+  }
 
   private onResponseError = (error: any) => {
     if (CONFIG.DEBUG_NETWORK) {
@@ -63,7 +63,7 @@ export class BackendService {
       });
     }
     return Promise.reject(error);
-  };
+  }
 
   setAuth(token?: string) {
     if (!token) {

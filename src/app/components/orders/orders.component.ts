@@ -9,6 +9,9 @@ import {BaseComponent} from "../base-component/base.component";
 import {takeUntil} from "rxjs/operators";
 import {NotificationType} from "../notification/notification.enum";
 import {IAppSettings, SettingsStore} from "../../stores/settings-store.service";
+import {OrderDeclineModalComponent} from "../processing/order-decline-modal/order-decline-modal.component";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -35,6 +38,8 @@ export class OrdersComponent extends BaseComponent implements OnInit {
     private commonStore: CommonStore,
     private settingsStore: SettingsStore,
     private ordersStore: OrdersStore,
+    private modalService: NgbModal,
+    private router: Router,
   ) {
     super();
   }
@@ -73,18 +78,15 @@ export class OrdersComponent extends BaseComponent implements OnInit {
           text: "Error while confirming order",
           type: NotificationType.error
         });
-      });
+      })
+      .finally(() => {
+        this.router.navigate([`${ROUTES.ORDER}/${orderId}/${ROUTES.PROCESSING}`])
+      })
   }
 
   declineOrder(orderId) {
-    this.ordersStore
-      .declineOrder(orderId)
-      .catch(() => {
-        this.commonStore.showNotification({
-          text: "Error while declining order",
-          type: NotificationType.error
-        });
-      });
+    const modalRef = this.modalService.open(OrderDeclineModalComponent, {size: "lg"});
+    modalRef.componentInstance.orderId = orderId;
   }
 
   onSubmit(event, formData) {
@@ -92,6 +94,14 @@ export class OrdersComponent extends BaseComponent implements OnInit {
 
     this.ordersStore
       .loadOrders()
+      .then(() => {
+        this.router.navigate([ROUTES.ORDERS], {
+          queryParams: {
+            country: formData.countryId,
+            paymentMethod: formData.paymentMethodId,
+          }
+        });
+      })
       .catch(() => {
         this.commonStore.showNotification({
           text: "Error while loading orders",
