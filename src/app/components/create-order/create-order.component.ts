@@ -5,22 +5,26 @@ import {CommonStore} from "../../stores/common-store.service";
 import {ordersCreateValidationScheme} from "unicorn-types/types/validators/orders-create-validator";
 import {genCtrl} from "../../../services/utils";
 import {OrdersStore} from "../../stores/orders-store.service";
-import {TranslateService} from "@ngstack/translate";
 import {orderCommonFields, orderWriteFields} from "unicorn-types/types/enums/forms/order";
 import {NotificationType} from "../notification/notification.enum";
 import {IAppSettings, SettingsStore} from "../../stores/settings-store.service";
+import {BaseComponent} from "../base-component/base.component";
+import {takeUntil} from "rxjs/operators";
+import {Router} from "@angular/router";
+import {ROUTES} from "../../../config";
 
 @Component({
   selector: "app-create-order-component",
   templateUrl: "./create-order.component.html",
   styleUrls: ["./create-order.component.scss"],
 })
-export class CreateOrderComponent implements OnInit, OnDestroy {
+export class CreateOrderComponent extends BaseComponent implements OnInit, OnDestroy {
   scheme = ordersCreateValidationScheme;
   orderWriteFields = orderWriteFields;
   orderCommonFields = orderCommonFields;
   submitted = false;
   settings: IAppSettings;
+  ROUTES = ROUTES
   formSubscription: Subscription;
   form: FormGroup = this.fb.group(Object.assign(
     genCtrl({key: orderWriteFields.countryId, scheme: this.scheme}),
@@ -44,21 +48,20 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
     private commonStore: CommonStore,
     private settingsStore: SettingsStore,
     private ordersStore: OrdersStore,
-    private translate: TranslateService,
+    private router: Router,
   ) {
+    super();
   }
 
   ngOnInit() {
-    this.settingsStore.settings$.subscribe(data => {
-      this.settings = data;
-    });
+    this.settingsStore.settings$
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(data => {
+        this.settings = data;
+      });
     this.formSubscription = this.form.valueChanges.subscribe(v => {
       console.log(v);
     });
-  }
-
-  ngOnDestroy() {
-    this.formSubscription.unsubscribe();
   }
 
   onSubmit(event, formData) {
@@ -70,14 +73,20 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
 
     this.ordersStore
       .createOrder(formData)
-      .then(() => {
+      .then()
+      .catch(err => {
+        console.error(err);
         this.commonStore.showNotification({
-          text: "Order created",
-          type: NotificationType.success,
+          text: "Failed to create order. Please, try again later",
+          type: NotificationType.error
         });
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .finally(() => {
+        this.commonStore.showNotification({
+          text: "Order created!",
+          type: NotificationType.success
+        });
+        this.router.navigate([ROUTES.ORDERS])
+      })
   }
 }

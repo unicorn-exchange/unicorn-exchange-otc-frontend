@@ -1,154 +1,92 @@
 @import "../../../assets/styles/variables";
 
 .header-wrapper {
-  padding: 42px 33px 0 33px;
+  padding: 30px 33px 30px 33px;
+  background-color: inherit;
 
   .header {
-    padding-bottom: 33px;
-    display: flex;
     align-items: center;
-    justify-content: space-between;
 
-    .left-block {
-      display: flex;
-      width: 70%;
-      align-items: baseline;
+    .company-name {
+      font-family: $circular_std;
+      font-weight: bold;
+      font-size: 24px;
 
-      .company-name {
-        font-family: $circular_std;
-        font-weight: bold;
-        font-size: 24px;
-
-        .first-letter {
-          color: $main_red_color;
-        }
-      }
-
-      .nav-wrapper {
-        margin-left: 60px;
-        .nav {
-          color: #AEAEBC;
-          cursor: pointer;
-          margin-right: 64px;
-
-          &:last-child {
-            margin-right: 0;
-          }
-
-          &:hover {
-            color: $main_text_color;
-            text-decoration: none;
-          }
-        }
-      }
-
-      .not-verified-account {
-        cursor: pointer;
+      .first-letter {
         color: $main_red_color;
-        text-align: center;
+      }
+    }
 
-        .attention-icon {
-          margin-right: 8px;
+    .nav-wrapper {
+      .nav {
+        color: #AEAEBC;
+        cursor: pointer;
+        margin-right: 64px;
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        &:hover {
+          color: $main_text_color;
+          text-decoration: none;
         }
       }
     }
 
-    .right-block {
-      .account-info {
+    .not-verified-account {
+      cursor: pointer;
+      color: $main-red-color;
+      text-align: center;
+      display: flex;
+      align-items: center;
+
+      .attention-icon {
+        margin-right: 8px;
+      }
+    }
+
+    .create-deal {
+      text-align: center;
+      text-decoration: none;
+      color: #18E647;
+    }
+
+    .account-info {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 4px;
+
+      .balance {
+        color: #aeaebc;
         display: flex;
-        margin-top: 4px;
-
-        .balance {
-          color: #aeaebc;
-          display: flex;
-        }
-
-        .wallet-icon {
-          width: 15px;
-          height: 15px;
-          margin-right: 7px;
-          margin-top: -4px;
-        }
-
-        .notification-wrapper {
-          cursor: pointer;
-
-          .notification-circle {
-            position: absolute;
-            background-color: $main-red-color;
-            border: 2px solid #fff;
-            border-radius: 50%;
-            margin-left: 8px;
-            width: 11px;
-            height: 11px;
-          }
-        }
-
-        .notification-wrapper,
-        .balance {
-          margin-right: 35px;
-        }
-      }
-    }
-
-    .side-bar {
-      background-color: $main_red_color;
-      z-index: 10000;
-      position: fixed;
-      height: 100%;
-      top: 0;
-      width: 100%;
-      left: 1000px;
-      color: #fff !important;
-      transition-duration: 1.5s;
-
-      .side-bar-header {
-        position: absolute;
-        top: 25px;
-        right: 175px;
       }
 
-      .side-bar-menu {
-        font-size: 16px;
-        margin-left: 32px;
-        margin-top: 91px;
+      .wallet-icon {
+        width: 15px;
+        height: 15px;
+        margin-right: 7px;
+        margin-top: -4px;
+      }
 
-        .side-bar-menu-item {
-          display: flex;
-          text-align: left;
-          text-transform: uppercase;
-          letter-spacing: 1.3px;
-          white-space: pre-line;
-          font-weight: 600;
+      .notification-wrapper {
+        cursor: pointer;
 
-          .active {
-            border-bottom: 2px solid;
-          }
-
-          &:last-child {
-            margin-top: 20px
-          }
+        .notification-circle {
+          position: absolute;
+          background-color: $main-red-color;
+          border: 2px solid #fff;
+          border-radius: 50%;
+          margin-left: 8px;
+          width: 11px;
+          height: 11px;
         }
       }
 
-      a {
-        color: #fff !important;
+      .notification-wrapper,
+      .balance {
+        margin-right: 35px;
       }
-
-      .side-bar-footer {
-        font-size: 14px;
-        font-weight: 300;
-        position: absolute;
-        white-space: pre-line;
-        bottom: 20px;
-        text-align: left;
-        margin-left: 30px;
-      }
-    }
-
-    .animate-sidebar {
-      transform: translate(-842px);
-      transition-duration: 0.7s;
     }
   }
 }

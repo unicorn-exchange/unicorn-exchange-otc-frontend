@@ -1,12 +1,12 @@
 <div class="orders-wrapper">
   <div class="orders">
-    <form [formGroup]="filersForm" class="filters-wrapper flex-column flex-md-row">
+    <form (ngSubmit)="onSubmit($event, filersForm.value)" [formGroup]="filersForm"
+          class="filters-wrapper flex-column flex-md-row">
       <label class="filter-label">
         Currency for sell
         <ng-select
           [formControlName]="orderCommonFields.currencySell"
           [items]="settings.currencies"
-          autofocus
           bindLabel="title"
           class="default-field currency-select"
         >
@@ -16,7 +16,6 @@
         Currency for buy
         <ng-select
           [items]="settings.currencies"
-          autofocus
           bindLabel="title"
           class="default-field currency-select"
           formControlName="{{orderCommonFields.currencyBuy}}">
@@ -27,7 +26,6 @@
         <ng-select
           [formControlName]="orderFilersFields.countryId"
           [items]="settings.countries"
-          autofocus
           bindLabel="title"
           bindValue="id"
           class="default-field"
@@ -38,7 +36,6 @@
         Payment methods
         <ng-select
           [items]="settings.paymentMethods"
-          autofocus
           bindLabel="title"
           bindValue="id"
           class="default-field"

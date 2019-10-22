@@ -2,5 +2,10 @@
 
 .withdraw-body {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .custom-form-group {
+    width: 50%;
+  }
 }

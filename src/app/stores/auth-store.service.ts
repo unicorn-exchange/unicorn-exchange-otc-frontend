@@ -4,7 +4,8 @@ import {ISignInUserReq, ISignUpUserReq} from "unicorn-types/types/api/requests";
 import {IUserDTO} from "unicorn-types/types/api/dtos";
 import {DBService} from "../../services/db/db.service";
 import {KeyEnum} from "../../services/db/key.enum";
-
+import {JwksValidationHandler, OAuthService} from "angular-oauth2-oidc";
+import {authConfig} from "../../services/social-auth.service";
 
 // TODO
 interface IChangeUserPasswordReq {
@@ -21,7 +22,19 @@ export class AuthStore {
   constructor(
     private backend: BackendService,
     private db: DBService,
+    private oauthService: OAuthService
   ) {
+  }
+
+  public googleLogin() {
+    this.configure();
+    this.oauthService.initLoginFlow();
+  }
+
+  private configure() {
+    this.oauthService.configure(authConfig);
+    this.oauthService.tokenValidationHandler = new JwksValidationHandler();
+    this.oauthService.loadDiscoveryDocumentAndLogin();
   }
 
   changePassword(params: IChangeUserPasswordReq) {

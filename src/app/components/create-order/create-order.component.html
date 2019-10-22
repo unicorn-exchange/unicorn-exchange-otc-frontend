@@ -1,5 +1,5 @@
 <div class="create-order-wrapper">
-  <span class="heading">
+  <span class="heading animated 1.5s fadeIn">
     {{ "CREATE_DEAL.HEADING" | translate }}
   </span>
   <div class="deal-wrapper">
@@ -13,7 +13,6 @@
             <ng-select
               [formControlName]="orderWriteFields.countryId"
               [items]="settings.countries"
-              autofocus
               bindLabel="title"
               bindValue="id"
               id="country"
@@ -32,7 +31,6 @@
             </label>
             <ng-select
               [items]="settings.paymentMethods"
-              autofocus
               bindLabel="title"
               bindValue="id"
               class="default-field"
@@ -69,7 +67,6 @@
               <ng-select
                 [formControlName]="orderCommonFields.currencySell"
                 [items]="settings.currencies"
-                autofocus
                 id="currencySell"
                 bindLabel="title"
                 class="default-field currency-select"
@@ -107,7 +104,6 @@
               </label>
               <ng-select
                 [items]="settings.currencies"
-                autofocus
                 bindLabel="title"
                 id="currencyBuy"
                 class="default-field currency-select"

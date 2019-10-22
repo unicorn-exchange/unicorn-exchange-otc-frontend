@@ -17,14 +17,14 @@ import {IAppSettings, SettingsStore} from "../../stores/settings-store.service";
   styleUrls: ["./orders.component.scss"]
 })
 export class OrdersComponent extends BaseComponent implements OnInit {
+  orderFilersFields = orderWriteFields;
+  orderCommonFields = orderCommonFields;
   filersForm: FormGroup = this.fb.group({
     [orderCommonFields.currencySell]: [null, [Validators.required]],
     [orderCommonFields.currencyBuy]: [null, [Validators.required]],
     [orderWriteFields.countryId]: [null, [Validators.required]],
     [orderWriteFields.paymentMethodId]: [null, [Validators.required]],
   });
-  orderFilersFields = orderWriteFields;
-  orderCommonFields = orderCommonFields;
   settings: IAppSettings;
   orders: IPartOrderDTO[];
   count: number;
@@ -82,6 +82,19 @@ export class OrdersComponent extends BaseComponent implements OnInit {
       .catch(() => {
         this.commonStore.showNotification({
           text: "Error while declining order",
+          type: NotificationType.error
+        });
+      });
+  }
+
+  onSubmit(event, formData) {
+    event.preventDefault();
+
+    this.ordersStore
+      .loadOrders()
+      .catch(() => {
+        this.commonStore.showNotification({
+          text: "Error while loading orders",
           type: NotificationType.error
         });
       });

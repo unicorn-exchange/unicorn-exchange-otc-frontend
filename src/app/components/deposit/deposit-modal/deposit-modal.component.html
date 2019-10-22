@@ -1,22 +1,24 @@
 <div class="modal-header">
-  <h4 class="modal-title">Deposit</h4>
-  <button (click)="activeModal.dismiss('Cross click')" aria-label="Close" class="close" type="button">
-    <span aria-hidden="true">&times;</span>
+  <span class="modal-title">Deposit</span>
+  <button (click)="activeModal.dismiss('Cross click')" class="custom-close">
+    <img alt="cross" src="../../../../assets/icons/cross.svg">
   </button>
 </div>
 <div class="modal-body">
   <div class="deposit-body">
     <div class="deposit-address">
       <span class="heading">Deposit address:</span>
-      <span>{{address}}</span>
-      <img
-        (cbOnSuccess)="successCopy()"
-        [cbContent]="address"
-        alt="copy"
-        class="copy-icon"
-        ngxClipboard
-        src="../../../../assets/icons/copy.svg"
-      >
+      <div class="d-flex">
+        <span>{{address}}</span>
+        <img
+          (cbOnSuccess)="successCopy()"
+          [cbContent]="address"
+          alt="copy"
+          class="copy-icon"
+          ngxClipboard
+          src="../../../../assets/icons/copy.svg"
+        >
+      </div>
     </div>
     <div class="scan-block">
       Scan
@@ -40,8 +42,7 @@
       </p>
     </div>
   </div>
-  <p>Hello, {{name}}!</p>
-</div>
-<div class="modal-footer">
-  <button (click)="activeModal.close('Close click')" class="btn btn-outline-dark" type="button">Close</button>
+  <div class="modal-footer">
+    <button (click)="activeModal.close('Close click')" class="red-button">Ok</button>
+  </div>
 </div>

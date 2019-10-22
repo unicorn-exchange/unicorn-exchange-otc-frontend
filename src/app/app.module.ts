@@ -8,6 +8,7 @@ import {NgbAlertModule, NgbModalModule, NgbRatingModule, NgbTooltipModule} from 
 import {UiSwitchModule} from "ngx-toggle-switch";
 import {NgSelectConfig, NgSelectModule} from "@ng-select/ng-select";
 import {ClipboardModule} from "ngx-clipboard";
+import {OAuthModule} from "angular-oauth2-oidc";
 // Components
 import {AppRoutingModule} from "./app-routing.module";
 import {AppComponent} from "./app.component";
@@ -46,12 +47,16 @@ export const baseModule: NgModule = {
     HttpClientModule,
     NgbRatingModule,
     NgbTooltipModule,
-    TranslateModule.forRoot(),
+    TranslateModule.forRoot({
+      supportedLangs: ["en", "ru"],
+      activeLang: "en"
+    }),
     UiSwitchModule,
     NgSelectModule,
     NgbAlertModule,
     NgbModalModule,
-    ClipboardModule
+    ClipboardModule,
+    OAuthModule.forRoot(),
   ],
   declarations: [
     SignInComponent,
@@ -118,9 +123,5 @@ export const baseModule: NgModule = {
 export class AppModule {
   constructor(private config: NgSelectConfig) {
     this.config.notFoundText = "Custom not found";
-  }
-
-  onInit() {
-
   }
 }

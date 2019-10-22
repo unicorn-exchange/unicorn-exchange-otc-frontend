@@ -16,6 +16,11 @@ import {OrderProcessingComponent} from "./components/processing/order-processing
 
 const routes: Routes = [
   {
+    path: "",
+    redirectTo: ROUTES.ORDERS,
+    pathMatch: "full"
+  },
+  {
     path: ROUTES.SIGN_IN,
     component: SignInComponent,
     pathMatch: "full"
