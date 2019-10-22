@@ -64,6 +64,13 @@ export class CreateOrderComponent extends BaseComponent implements OnInit, OnDes
     });
   }
 
+  changeCurrencies(form) {
+    this.form.patchValue({
+      currencySell: form.currencyBuy,
+      currencyBuy: form.currencySell,
+    });
+  }
+
   onSubmit(event, formData) {
     this.submitted = true;
     event.preventDefault();
