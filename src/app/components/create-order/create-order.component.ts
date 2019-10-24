@@ -34,7 +34,6 @@ export class CreateOrderComponent extends BaseComponent implements OnInit, OnDes
     genCtrl({key: orderCommonFields.currencyBuyPrice, scheme: this.scheme}),
     genCtrl({key: orderWriteFields.paymentMethodId, scheme: this.scheme}),
     genCtrl({key: orderCommonFields.bankName, scheme: this.scheme}),
-    genCtrl({key: orderCommonFields.bankName, scheme: this.scheme}),
     genCtrl({key: orderCommonFields.marginProfit, scheme: this.scheme}),
     genCtrl({key: orderCommonFields.isAutoAdjustTransactionLimit, scheme: this.scheme}),
     genCtrl({key: orderCommonFields.termsOfTrade, scheme: this.scheme}),
@@ -68,6 +67,8 @@ export class CreateOrderComponent extends BaseComponent implements OnInit, OnDes
     this.form.patchValue({
       currencySell: form.currencyBuy,
       currencyBuy: form.currencySell,
+      currencyBuyPrice: form.currencySellPrice,
+      currencySellPrice: form.currencyBuyPrice,
     });
   }
 
@@ -75,7 +76,10 @@ export class CreateOrderComponent extends BaseComponent implements OnInit, OnDes
     this.submitted = true;
     event.preventDefault();
     if (this.form.invalid) {
-      return;
+      return this.commonStore.showNotification({
+        text: "Please check the form",
+        type: NotificationType.warning
+      });
     }
 
     this.ordersStore
@@ -88,12 +92,12 @@ export class CreateOrderComponent extends BaseComponent implements OnInit, OnDes
           type: NotificationType.error
         });
       })
-      .finally(() => {
+      .finally(() => () => {
         this.commonStore.showNotification({
           text: "Order created!",
           type: NotificationType.success
         });
         this.router.navigate([ROUTES.ORDERS]);
-      });
+      })
   }
 }

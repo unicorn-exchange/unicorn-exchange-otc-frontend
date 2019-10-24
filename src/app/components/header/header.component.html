@@ -1,21 +1,21 @@
 <div class="header-wrapper">
   <div class="header row">
-    <a class="company-name col-3">
+    <a [routerLink]="ROUTES.ORDERS" class="company-name col-3">
       <span class="first-letter">{{ "UNICORN." | translate }}</span>
       <span>{{ "EXCHANGE" | translate }}</span>
     </a>
     <div class="nav-wrapper d-none d-md-flex col-5">
-      <a class="nav" routerLink="/{{ROUTES.OPEN_MARKET}}">{{ "HEADER.OPEN_MARKET" | translate }}</a>
-      <a class="nav" routerLink="/{{ROUTES.ORDERS}}">{{ "HEADER.ORDERS" | translate }}</a>
-      <a class="nav" routerLink="/{{ROUTES.CREATE_ORDER}}">Create order</a>
+      <a [routerLink]="ROUTES.OPEN_MARKET" class="nav">{{ "HEADER.OPEN_MARKET" | translate }}</a>
+      <a [routerLink]="ROUTES.ORDERS" class="nav">{{ "HEADER.ORDERS" | translate }}</a>
+      <a [routerLink]="ROUTES.CREATE_ORDER" class="nav">Create order</a>
     </div>
     <div class="account-info col-4">
       <div class="balance d-none d-md-block" ngbTooltip="Your balance" placement="bottom">
         <img alt="wallet-icon" class="wallet-icon" src="../../../assets/icons/wallet.svg">
         <span>1 BTC</span>
       </div>
-      <a class="balance d-none d-md-block" routerLink="/{{ROUTES.DEPOSIT}}">Deposit</a>
-      <a class="balance d-none d-md-block" routerLink="/{{ROUTES.WITHDRAW}}">Withdraw</a>
+      <a [routerLink]="ROUTES.DEPOSIT" class="balance d-none d-md-block">Deposit</a>
+      <a [routerLink]="ROUTES.WITHDRAW" class="balance d-none d-md-block">Withdraw</a>
       <div class="notification-wrapper d-flex">
         <img alt="notification" class="notification-icon" src="../../../assets/icons/notification.svg">
         <div class="notification-circle"></div>
