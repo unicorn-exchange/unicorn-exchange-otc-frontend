@@ -24,6 +24,7 @@ export class ROUTES {
   static readonly FULL_REGISTRATION = "full-registration";
   static readonly ORDERS = "orders";
   static readonly ORDER = "order";
+  static readonly CHAT = "chat";
   static readonly DEPOSIT = "deposit";
   static readonly WITHDRAW = "withdraw";
   static readonly CREATE_ORDER = "create-order";

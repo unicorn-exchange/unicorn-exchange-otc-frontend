@@ -11,6 +11,12 @@
       src="../../../assets/icons/alert-success.svg"
     >
     <img
+      *ngIf="notification.type === 'warning'"
+      alt="warning-icon"
+      class="alert-icon"
+      src="../../../assets/icons/warning.svg"
+    >
+    <img
       *ngIf="notification.type === 'error'"
       alt="error-icon"
       class="alert-icon"

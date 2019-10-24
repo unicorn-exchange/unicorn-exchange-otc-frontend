@@ -14,6 +14,7 @@ import {settingsCommonRes} from "./settings-common-res";
 import {commonRes} from "./common-res";
 import {ordersRes} from "./orders-res";
 import {orderRes} from "./order-res";
+import {messagesRes} from "./messages-res";
 
 export function mockAPIV1Requests(api: AxiosInstance) {
   const transport = new MockAdapter(api);
@@ -24,6 +25,7 @@ export function mockAPIV1Requests(api: AxiosInstance) {
   transport.onPost(ORDERS_CONFIRM).reply(200, commonRes);
   transport.onPost(ORDERS_DECLINE).reply(200, commonRes);
   transport.onPost("change/password").reply(200, commonRes);
+  transport.onGet("messages").reply(200, messagesRes);
   transport.onPost(ORDERS_CREATE).reply(200, commonRes);
   transport.onPost(AUTH_SIGN_IN).reply(200, commonRes);
   transport.onPost(AUTH_SIGN_UP).reply(200, commonRes);

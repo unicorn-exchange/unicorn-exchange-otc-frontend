@@ -1,8 +1,32 @@
-@import "./app/app.component";
-@import "./assets/styles/common.scss";
+@import 'themes';
+@import "fonts";
+@import '~@nebular/theme/styles/globals';
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+@include nb-install() {
+  @include nb-theme-global();
+}
+
+;
 @import "./assets/styles/variables.scss";
-@import "./assets/styles/keyframes.scss";
-@import "./assets/styles/media.scss";
-@import '~bootstrap/dist/css/bootstrap.min.css';
-@import "fonts.scss";
+@import '~bootstrap/scss/bootstrap.scss';
 @import "~animate.css";
+@import "fonts.scss";
+@import "./assets/styles/keyframes";
+@import "./assets/styles/variables";
+@import "./assets/styles/media.scss";
+@import "./assets/styles/common.scss";
+
+
+body {
+  font-family: $circular-book;
+  background-color: #F2F2F2;
+  color: $main-text-color;
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  height: 100%;
+  scroll-behavior: smooth;
+}

@@ -9,6 +9,10 @@ import {UiSwitchModule} from "ngx-toggle-switch";
 import {NgSelectConfig, NgSelectModule} from "@ng-select/ng-select";
 import {ClipboardModule} from "ngx-clipboard";
 import {OAuthModule} from "angular-oauth2-oidc";
+import {NbChatModule, NbLayoutModule, NbThemeModule} from "@nebular/theme";
+import {ChatComponent} from "./components/chat/chat.component";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {NbEvaIconsModule} from "@nebular/eva-icons";
 // Components
 import {AppRoutingModule} from "./app-routing.module";
 import {AppComponent} from "./app.component";
@@ -57,6 +61,11 @@ export const baseModule: NgModule = {
     NgbModalModule,
     ClipboardModule,
     OAuthModule.forRoot(),
+    NbChatModule,
+    BrowserAnimationsModule,
+    NbThemeModule.forRoot({name: "default"}),
+    NbLayoutModule,
+    NbEvaIconsModule,
   ],
   declarations: [
     SignInComponent,
@@ -81,7 +90,8 @@ export const baseModule: NgModule = {
     OrderDeclineModalComponent,
     OrderPayModalComponent,
     NotificationComponent,
-    FooterComponent
+    FooterComponent,
+    ChatComponent,
   ],
   entryComponents: [
     DepositModalComponent,

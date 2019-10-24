@@ -98,6 +98,6 @@ export class CreateOrderComponent extends BaseComponent implements OnInit, OnDes
           type: NotificationType.success
         });
         this.router.navigate([ROUTES.ORDERS]);
-      })
+      });
   }
 }

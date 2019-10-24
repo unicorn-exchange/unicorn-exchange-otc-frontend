@@ -13,6 +13,7 @@ import {OrderComponent} from "./components/order/order.component";
 import {DepositComponent} from "./components/deposit/deposit.component";
 import {WithdrawComponent} from "./components/withdraw/withdraw.component";
 import {OrderProcessingComponent} from "./components/processing/order-processing.component";
+import {ChatComponent} from "./components/chat/chat.component";
 
 const routes: Routes = [
   {
@@ -53,6 +54,11 @@ const routes: Routes = [
   {
     path: ROUTES.WITHDRAW,
     component: WithdrawComponent,
+    pathMatch: "full"
+  },
+  {
+    path: ROUTES.CHAT,
+    component: ChatComponent,
     pathMatch: "full"
   },
   {
