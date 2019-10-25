@@ -12,14 +12,20 @@
 
   .cards-wrapper {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: flex-start;
+    padding: 0 33px;
+    height: 370px;
 
     .card-wrapper {
-      transition: 0.6s;
+      transition: 0.3s;
+      margin-right: 15px;
 
       .open-market-card {
         cursor: pointer;
+      }
+
+      &:last-child {
+        margin-right: 0;
       }
     }
 

@@ -10,6 +10,7 @@
         [buyCurrency]="order.currencyBuy.title"
         [buyPrice]="order.currencyBuyPrice"
         [country]="order.country.title"
+        [paymentMethod]="order.paymentMethod.title"
         [isDarkCard]="true"
         [routerLink]="['/order', order.id]"
         [sellCurrency]="order.currencySell.title"
@@ -20,7 +21,7 @@
       ></app-card-component>
     </div>
   </div>
-  <div class="reroll-wrapper">
+  <div *ngIf="count > 7" class="reroll-wrapper">
     <div (click)="reloadCards()" [ngClass]="{'loading-cards': loadingCards}" class="reroll-icon-wrapper">
       <img
         alt="reroll-icon"
@@ -28,7 +29,7 @@
         src="../../../assets/icons/reload.svg">
     </div>
     <span>
-      {{ "OPEN_MARKET.REROLL" | translate:{deals_count: 5} }}
+      {{ "OPEN_MARKET.REROLL" | translate:{deals_count: count} }}
     </span>
   </div>
 </div>

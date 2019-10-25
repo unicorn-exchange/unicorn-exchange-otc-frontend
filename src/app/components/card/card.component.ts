@@ -12,6 +12,7 @@ export class CardComponent implements OnInit {
   @Input() sellCurrency: string;
   @Input() buyCurrency: string;
   @Input() country: string;
+  @Input() paymentMethod: string;
   @Input() userRate: number;
   @Input() isDarkCard: boolean;
 

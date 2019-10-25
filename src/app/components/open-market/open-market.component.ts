@@ -12,7 +12,6 @@ import {takeUntil} from "rxjs/operators";
   styleUrls: ["./open-market.component.scss"]
 })
 export class OpenMarketComponent extends BaseComponent implements OnInit {
-  orderCommonFields = OrdersStore;
   orders: IPartOrderDTO[];
   count: number;
   ROUTES = ROUTES;
@@ -27,10 +26,6 @@ export class OpenMarketComponent extends BaseComponent implements OnInit {
   }
 
   loadOrders = () => this.ordersStore.loadOrders();
-
-  confirmOrder = orderId => this.ordersStore.confirmOrder(orderId);
-
-  declineOrder = orderId => this.ordersStore.declineOrder(orderId);
 
   ngOnInit() {
     this.ordersStore.state$.pipe(takeUntil(this.ngUnsubscribe))
