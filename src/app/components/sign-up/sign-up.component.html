@@ -54,14 +54,31 @@
         class="custom-label"
         for="password"
       >{{'FORMS.PASSWORD' | translate}}:</label>
-      <input
-        [ngClass]="{ 'is-invalid': submitted && form.get(formFields.password).errors }"
-        [formControlName]="formFields.password"
-        class="form-control custom-input"
-        [placeholder]="'FORMS.PASSWORD' | translate"
-        id="password"
-        type="password">
-      <div *ngIf="submitted" class="invalid-feedback">
+      <div class="input-group">
+        <input
+          #password
+          [formControlName]="formFields.password"
+          [ngClass]="{ 'is-invalid': submitted && form.get(formFields.password).errors }"
+          [placeholder]="'FORMS.PASSWORD' | translate"
+          class="form-control custom-input"
+          id="password"
+          type="password">
+        <div (click)="password.type = 'password'" *ngIf="password.type === 'text'" class="input-group-append">
+          <img
+            alt="hide-password"
+            class="password-icon"
+            src="../../../assets/icons/eye-slash.svg"
+          >
+        </div>
+        <div (click)="password.type = 'text'" *ngIf="password.type === 'password'" class="input-group-append">
+          <img
+            alt="show-password"
+            class="password-icon"
+            src="../../../assets/icons/eye.svg"
+          >
+        </div>
+      </div>
+      <div *ngIf="submitted" class="default-invalid-feedback">
         <div *ngFor="let err of form.get(formFields.password).errors | keyvalue">{{ err.value | translate }}</div>
       </div>
     </div>

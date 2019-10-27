@@ -33,6 +33,11 @@
     display: flex;
     flex-direction: column;
 
+    .password-icon {
+      width: 16px;
+      cursor: pointer;
+    }
+
     .btn-wrapper {
       margin-top: 40px;
     }
@@ -71,12 +76,12 @@
     }
   }
 
-  .custom-input {
+  .custom-input,
+  .input-group-append {
     border: solid 1px #e9e9f0;
     color: $main-text-color;
     font-size: 15px;
     background-color: inherit !important;
-    padding: 16px 4px 14px 16px;
     border-radius: 4px;
     box-shadow: none;
     outline: none;
@@ -89,6 +94,17 @@
       box-shadow: none;
       background-color: inherit;
     }
+  }
+
+  .input-group-append {
+    padding: 0 9px;
+    cursor: pointer;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .custom-input {
+    padding: 16px 4px 14px 16px;
   }
 }
 
