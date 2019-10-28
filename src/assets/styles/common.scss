@@ -144,8 +144,12 @@
 }
 
 .default-link {
-  color: #000;
+  color: $main_text_color;
   text-decoration: underline;
+
+  &:hover {
+    color: $main_text_color;
+  }
 }
 
 .red-button {

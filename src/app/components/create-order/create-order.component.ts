@@ -92,7 +92,7 @@ export class CreateOrderComponent extends BaseComponent implements OnInit, OnDes
           type: NotificationType.error
         });
       })
-      .finally(() => () => {
+      .finally(() => {
         this.commonStore.showNotification({
           text: "Order created!",
           type: NotificationType.success

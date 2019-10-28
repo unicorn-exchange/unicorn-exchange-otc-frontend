@@ -60,7 +60,7 @@
           >
         </div>
       </div>
-      <div *ngIf="submitted" class="default-invalid-feedback">
+      <div *ngIf="submitted" class="invalid-feedback">
         <div *ngFor="let err of form.get(formFields.password).errors | keyvalue">{{ err.value | translate }}</div>
       </div>
     </div>
