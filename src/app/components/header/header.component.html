@@ -16,10 +16,21 @@
       </div>
       <a [routerLink]="ROUTES.DEPOSIT" class="balance d-none d-md-block">Deposit</a>
       <a [routerLink]="ROUTES.WITHDRAW" class="balance d-none d-md-block">Withdraw</a>
-      <div class="notification-wrapper d-flex">
+      <div [nbPopover]="notificationsDropdown" class="notification-wrapper d-flex" nbPopoverPlacement="bottom">
         <img alt="notification" class="notification-icon" src="../../../assets/icons/notification.svg">
         <div class="notification-circle"></div>
       </div>
+      <ng-template #notificationsDropdown>
+        <nb-card class="notification-dropdown-wrapper">
+          <nb-card-header>Notifications</nb-card-header>
+          <nb-list>
+            <nb-list-item [routerLink]="ROUTES.ORDER + '/1/' + ROUTES.OWNER_PROCESSING" class="notification pointer">
+              John Doe wants to buy your order!
+            </nb-list-item>
+            <nb-list-item class="notification">Balance + 1 BTC</nb-list-item>
+          </nb-list>
+        </nb-card>
+      </ng-template>
       <a class="d-none d-md-block" routerLink="profile/information">
         <img alt="account" class="account-icon" src="../../../assets/icons/account.svg">
       </a>

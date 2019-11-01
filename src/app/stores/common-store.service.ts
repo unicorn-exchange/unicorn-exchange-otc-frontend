@@ -8,11 +8,16 @@ export interface IGlobalAlert {
   type: AlertType;
 }
 
+export interface IGlobalNotification {
+  text: string;
+}
+
 @Injectable({
   providedIn: "root"
 })
 export class CommonStore {
   globalAlert$ = new Subject<IGlobalAlert>();
+  globalNotification$ = new Subject<IGlobalNotification>();
 
   constructor(
     private router: Router,
@@ -21,6 +26,10 @@ export class CommonStore {
 
   showAlert(params: IGlobalAlert) {
     this.globalAlert$.next(params);
+  }
+
+  showNotification(params: IGlobalNotification) {
+    this.globalNotification$.next(params);
   }
 
   showCommonError(err?: string) {

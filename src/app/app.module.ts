@@ -9,7 +9,7 @@ import {UiSwitchModule} from "ngx-toggle-switch";
 import {NgSelectConfig, NgSelectModule} from "@ng-select/ng-select";
 import {ClipboardModule} from "ngx-clipboard";
 import {OAuthModule} from "angular-oauth2-oidc";
-import {NbChatModule, NbLayoutModule, NbThemeModule} from "@nebular/theme";
+import {NbCardModule, NbChatModule, NbLayoutModule, NbListModule, NbPopoverModule, NbThemeModule} from "@nebular/theme";
 import {ChatComponent} from "./components/chat/chat.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {NbEvaIconsModule} from "@nebular/eva-icons";
@@ -69,7 +69,10 @@ export const baseModule: NgModule = {
     NbThemeModule.forRoot({name: "default"}),
     NbLayoutModule,
     NbEvaIconsModule,
-    CountdownModule
+    CountdownModule,
+    NbPopoverModule,
+    NbCardModule,
+    NbListModule,
   ],
   declarations: [
     SignInComponent,

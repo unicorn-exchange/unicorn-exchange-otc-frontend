@@ -92,3 +92,11 @@
     }
   }
 }
+
+.notification-dropdown-wrapper {
+  margin-bottom: 0;
+
+  .notification {
+    outline: none;
+  }
+}
