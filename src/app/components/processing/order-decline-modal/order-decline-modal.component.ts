@@ -4,7 +4,7 @@ import {BaseComponent} from "../../base-component/base.component";
 import {OrdersStore} from "../../../stores/orders-store.service";
 import {ROUTES} from "../../../../config";
 import {Router} from "@angular/router";
-import {NotificationType} from "../../notification/notification.enum";
+import {AlertType} from "../../alerts/alerts.enum";
 import {CommonStore} from "../../../stores/common-store.service";
 
 @Component({
@@ -31,15 +31,15 @@ export class OrderDeclineModalComponent extends BaseComponent implements OnInit 
     this.ordersStore
       .declineOrder(this.orderId)
       .catch(() => {
-        this.commonStore.showNotification({
+        this.commonStore.showAlert({
           text: "Error while declining order",
-          type: NotificationType.error
+          type: AlertType.error
         });
       })
       .finally(() => {
-        this.commonStore.showNotification({
+        this.commonStore.showAlert({
           text: "Order declined",
-          type: NotificationType.success
+          type: AlertType.success
         });
         this.router.navigate([ROUTES.ORDERS]);
       });

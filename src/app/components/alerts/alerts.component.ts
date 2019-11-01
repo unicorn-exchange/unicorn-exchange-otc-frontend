@@ -1,20 +1,20 @@
 import {Component, OnInit} from "@angular/core";
 import {NgbAlertConfig} from "@ng-bootstrap/ng-bootstrap";
 import {debounceTime, takeUntil} from "rxjs/operators";
-import {CommonStore, IGlobalNotification} from "../../stores/common-store.service";
+import {CommonStore, IGlobalAlert} from "../../stores/common-store.service";
 import {BaseComponent} from "../base-component/base.component";
 
 const DEBOUNCE_TIME_LONG = 3000;
 const DEBOUNCE_TIME_SHORT = 2500;
 
 @Component({
-  selector: "app-notification-component",
-  templateUrl: "./notification.component.html",
-  styleUrls: ["./notification.component.scss"],
+  selector: "app-alert-component",
+  templateUrl: "./alerts.component.html",
+  styleUrls: ["./alerts.component.scss"],
   providers: [NgbAlertConfig]
 })
-export class NotificationComponent extends BaseComponent implements OnInit {
-  notification: IGlobalNotification;
+export class AlertsComponent extends BaseComponent implements OnInit {
+  notification: IGlobalAlert;
   closeAnimation: boolean;
 
   constructor(
@@ -26,19 +26,19 @@ export class NotificationComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.commonStore.globalNotification$
+    this.commonStore.globalAlert$
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(params => {
         this.notification = params;
         this.closeAnimation = false;
         this.alertConfig.type = params.type;
       });
-    this.commonStore.globalNotification$
+    this.commonStore.globalAlert$
       .pipe(debounceTime(DEBOUNCE_TIME_LONG))
       .subscribe(() => {
         this.notification = null;
       });
-    this.commonStore.globalNotification$
+    this.commonStore.globalAlert$
       .pipe(debounceTime(DEBOUNCE_TIME_SHORT))
       .subscribe(() => {
         this.closeAnimation = true;

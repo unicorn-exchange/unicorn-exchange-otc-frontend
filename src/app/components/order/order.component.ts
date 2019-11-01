@@ -6,7 +6,7 @@ import {BaseComponent} from "../base-component/base.component";
 import {takeUntil} from "rxjs/operators";
 import {IFullOrderDTO} from "unicorn-types/types/api/dtos";
 import {CommonStore} from "../../stores/common-store.service";
-import {NotificationType} from "../notification/notification.enum";
+import {AlertType} from "../alerts/alerts.enum";
 import {IAppSettings, SettingsStore} from "../../stores/settings-store.service";
 
 @Component({
@@ -45,9 +45,9 @@ export class OrderComponent extends BaseComponent implements OnInit {
             this.order = res.payload;
           })
           .catch(() => {
-            this.commonStore.showNotification({
+            this.commonStore.showAlert({
               text: "Cant's load an order",
-              type: NotificationType.error
+              type: AlertType.error
             });
           })
           .finally(() => {
@@ -63,9 +63,9 @@ export class OrderComponent extends BaseComponent implements OnInit {
         this.router.navigate([ROUTES.PROCESSING], {relativeTo: this.route});
       })
       .catch(() => {
-        this.commonStore.showNotification({
+        this.commonStore.showAlert({
           text: "Error while confirming order",
-          type: NotificationType.error
+          type: AlertType.error
         });
       });
   }
@@ -77,9 +77,9 @@ export class OrderComponent extends BaseComponent implements OnInit {
         this.router.navigate([ROUTES.ORDERS]);
       })
       .catch(() => {
-        this.commonStore.showNotification({
+        this.commonStore.showAlert({
           text: "Error while declining order",
-          type: NotificationType.error
+          type: AlertType.error
         });
       });
   }

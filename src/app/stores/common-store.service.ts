@@ -1,31 +1,31 @@
 import {Subject} from "rxjs";
 import {Injectable} from "@angular/core";
-import {NotificationType} from "../components/notification/notification.enum";
+import {AlertType} from "../components/alerts/alerts.enum";
 import {Router} from "@angular/router";
 
-export interface IGlobalNotification {
+export interface IGlobalAlert {
   text: string;
-  type: NotificationType;
+  type: AlertType;
 }
 
 @Injectable({
   providedIn: "root"
 })
 export class CommonStore {
-  globalNotification$ = new Subject<IGlobalNotification>();
+  globalAlert$ = new Subject<IGlobalAlert>();
 
   constructor(
     private router: Router,
   ) {
   }
 
-  showNotification(params: IGlobalNotification) {
-    this.globalNotification$.next(params);
+  showAlert(params: IGlobalAlert) {
+    this.globalAlert$.next(params);
   }
 
   showCommonError(err?: string) {
-    this.showNotification({
-      type: NotificationType.error,
+    this.showAlert({
+      type: AlertType.error,
       text: err || "Error occurred",
     });
   }

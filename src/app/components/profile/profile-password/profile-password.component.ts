@@ -4,7 +4,7 @@ import {genCtrl} from "../../../../services/utils";
 import {ProfileStore} from "../../../stores/profile-store.service";
 import * as yup from "yup";
 import {BaseComponent} from "../../base-component/base.component";
-import {NotificationType} from "../../notification/notification.enum";
+import {AlertType} from "../../alerts/alerts.enum";
 import {CommonStore} from "../../../stores/common-store.service";
 
 export enum changePasswordFields {
@@ -68,14 +68,14 @@ export class ProfilePasswordComponent extends BaseComponent implements OnInit {
     this.profileStore
       .profileChangePassword(formData)
       .then(() => {
-        this.commonStore.showNotification({
-          type: NotificationType.success,
+        this.commonStore.showAlert({
+          type: AlertType.success,
           text: "Password changed ",
         });
       })
       .catch(() => {
-        this.commonStore.showNotification({
-          type: NotificationType.error,
+        this.commonStore.showAlert({
+          type: AlertType.error,
           text: "Error while changing password. Try again later",
         });
       });

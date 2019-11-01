@@ -6,7 +6,7 @@ import {ordersCreateValidationScheme} from "unicorn-types/types/validators/order
 import {genCtrl} from "../../../services/utils";
 import {OrdersStore} from "../../stores/orders-store.service";
 import {orderCommonFields, orderWriteFields} from "unicorn-types/types/enums/forms/order";
-import {NotificationType} from "../notification/notification.enum";
+import {AlertType} from "../alerts/alerts.enum";
 import {IAppSettings, SettingsStore} from "../../stores/settings-store.service";
 import {BaseComponent} from "../base-component/base.component";
 import {takeUntil} from "rxjs/operators";
@@ -76,9 +76,9 @@ export class CreateOrderComponent extends BaseComponent implements OnInit, OnDes
     this.submitted = true;
     event.preventDefault();
     if (this.form.invalid) {
-      return this.commonStore.showNotification({
+      return this.commonStore.showAlert({
         text: "Please check the form",
-        type: NotificationType.warning
+        type: AlertType.warning
       });
     }
 
@@ -87,15 +87,15 @@ export class CreateOrderComponent extends BaseComponent implements OnInit, OnDes
       .then()
       .catch(err => {
         console.error(err);
-        this.commonStore.showNotification({
+        this.commonStore.showAlert({
           text: "Failed to create order. Please, try again later",
-          type: NotificationType.error
+          type: AlertType.error
         });
       })
       .finally(() => {
-        this.commonStore.showNotification({
+        this.commonStore.showAlert({
           text: "Order created!",
-          type: NotificationType.success
+          type: AlertType.success
         });
         this.router.navigate([ROUTES.ORDERS]);
       });

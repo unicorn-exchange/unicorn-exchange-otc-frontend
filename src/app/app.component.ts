@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnInit} from "@angular/core";
 import {CONFIG, ROUTES} from "../config";
 import {CommonStore} from "./stores/common-store.service";
 import {BaseComponent} from "./components/base-component/base.component";
-import {NotificationType} from "./components/notification/notification.enum";
+import {AlertType} from "./components/alerts/alerts.enum";
 
 @Component({
   selector: "app-root",
@@ -27,8 +27,8 @@ export class AppComponent extends BaseComponent implements OnInit, AfterViewInit
   }
 
   alertClick() {
-    this.commonStore.showNotification({
-      type: NotificationType.success,
+    this.commonStore.showAlert({
+      type: AlertType.success,
       text: "Test Notification",
     });
   }

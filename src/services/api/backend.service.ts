@@ -5,7 +5,7 @@ import {Injectable} from "@angular/core";
 import {APIV1} from "./api_v1";
 import {CONFIG, ROUTES} from "../../config";
 import {CommonStore} from "../../app/stores/common-store.service";
-import {NotificationType} from "../../app/components/notification/notification.enum";
+import {AlertType} from "../../app/components/alerts/alerts.enum";
 import {KeyEnum} from "../db/key.enum";
 import {DBService} from "../db/db.service";
 
@@ -57,8 +57,8 @@ export class BackendService {
     }
     if (error.response.status === 401) {
       this.commonStore.redirectTo(ROUTES.SIGN_IN);
-      this.commonStore.showNotification({
-        type: NotificationType.error,
+      this.commonStore.showAlert({
+        type: AlertType.error,
         text: "Please sign in first!",
       });
     }

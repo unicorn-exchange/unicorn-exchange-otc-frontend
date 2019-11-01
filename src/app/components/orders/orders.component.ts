@@ -7,7 +7,7 @@ import {IPartOrderDTO} from "unicorn-types/types/api/dtos";
 import {orderCommonFields, orderWriteFields} from "unicorn-types/types/enums/forms/order";
 import {BaseComponent} from "../base-component/base.component";
 import {takeUntil} from "rxjs/operators";
-import {NotificationType} from "../notification/notification.enum";
+import {AlertType} from "../alerts/alerts.enum";
 import {IAppSettings, SettingsStore} from "../../stores/settings-store.service";
 import {OrderDeclineModalComponent} from "../processing/order-decline-modal/order-decline-modal.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
@@ -63,9 +63,9 @@ export class OrdersComponent extends BaseComponent implements OnInit {
     this.ordersStore
       .loadOrders()
       .catch(() => {
-        this.commonStore.showNotification({
+        this.commonStore.showAlert({
           text: "Error while loading orders",
-          type: NotificationType.error
+          type: AlertType.error
         });
       });
   }
@@ -74,9 +74,9 @@ export class OrdersComponent extends BaseComponent implements OnInit {
     this.ordersStore
       .confirmOrder(orderId)
       .catch(() => {
-        this.commonStore.showNotification({
+        this.commonStore.showAlert({
           text: "Error while confirming order",
-          type: NotificationType.error
+          type: AlertType.error
         });
       })
       .finally(() => {
@@ -103,9 +103,9 @@ export class OrdersComponent extends BaseComponent implements OnInit {
         });
       })
       .catch(() => {
-        this.commonStore.showNotification({
+        this.commonStore.showAlert({
           text: "Error while loading orders",
-          type: NotificationType.error
+          type: AlertType.error
         });
       });
   }

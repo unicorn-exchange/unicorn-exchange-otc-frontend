@@ -5,7 +5,7 @@ import {takeUntil} from "rxjs/operators";
 import {genCtrl} from "../../../../services/utils";
 import * as yup from "yup";
 import {BaseComponent} from "../../base-component/base.component";
-import {NotificationType} from "../../notification/notification.enum";
+import {AlertType} from "../../alerts/alerts.enum";
 import {CommonStore} from "../../../stores/common-store.service";
 
 enum withDrawFields {
@@ -67,9 +67,9 @@ export class WithdrawModalComponent extends BaseComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    this.commonStore.showNotification({
+    this.commonStore.showAlert({
       text: "Successful",
-      type: NotificationType.success,
+      type: AlertType.success,
     });
     this.activeModal.dismiss("Cross click");
   }

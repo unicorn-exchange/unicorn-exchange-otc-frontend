@@ -3,7 +3,7 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {BaseComponent} from "../../base-component/base.component";
 import {OrdersStore} from "../../../stores/orders-store.service";
 import {CommonStore} from "../../../stores/common-store.service";
-import {NotificationType} from "../../notification/notification.enum";
+import {AlertType} from "../../alerts/alerts.enum";
 import {ChatStore} from "../../../stores/chat-store.service";
 
 @Component({
@@ -31,14 +31,14 @@ export class OrderCompleteModalComponent extends BaseComponent implements OnInit
     this.ordersStore
       .confirmOrder(this.orderId)
       .catch(() => {
-        this.commonStore.showNotification({
-          type: NotificationType.error,
+        this.commonStore.showAlert({
+          type: AlertType.error,
           text: "Error while finishing order",
         });
       })
       .finally(() => {
-        this.commonStore.showNotification({
-          type: NotificationType.success,
+        this.commonStore.showAlert({
+          type: AlertType.success,
           text: "You finished deal.",
         });
         this.chatStore.sendMessage({

@@ -10,7 +10,7 @@ import {TranslateService} from "@ngstack/translate";
 import {BaseComponent} from "../base-component/base.component";
 import {takeUntil} from "rxjs/operators";
 import {CommonStore} from "../../stores/common-store.service";
-import {NotificationType} from "../notification/notification.enum";
+import {AlertType} from "../alerts/alerts.enum";
 
 @Component({
   selector: "app-sign-in-component",
@@ -53,9 +53,9 @@ export class SignInComponent extends BaseComponent implements OnInit {
     this.submitted = true;
     event.preventDefault();
     if (this.form.invalid) {
-      return this.commonStore.showNotification({
+      return this.commonStore.showAlert({
         text: "Please check the form",
-        type: NotificationType.warning
+        type: AlertType.warning
       });
     }
 
@@ -64,9 +64,9 @@ export class SignInComponent extends BaseComponent implements OnInit {
       .then(() => this.router.navigate([ROUTES.ORDERS]))
       .catch(err => {
         console.error(err);
-        this.commonStore.showNotification({
+        this.commonStore.showAlert({
           text: "Invalid credentials",
-          type: NotificationType.error
+          type: AlertType.error
         });
       });
   }
