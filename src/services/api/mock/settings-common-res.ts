@@ -11,10 +11,10 @@ export const settingsCommonRes: ISettingsCommonRes = {
   }],
   countries: [{
     id: 1,
-    title: "USA"
+    title: "Russia"
   }, {
     id: 2,
-    title: "Russia"
+    title: "USA"
   }],
   fiats: [{
     id: 1,

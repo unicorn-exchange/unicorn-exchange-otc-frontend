@@ -12,6 +12,15 @@
     font-size: 15px;
     margin-bottom: 70px;
 
+    .route-link {
+      color: $main_text_color;
+      text-decoration: underline;
+
+      &:hover {
+        color: $main_text_color;
+      }
+    }
+
     .google-sign-in {
       cursor: pointer;
 
@@ -144,10 +153,9 @@
 }
 
 .default-link {
-  color: $main_text_color;
-  text-decoration: underline;
-
+  z-index: 100;
   &:hover {
+    text-decoration: underline;
     color: $main_text_color;
   }
 }

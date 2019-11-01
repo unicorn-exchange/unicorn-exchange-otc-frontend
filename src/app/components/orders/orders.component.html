@@ -64,15 +64,28 @@
         <tbody>
         <tr *ngFor="let order of orders" class="pointer">
           <td [routerLink]="['/order', order.id]">{{ order.id | number }}</td>
-          <td [routerLink]="['/order', order.id]">{{ order.country.title }}</td>
+          <td>
+            <span
+              (click)="filersForm.get(orderFilersFields.countryId).setValue(order.country.id)"
+              class="default-link"
+            >{{ order.country.title }}
+            </span>
+          </td>
           <td [routerLink]="['/order', order.id]">
             {{ order.owner.username }}
             {{ order.owner.email }}
           </td>
-          <td [routerLink]="['/order', order.id]">{{ order.currencyBuyPrice | number }} {{order.currencyBuy.title}}</td>
           <td
             [routerLink]="['/order', order.id]">{{ order.currencySellPrice | number }} {{order.currencySell.title}}</td>
-          <td [routerLink]="['/order', order.id]">{{ order.paymentMethod.title }}</td>
+          <td [routerLink]="['/order', order.id]">{{ order.currencyBuyPrice | number }} {{order.currencyBuy.title}}</td>
+          <td>
+            <span
+              (click)="filersForm.get(orderFilersFields.paymentMethodId).setValue(order.paymentMethod.id)"
+              class="default-link"
+            >
+              {{ order.paymentMethod.title }}
+            </span>
+          </td>
           <td class="actions-wrapper">
             <img
               (click)="confirmOrder(order.id)"
