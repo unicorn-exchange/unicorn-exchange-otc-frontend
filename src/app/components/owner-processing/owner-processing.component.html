@@ -84,10 +84,7 @@
         </span>
       </div>
       <div class="confirm-pay">
-        <button (click)="confirmPay()" class="red-button">I paid</button>
-        <span class="pay-description">
-          I confirm, that I paid.
-        </span>
+        <button (click)="completeOrder()" class="red-button">Finish deal</button>
       </div>
     </div>
     <div class="payment-order-info">
@@ -96,14 +93,13 @@
         <countdown [config]="{leftTime: 12435425}" class="countdown"></countdown>
       </div>
       <p>
-        After payment, click on the "I paid" button and wait for the funds to be credited to your address.
-        If the funds have not been received within an hour, write to the seller, and then in support
+        Make sure you receive funds, and then finish the deal.
       </p>
       <br>
       <div class="danger">
         <h5>Attention!</h5>
         <span>
-          Do not reject the offer after payment, otherwise you will not receive money
+          Do not finish the transaction if you have not yet received money in your account. This action cannot be undone.
         </span>
       </div>
     </div>

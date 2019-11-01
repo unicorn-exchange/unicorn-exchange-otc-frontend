@@ -13,6 +13,7 @@ import {NbChatModule, NbLayoutModule, NbThemeModule} from "@nebular/theme";
 import {ChatComponent} from "./components/chat/chat.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {NbEvaIconsModule} from "@nebular/eva-icons";
+import {CountdownModule} from 'ngx-countdown';
 // Components
 import {AppRoutingModule} from "./app-routing.module";
 import {AppComponent} from "./app.component";
@@ -38,6 +39,8 @@ import {OrderProcessingComponent} from "./components/processing/order-processing
 import {OrderDeclineModalComponent} from "./components/processing/order-decline-modal/order-decline-modal.component";
 import {OrderPayModalComponent} from "./components/processing/order-pay-modal/order-pay-modal.component";
 import {FooterComponent} from "./components/footer/footer.component";
+import {OwnerProcessingComponent} from "./components/owner-processing/owner-processing.component";
+import {OrderCompleteModalComponent} from "./components/owner-processing/order-complete-modal/order-complete-modal.component";
 
 // tslint:disable-next-line:ban-types
 export function setupTranslateFactory(service: TranslateService): Function {
@@ -66,6 +69,7 @@ export const baseModule: NgModule = {
     NbThemeModule.forRoot({name: "default"}),
     NbLayoutModule,
     NbEvaIconsModule,
+    CountdownModule
   ],
   declarations: [
     SignInComponent,
@@ -92,12 +96,15 @@ export const baseModule: NgModule = {
     NotificationComponent,
     FooterComponent,
     ChatComponent,
+    OwnerProcessingComponent,
+    OrderCompleteModalComponent
   ],
   entryComponents: [
     DepositModalComponent,
     WithdrawModalComponent,
     OrderDeclineModalComponent,
-    OrderPayModalComponent
+    OrderPayModalComponent,
+    OrderCompleteModalComponent
   ],
   providers: [
     TranslateService,

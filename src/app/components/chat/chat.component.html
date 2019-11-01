@@ -1,36 +1,22 @@
 <div class="chat-wrapper">
-  <nb-layout>
-
-    <!--    <nb-layout-header fixed>-->
-    <!--      &lt;!&ndash; Insert header here &ndash;&gt;-->
-    <!--    </nb-layout-header>-->
-
-    <nb-layout-column>
-      <nb-chat size="large" title="ddj">
-        <nb-chat-message
-          *ngFor="let message of messages"
-          [avatar]="message.user.avatar"
-          [date]="message.date"
-          [files]="message.files"
-          [latitude]="message.latitude"
-          [longitude]="message.longitude"
-          [message]="message.text"
-          [quote]="message.quote"
-          [reply]="message.reply"
-          [sender]="message.user.name"
-          [type]="message.type">
-        </nb-chat-message>
-        <nb-chat-form
-          (send)="sendMessage($event, 'Jake', 'http://www.reactiongifs.com/r/wnd1.gif', true)"
-          [dropFiles]="true">
-        </nb-chat-form>
-      </nb-chat>
-    </nb-layout-column>
-
-    <!--    <nb-layout-footer fixed>-->
-    <!--      &lt;!&ndash; Insert footer here &ndash;&gt;-->
-    <!--    </nb-layout-footer>-->
-
-  </nb-layout>
-
+  <nb-chat size="large">
+    <nb-chat-message
+      *ngFor="let message of messages"
+      [avatar]="message.user.avatar"
+      [date]="message.date"
+      [files]="message.files"
+      [latitude]="message.latitude"
+      [longitude]="message.longitude"
+      [message]="message.text"
+      [ngClass]="{'error-message': message.state === 'error'}"
+      [quote]="message.quote"
+      [reply]="message.reply"
+      [sender]="message.user.name"
+      [type]="message.type">
+    </nb-chat-message>
+    <nb-chat-form
+      (send)="sendMessage($event, 'Jake', 'http://www.reactiongifs.com/r/wnd1.gif', true)"
+      [dropFiles]="true">
+    </nb-chat-form>
+  </nb-chat>
 </div>

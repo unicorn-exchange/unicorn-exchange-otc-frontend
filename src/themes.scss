@@ -1,17 +1,23 @@
 @import '~@nebular/theme/styles/theming';
 @import '~@nebular/theme/styles/themes/default';
+@import "./assets/styles/variables";
 
 $nb-themes: nb-register-theme((
-  // add your variables here like:
-
-  // color-primary-100: #f2f6ff,
-  // color-primary-200: #d9e4ff,
-  // color-primary-300: #a6c1ff,
-  // color-primary-400: #598bff,
-  // color-primary-500: #3366ff,
-  // color-primary-600: #274bdb,
-  // color-primary-700: #1a34b8,
-  // color-primary-800: #102694,
-  // color-primary-900: #091c7a,
-
+  layout-text-font-family: $circular-book,
+  layout-background-color: $theme-default-background,
+  layout-padding: 0,
+  layout-medium-padding: 0,
+  layout-text-line-height: auto,
+  alert-success-background-color: #35C640,
+  alert-danger-background-color: $main-red-color,
+  alert-text-font-size: 15px,
+  alert-border-radius: 0,
+  alert-padding: 1.1rem 1.125rem,
 ), default, default);
+
+//.error-message {
+//  $nb-themes: nb-register-theme((
+//    chat-message-reply-background-color: red,
+//    chat-message-reply-text-color: #fff,
+//  ), default, default);
+//}

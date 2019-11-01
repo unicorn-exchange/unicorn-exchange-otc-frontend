@@ -179,19 +179,6 @@
 
 
 // Global changes
-::placeholder {
-  color: #000;
-  opacity: 1;
-}
-
-:-ms-input-placeholder {
-  color: #000;
-}
-
-::-ms-input-placeholder {
-  color: #000;
-}
-
 button {
   outline: none;
 
@@ -206,18 +193,6 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
-
-.switch-medium small {
-  width: 17px !important;
-  height: 17px !important;
-  top: 6.5px !important;
-  left: 5px !important;
-  box-shadow: none !important;
-}
-
-.switch-medium.checked small {
-  left: 30px !important;
 }
 
 .table {

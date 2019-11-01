@@ -1,73 +1,43 @@
-export const messages = [
-  {
-    text: "Hello, how are you? This should be a very long message so that we can test how it fit into the screen.",
-    reply: false,
-    date: new Date(),
-    user: {
-      name: "John Doe",
-      avatar: "https://i.gifer.com/no.gif",
-    },
-  },
-  {
-    text: "Hello, how are you? This should be a very long message so that we can test how it fit into the screen.",
-    reply: true,
-    date: new Date(),
-    user: {
-      name: "Kate Moss",
-      avatar: "https://i.gifer.com/no.gif",
-    },
-  },
-  {
-    text: "Hello, how are you?",
-    reply: false,
-    date: new Date(),
-    user: {
-      name: "John Doe",
-      avatar: "https://i.gifer.com/no.gif",
-    },
-  },
-  {
-    text: "Hey looks at that pic I just found!",
-    reply: false,
-    date: new Date(),
-    type: "file",
-    files: [
-      {
-        url: "https://i.gifer.com/no.gif",
-        type: "image/jpeg",
-        icon: false,
+import {defaultResponse} from "./default_response";
+import {ICommonRes} from "unicorn-types/types/api/responses";
+import {IMessage} from "../../../app/stores/chat-store.service";
+
+interface IMessageRes extends ICommonRes {
+  payload: IMessage[];
+}
+
+export const messages: IMessageRes = {
+  payload: [
+    {
+      text: "Order processing started.",
+      reply: true,
+      state: "new",
+      date: new Date(),
+      user: {
+        name: "Kate Moss",
+        avatar: "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
       },
-    ],
-    user: {
-      name: "John Doe",
-      avatar: "https://i.gifer.com/no.gif",
     },
-  },
-  {
-    text: "What do you mean by that?",
-    reply: false,
-    date: new Date(),
-    type: "quote",
-    quote: "Hello, how are you? This should be a very long message so that we can test how it fit into the screen.",
-    user: {
-      name: "John Doe",
-      avatar: "https://i.gifer.com/no.gif",
-    },
-  },
-  {
-    text: "Attached is an archive I mentioned",
-    reply: true,
-    date: new Date(),
-    type: "file",
-    files: [
-      {
-        url: "https://i.gifer.com/no.gif",
-        icon: "file-text-outline",
+    {
+      text: "Thanks for choosing my order!",
+      reply: false,
+      state: "new",
+      date: new Date(),
+      user: {
+        name: "John Doe",
+        avatar: "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
       },
-    ],
-    user: {
-      name: "Kate Moss",
-      avatar: "https://i.gifer.com/no.gif",
     },
-  },
-];
+    {
+      text: "Some order info...",
+      reply: false,
+      state: "new",
+      date: new Date(),
+      user: {
+        name: "John Doe",
+        avatar: "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
+      },
+    },
+  ],
+  ...defaultResponse
+}

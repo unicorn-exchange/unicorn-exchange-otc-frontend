@@ -23,6 +23,13 @@ export class CommonStore {
     this.globalNotification$.next(params);
   }
 
+  showCommonError(err?: string) {
+    this.showNotification({
+      type: NotificationType.error,
+      text: err || "Error occurred",
+    });
+  }
+
   redirectTo(route: string) {
     this.router.navigate([route]);
   }

@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {BaseComponent} from "../base-component/base.component";
-import {messages} from "../../../services/api/mock/messages";
+import {ChatStore} from "../../stores/chat-store.service";
+import {takeUntil} from "rxjs/operators";
 
 @Component({
   selector: "app-chat",
@@ -8,24 +9,34 @@ import {messages} from "../../../services/api/mock/messages";
   styleUrls: ["./chat.component.scss"]
 })
 export class ChatComponent extends BaseComponent implements OnInit {
-  messages = messages;
+  messages = [];
 
-  constructor() {
+  constructor(
+    private chatStore: ChatStore,
+  ) {
     super();
   }
 
   ngOnInit() {
+    this.chatStore.$state
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(state => {
+        this.messages = state.messages;
+      });
+    this.chatStore
+      .loadMessages()
   }
 
   sendMessage(event) {
-    this.messages.push({
+    this.chatStore.sendMessage({
       text: event.message,
-      date: new Date(),
-      reply: true,
+      reply: false,
+      state: "sending",
       user: {
         name: "Kate Moss",
-        avatar: "https://techcrunch.com/wp-content/uploads/2015/08/safe_image.gif",
+        avatar: "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
       },
     });
+    console.log(this.messages)
   }
 }

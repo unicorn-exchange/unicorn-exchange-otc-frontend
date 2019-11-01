@@ -7,11 +7,11 @@ import {NotificationType} from "../../notification/notification.enum";
 import {ChatStore} from "../../../stores/chat-store.service";
 
 @Component({
-  selector: "app-order-pay-modal-content",
-  templateUrl: "./order-pay-modal.component.html",
-  styleUrls: ["./order-pay-modal.component.scss"]
+  selector: "app-order-complete-modal-content",
+  templateUrl: "./order-complete-modal.component.html",
+  styleUrls: ["./order-complete-modal.component.scss"]
 })
-export class OrderPayModalComponent extends BaseComponent implements OnInit {
+export class OrderCompleteModalComponent extends BaseComponent implements OnInit {
   @Input() orderId;
 
   constructor(
@@ -26,23 +26,23 @@ export class OrderPayModalComponent extends BaseComponent implements OnInit {
   ngOnInit() {
   }
 
-  confirmOrder() {
+  completeOrder() {
     this.activeModal.dismiss("Cross click");
     this.ordersStore
       .confirmOrder(this.orderId)
       .catch(() => {
         this.commonStore.showNotification({
           type: NotificationType.error,
-          text: "Error while confirming order",
+          text: "Error while finishing order",
         });
       })
       .finally(() => {
         this.commonStore.showNotification({
           type: NotificationType.success,
-          text: "Request has been sent",
+          text: "You finished deal.",
         });
         this.chatStore.sendMessage({
-          text: "Payment was successful.",
+          text: "Deal finished.",
           reply: false,
           state: "sending",
           user: {
