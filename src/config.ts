@@ -12,6 +12,7 @@ class ProfileRoutes {
   static readonly NOTIFICATIONS = "notifications";
   static readonly INFO = "information";
   static readonly CATEGORIES = "categories";
+  static readonly DEALS = "deals";
   static readonly RATE = "rate";
   static readonly INVOICES = "invoices";
   static readonly CHANGE_PASSWORD = "change-password";

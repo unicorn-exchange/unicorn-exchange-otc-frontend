@@ -41,6 +41,8 @@ import {OrderPayModalComponent} from "./components/processing/order-pay-modal/or
 import {FooterComponent} from "./components/footer/footer.component";
 import {OwnerProcessingComponent} from "./components/owner-processing/owner-processing.component";
 import {OrderCompleteModalComponent} from "./components/owner-processing/order-complete-modal/order-complete-modal.component";
+import {ProfileDealsComponent} from "./components/profile/profile-deals/profile-deals.component";
+import {OrderDeleteModalComponent} from "./components/profile/profile-deals/order-delete-modal/order-delete-modal.component";
 
 // tslint:disable-next-line:ban-types
 export function setupTranslateFactory(service: TranslateService): Function {
@@ -99,14 +101,17 @@ export const baseModule: NgModule = {
     FooterComponent,
     ChatComponent,
     OwnerProcessingComponent,
-    OrderCompleteModalComponent
+    OrderCompleteModalComponent,
+    ProfileDealsComponent,
+    OrderDeleteModalComponent
   ],
   entryComponents: [
     DepositModalComponent,
     WithdrawModalComponent,
     OrderDeclineModalComponent,
     OrderPayModalComponent,
-    OrderCompleteModalComponent
+    OrderCompleteModalComponent,
+    OrderDeleteModalComponent
   ],
   providers: [
     TranslateService,

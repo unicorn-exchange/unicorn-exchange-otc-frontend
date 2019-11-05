@@ -15,6 +15,7 @@ import {WithdrawComponent} from "./components/withdraw/withdraw.component";
 import {OrderProcessingComponent} from "./components/processing/order-processing.component";
 import {ChatComponent} from "./components/chat/chat.component";
 import {OwnerProcessingComponent} from "./components/owner-processing/owner-processing.component";
+import {ProfileDealsComponent} from "./components/profile/profile-deals/profile-deals.component";
 
 const routes: Routes = [
   {
@@ -88,6 +89,10 @@ const routes: Routes = [
       {
         path: ROUTES.PROFILE.CHANGE_PASSWORD,
         component: ProfilePasswordComponent,
+      },
+      {
+        path: ROUTES.PROFILE.DEALS,
+        component: ProfileDealsComponent,
       },
     ],
   },

@@ -16,6 +16,10 @@ export class ProfileComponent implements OnInit {
       label: this.translate.get("PROFILE.INFO")
     },
     {
+      routerLink: ROUTES.PROFILE.DEALS,
+      label: this.translate.get("PROFILE.DEALS")
+    },
+    {
       routerLink: ROUTES.PROFILE.CHANGE_PASSWORD,
       label: this.translate.get("PROFILE.PASSWORD")
     }
