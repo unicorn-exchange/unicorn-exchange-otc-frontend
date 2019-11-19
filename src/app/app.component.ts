@@ -1,8 +1,9 @@
 import {AfterViewInit, Component, OnInit} from "@angular/core";
-import {CONFIG, ROUTES} from "../config";
+import {ROUTES} from "../config";
 import {CommonStore} from "./stores/common-store.service";
 import {BaseComponent} from "./components/base-component/base.component";
 import {AlertType} from "./components/alerts/alerts.enum";
+import {Env} from "../environments/env";
 
 @Component({
   selector: "app-root",
@@ -11,7 +12,7 @@ import {AlertType} from "./components/alerts/alerts.enum";
 })
 export class AppComponent extends BaseComponent implements OnInit, AfterViewInit {
   ROUTES = ROUTES;
-  CONFIG = CONFIG;
+  Env = Env;
 
   constructor(
     private commonStore: CommonStore,

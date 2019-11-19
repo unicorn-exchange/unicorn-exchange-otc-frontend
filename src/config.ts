@@ -1,12 +1,3 @@
-export class CONFIG {
-  static readonly RECAPTCHA_KEY = "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI";
-  static readonly THEME = "light";
-  static readonly FAKE_NETWORK = true;
-  static readonly IS_DEV = true;
-  static readonly DEBUG_NETWORK = true;
-  static readonly DEBUG_PERFORMANCE = true;
-}
-
 class ProfileRoutes {
   static readonly base = "profile";
   static readonly NOTIFICATIONS = "notifications";

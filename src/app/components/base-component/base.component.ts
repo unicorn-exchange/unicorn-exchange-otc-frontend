@@ -1,6 +1,6 @@
 import {OnDestroy} from "@angular/core";
 import {Subject} from "rxjs";
-import {CONFIG} from "../../../config";
+import {Env} from "../../../environments/env";
 
 export interface IComponentState {
   isLoading: boolean;
@@ -17,7 +17,7 @@ export class BaseComponent implements OnDestroy {
   ngUnsubscribe = new Subject<void>();
 
   ngOnDestroy() {
-    if (CONFIG.DEBUG_PERFORMANCE) {
+    if (Env.DEBUG_PERFORMANCE) {
       console.log("Subscriptions destroyed", this);
     }
     this.ngUnsubscribe.next();

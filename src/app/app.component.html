@@ -3,7 +3,7 @@
     <app-alert-component></app-alert-component>
     <app-header-component></app-header-component>
     <div>
-      <div *ngIf="CONFIG.IS_DEV">
+      <div *ngIf="!Env.IS_PRODUCTION">
         <a routerLink="/">Base</a> |
         <a [routerLink]="ROUTES.SIGN_IN">Sign In</a> |
         <a [routerLink]="ROUTES.SIGN_UP">Sign Up</a> |
